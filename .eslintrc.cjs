@@ -12,13 +12,12 @@ module.exports = {
     'standard',
     'prettier',
     'eslint:recommended',
-    'plugin:wdio/recommended'
   ],
   overrides: [],
   parserOptions: {
     ecmaVersion: 'latest'
   },
-  plugins: ['prettier', 'wdio'],
+  plugins: ['prettier'],
   rules: {
     'prettier/prettier': 'error',
     'no-console': 'error'
