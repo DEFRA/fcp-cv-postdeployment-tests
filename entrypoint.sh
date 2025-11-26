@@ -1,6 +1,7 @@
 #!/bin/sh
 
 echo "run_id: $RUN_ID"
+npm playwright install
 npm test
 
 npm run report:publish
