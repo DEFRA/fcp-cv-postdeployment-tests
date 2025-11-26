@@ -18,7 +18,7 @@ WORKDIR /app
 
 COPY . .
 RUN npm install
-RUN npx playwright install
+RUN npx playwright install --with-deps
 
 ENTRYPOINT [ "./entrypoint.sh" ]
 
