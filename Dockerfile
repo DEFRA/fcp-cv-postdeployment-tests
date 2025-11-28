@@ -19,6 +19,7 @@ WORKDIR /app
 COPY . .
 RUN npm install
 RUN npx playwright install --with-deps
+RUN npx playwright install msedge
 
 ENTRYPOINT [ "./entrypoint.sh" ]
 

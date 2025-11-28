@@ -41,9 +41,17 @@ export default defineConfig({
     },
 
     {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      name: 'Microsoft Edge',
+      use: {
+        // Supported Microsoft Edge channels are: msedge, msedge-beta, msedge-dev, msedge-canary
+        channel: 'msedge',
+      },
     },
+
+    //{
+    //  name: 'firefox',
+    //  use: { ...devices['Desktop Firefox'] },
+    //},
 
     //{
     //  name: 'webkit',
