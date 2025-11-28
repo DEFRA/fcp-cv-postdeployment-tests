@@ -1,6 +1,16 @@
 fcp-cv-postdeployment-tests
 
-The template to create a service that runs WDIO tests against an environment.
+This repo holds UI tests for Consolidated View. It is based on Playwright and uses Allure to report results.
+
+Due to current refactoring of CV, this is currently a "skeleton" framework which has been created in preparation for the main application refactoring.
+
+The framework has example code for:
+
+- Using Playwright
+- creating a "page object model" test (page-objects and specs directories)
+- Getting data for different environments from Json files (helpers/getdata.js)
+- Switching environment URLs (pageobjects/cdphomepage.js)
+- Executing tests against Chrome and Edge (playwright.config.js and Dockerfile)
 
 - [Local](#local)
   - [Requirements](#requirements)
@@ -37,8 +47,6 @@ npm install
 ```
 
 ### Running local tests
-
-Start application you are testing on the url specified in `baseUrl` [wdio.local.conf.js](wdio.local.conf.js)
 
 ```bash
 npm run test:local

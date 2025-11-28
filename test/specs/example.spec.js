@@ -1,19 +1,18 @@
 // @ts-check
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test'
+import HomePage from '../page-objects/cdphomepage.js'
+import DocumentationPage from '../page-objects/cdpdocumentationpage.js'
 
-test('has title', async ({ page }) => {
-  await page.goto('https://portal.cdp-int.defra.cloud/');
+test('Home page is accessible', async ({ page }) => {
+  const home = new HomePage(page)
+  await home.gotoHomePage()
+})
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Home | Core Delivery Platform - Portal/);
-});
+test('Documentation page is accessible', async ({ page }) => {
+  const home = new HomePage(page)
+  const docsPage = new DocumentationPage(page)
 
-test('Documentation page loads', async ({ page }) => {
-  await page.goto('https://portal.cdp-int.defra.cloud/');
-
-  // Click the Documentation link
-  await page.getByTestId('nav-documentation').click();
-
-  // Expects page to have a heading with the name Documentation.
-  await expect(page).toHaveTitle(/Documentation - Home | Core Delivery Platform - Portal/);
-});
+  await home.gotoHomePage()
+  await home.clickDocumentationTab()
+  await docsPage.checkTitle()
+})
