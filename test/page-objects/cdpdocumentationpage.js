@@ -7,7 +7,7 @@ export default class DocumentationPage {
 
   async checkTitle() {
     await expect(this.page).toHaveTitle(
-      /Documentation - Home | Core Delivery Platform - Portal/
+      'Documentation - Home | Core Delivery Platform - Portal'
     )
   }
 }

@@ -13,8 +13,11 @@ export default class HomePage {
 
   async gotoHomePage() {
     await this.page.goto('https://portal.cdp-int.defra.cloud/')
+  }
+
+  async checkHomePageTitle() {
     await expect(this.page).toHaveTitle(
-      /Home | Core Delivery Platform - Portal/
+      'Home | Core Delivery Platform - Portal'
     )
   }
 
