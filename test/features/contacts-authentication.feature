@@ -1,55 +1,43 @@
-Feature: Consolidated View Contacts Authentication
+Feature: Consolidated View Contacts Authentication page
 
-  @basic
-  Scenario: Page opens with no errors.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
+  @basic @possible-vi-test
+  Scenario: Page opens with correct components displayed.
+    Given I am on the Contacts Authentication page
+    Then I see a table with column headers 'Memorable Date, Memorable Event, Memorable Place, Updated Date'
+    And I see an 'Open Authentication Record' button
+    And I see a 'Retrieved At' field
+    And the table data row is populated
 
-  @basic
-  Scenario: Table appears with correct columns.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
-
-  @basic
-  Scenario: Open Authentication Record button and Retrieved At field are present.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
-
-  @basic
-  Scenario: Table data rows are populated.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
-
-  @intermediate
+  @intermediate @deprecated
   Scenario: Clicking the Open Authentication Record button opens a new web page with the Authentication app displayed.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
+    Given I am on the Contacts Authentication page
+    When I click the 'Open Authentication Record' button
+    Then an 'Authentication App' web page is present
+
+  @advanced @data-dependent
+  Scenario: Contacts with no authentication data set should have all table data shown as NOT SET.
+    Given I have selected a contact with no authentication data set
+    When I navigate to the Contacts Authentication page
+    Then All table entries should be shown as 'NOT SET'
+
+  @advanced @data-dependent
+  Scenario: Contacts who cannot be found in the authentication database should have all table data shown as NOT FOUND.
+    Given I have selected a contact who is not in the authentication database
+    When I navigate to the Contacts Authentication page
+    Then All table entries should be shown as 'NOT FOUND'
+
+  @advanced @data-dependent
+  Scenario: Authentication data should be displayed correctly
+    Given I have selected the contact with CRN '0000000001'
+    When I navigate to the Contacts Authentication page
+    Then All table entries should be shown as follows
+      | label           | value       |
+      | Memorable Date  | 01/02/2003  |
+      | Memorable Event | Bar Mitzvah |
+      | Memorable Place | Vegas       |
+      | Updated Date    | 01/01/2025  |
 
   @advanced
-  Scenario: Find a contact whose data is not set in the authentication database. Every entry in the table should show as NOT SET.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
-
-  @advanced
-  Scenario: Find a contact whose data is not found in the authentication database. Every entry in the table should show as NOT FOUND.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
-
-  @advanced
-  Scenario: Find a contact whose data is found in the authentication database. Confirm that entry in the table shows the same value as in the authentication database
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
-
-  @advanced
-  Scenario: Open the authentication screen, the "Retrieved At" field should show today's date and the current time.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
+  Scenario: The "Retrieved At" field is accurate
+    Given I am on the Contacts Authentication page
+    Then the Retrieved At field is equal to today's date and current time
