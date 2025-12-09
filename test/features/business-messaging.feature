@@ -1,91 +1,129 @@
-Feature: Consolidated View Business Messages
+Feature: Consolidated View Business Messages page
 
-  @basic
-  Scenario: Page opens with no errors
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
+  @basic @possible-vi-test
+  Scenario: Page opens with correct components displayed.
+    Given I am on the Business Messages page
+    Then I see the Contacts drop-down
+    And I see a disabled Date Range drop-down
+    And I see a disabled Show Read/Unread drop-down
+    And I see a Search box
 
-  @basic
-  Scenario: Contacts drop-down appears
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
+  @basic @possible-vi-test
+  Scenario: Page updates correctly once a contact is selected.
+    Given I am on the Business Messages page
+    When I select a contact
+    Then the Date Range field becomes active with options for 'Last 12 months, Last 24 months, Last 36 months, All'
+    And the Show Read/Unread field becomes active with options for 'All, Read, Unread'
+    And I see a Messages table with column headers for 'Status, Date, Subject'
+    And the first message of the table is selected
 
-  @basic
-  Scenario: Once a contact is selected, a Search box and a table of messages with headers Date and Subject appears.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
+  @basic @possible-vi-test
+  Scenario: Message data updates correctly once a contact is selected.
+    Given I am on the Business Messages page
+    And I have selected a contact
+    When I select a message
+    Then the right-hand pane updates with a bold title, a Date field, a Read field, a Deleted field and a Message field
+    And there is a label in the right-hand pane 'Links in the message below do not work'
 
-  @basic
-  Scenario: Once a Message is clicked on, the right-hand pane populates with the correct header, fields and message display box.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
+  @advanced @data-dependent
+  Scenario: Message data updates correctly once a contact is selected.
+    Given I am on the Business Messages page for the business with SBI '1106552449'
+    And I have selected the contact 'Catherine Pallister'
+    When I select a message
+    Then right-hand pane updates with the following information
+      | label    | value                    |
+      | Title    | my message subject       |
+      | Date     | 01/01/2025               |
+      | Read?    | Yes                      |
+      | Deleted? | No                       |
+      | Message  | my message contents blah |
 
-  @intermediate
-  Scenario: Enter a partially matching string for a string in the Subject column and press enter -> table is filtered correctly
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
+  @advanced @data-dependent
+  Scenario: Correct message is displayed when a contact has no messages for that business
+    Given I am on the Business Messages page for the business with SBI '1106552449'
+    When I select the contact 'Duncan Peacock'
+    Then the Messages table is empty
+    And a message is displayed 'There are no messages to display'
 
-  @intermediate
-  Scenario: Enter a blank value in the search box and press enter -> All records are displayed
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
+  @advanced @data-dependent
+  Scenario: Contacts list is empty when a business has no contacts
+    Given I am on the Business Messages page for the business with SBI '236475237465'
+    Then the Contacts drop-down is empty
 
-  @advanced
-  Scenario: Find a business in the RP Portal and navigate to YYY to see a list of their linked contacts. Confirm that the list in RP is the same as in CV.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
+  @advanced @data-dependent
+  Scenario: Searching for a partially matching string in the Subject column filters correctly
+    Given I am on the Business Messages page for the business with SBI '1106552449'
+    And I have selected the contact 'Catherine Pallister'
+    When I enter 'credit' in the search box
+    Then I see the the correct list of messages as follows
+      | label   | value                  |
+      | Status  | Read                   |
+      | Date    | 10/10/2023             |
+      | Subject | Payment credit applied |
+    When I enter a blank value in the search box
+    And Press the Enter key
+    Then I see the the correct list of messages as follows
+      | label   | value                                                                                 |
+      | Status  | Read, Read, Read, Unread                                                              |
+      | Date    | 31/12/2025, 31/12/2024, 31/12/2023, 10/02/2009                                        |
+      | Subject | "Payment credit applied", "Document approved", "Document rejected", "Document review" |
 
-  @advanced
-  Scenario: Find a business in the RP Portal with no linked contacts. Confirm that the list in CV is blank.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
+  @advanced @data-dependent
+  Scenario: The list of contacts is correct.
+    Given I am on the Business Messages page for the business with SBI '1106552449'
+    Then the Contacts drop-down contains entires for 'Catherine Pallister, Duncan Peacock'
 
-  @advanced
-  Scenario: Find a business in the RP Portal with a contact who has no messages for that business. Confirm that the messages in CV is blank with an appropriate informational warning displayed.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
+  @advanced @data-dependent @this-test-will-break-as-dates-get-out-of-sync
+  Scenario: The message date filter works correctly.
+    Given I am on the Business Messages page for the business with SBI '1106552449'
+    And I have selected the contact 'Catherine Pallister'
+    When I select the Date Range field as 'Last 12 months'
+    Then I see the correct list of messages as follows
+      | label   | value                    |
+      | Status  | Read                     |
+      | Date    | 31/12/2025               |
+      | Subject | "Payment credit applied" |
+    When I select the Date Range field as 'Last 24 months'
+    Then I see the correct list of messages as follows
+      | label   | value                                         |
+      | Status  | Read, Read                                    |
+      | Date    | 31/12/2025, 31/12/2024                        |
+      | Subject | "Payment credit applied", "Document approved" |
+    When I select the Date Range field as 'Last 36 months'
+    Then I see the correct list of messages as follows
+      | label   | value                                                              |
+      | Status  | Read, Read, Read                                                   |
+      | Date    | 31/12/2025, 31/12/2024, 31/12/2023                                 |
+      | Subject | "Payment credit applied", "Document approved", "Document rejected" |
+    When I select the Date Range field as 'All'
+    Then I see the correct list of messages as follows
+      | label   | value                                                                                 |
+      | Status  | Read, Read, Read, Unread                                                              |
+      | Date    | 31/12/2025, 31/12/2024, 31/12/2023, 10/02/2009                                        |
+      | Subject | "Payment credit applied", "Document approved", "Document rejected", "Document review" |
 
-  @advanced
-  Scenario: Find a contact in the RP Portal and navigate to YYY to see a list of their messages for the last 12 months. Confirm that the list in RP is the same as in CV.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
+  @advanced @data-dependent
+  Scenario: The Read-Unread message filter works correctly
+    Given I am on the Business Messages page for the business with SBI '1106552449'
+    And I have selected the contact 'Catherine Pallister'
+    When I select 'Read' from the Read-Unread filter
+    Then I see the correct list of messages as follows
+      | label   | value                                                              |
+      | Status  | Read, Read, Read                                                   |
+      | Date    | 31/12/2025, 31/12/2024, 31/12/2023                                 |
+      | Subject | "Payment credit applied", "Document approved", "Document rejected" |
+    When I select 'Unread' from the Read-Unread filter
+    Then I see the correct list of messages as follows
+      | label   | value              |
+      | Status  | Unread             |
+      | Date    | 10/02/2009         |
+      | Subject | "Document review" |
 
-  @advanced
-  Scenario: Find a contact in the RP Portal and navigate to YYY to see a list of their messages and select one. Using CV, click on the same message. The data displayed is correct.
-    Given I am on home page
-    When I click the Documentation tab
-    Then Confirm that the following fields have the same data in RP and CV: Subject (as the header), Date, Read? And Deleted? Fields and the box to display the message.
-
-  @advanced
-  Scenario: Find a contact with a read message in RP. Confirm in CV that this message shows as read.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
-
-  @advanced
-  Scenario: Find a contact with an unread message in RP. Confirm in CV that this message shows as unread.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
-
-  @advanced
-  Scenario: Find a contact with a deleted message in RP. Confirm in CV that this message shows as deleted.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
-
-  @advanced
-  Scenario: Find a contact with a message that has not been deleted in RP. Confirm in CV that this message shows as not deleted.
-    Given I am on home page
-    When I click the Documentation tab
-    Then I see the correct documentation page title
+  @advanced @data-dependent
+  Scenario: Deleted message data displays correctly
+    Given I am on the Business Messages page for the business with SBI '1106552449'
+    And I have selected the contact 'Catherine Pallister'
+    When I select the message with the subject 'Document approved'
+    Then the Deleted field is 'true'
+    When I select the message with the subject 'Document rejected'
+    Then the Deleted field is 'false'
