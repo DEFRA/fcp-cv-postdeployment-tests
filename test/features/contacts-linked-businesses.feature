@@ -3,7 +3,7 @@ Feature: Consolidated View Contacts Linked Businesses page
   @basic @possible-vi-test
   Scenario: Page opens with correct components displayed.
     Given I am on the Contacts Linked Businesses page
-    Then I see a Search box in a left-hand side pane
+    Then I see a Search box
     And I see a Businesses table with column headers 'SBI, Name' in a left-hand side pane
     And the first item of the Businesses table is selected
     And I see a title in bold of the name of the business in the right-hand side pane

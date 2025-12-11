@@ -27,7 +27,8 @@ Feature: Consolidated View Business Messages page
 
   @advanced @data-dependent
   Scenario: Message data updates correctly once a contact is selected.
-    Given I am on the Business Messages page for the business with SBI '1106552449'
+    Given I have selected the business with SBI '1106552449'
+    And I am on the Business Messages page
     And I have selected the contact 'Catherine Pallister'
     When I select a message
     Then right-hand pane updates with the following information
@@ -40,19 +41,22 @@ Feature: Consolidated View Business Messages page
 
   @advanced @data-dependent
   Scenario: Correct message is displayed when a contact has no messages for that business
-    Given I am on the Business Messages page for the business with SBI '1106552449'
+    Given I have selected the business with SBI '1106552449'
+    And I am on the Business Messages page
     When I select the contact 'Duncan Peacock'
     Then the Messages table is empty
     And a message is displayed 'There are no messages to display'
 
   @advanced @data-dependent
   Scenario: Contacts list is empty when a business has no contacts
-    Given I am on the Business Messages page for the business with SBI '236475237465'
+    Given I have selected the business with SBI '236475237465'
+    And I am on the Business Messages page
     Then the Contacts drop-down is empty
 
   @advanced @data-dependent
   Scenario: Searching for a partially matching string in the Subject column filters correctly
-    Given I am on the Business Messages page for the business with SBI '1106552449'
+    Given I have selected the business with SBI '1106552449'
+    And I am on the Business Messages page
     And I have selected the contact 'Catherine Pallister'
     When I enter 'credit' in the search box
     Then I see the the correct list of messages as follows
@@ -70,12 +74,14 @@ Feature: Consolidated View Business Messages page
 
   @advanced @data-dependent
   Scenario: The list of contacts is correct.
-    Given I am on the Business Messages page for the business with SBI '1106552449'
+    Given I have selected the business with SBI '1106552449'
+    And I am on the Business Messages page
     Then the Contacts drop-down contains entires for 'Catherine Pallister, Duncan Peacock'
 
   @advanced @data-dependent @this-test-will-break-as-dates-get-out-of-sync
   Scenario: The message date filter works correctly.
-    Given I am on the Business Messages page for the business with SBI '1106552449'
+    Given I have selected the business with SBI '1106552449'
+    And I am on the Business Messages page
     And I have selected the contact 'Catherine Pallister'
     When I select the Date Range field as 'Last 12 months'
     Then I see the correct list of messages as follows
@@ -104,7 +110,8 @@ Feature: Consolidated View Business Messages page
 
   @advanced @data-dependent
   Scenario: The Read-Unread message filter works correctly
-    Given I am on the Business Messages page for the business with SBI '1106552449'
+    Given I have selected the business with SBI '1106552449'
+    And I am on the Business Messages page
     And I have selected the contact 'Catherine Pallister'
     When I select 'Read' from the Read-Unread filter
     Then I see the correct list of messages as follows
@@ -121,7 +128,8 @@ Feature: Consolidated View Business Messages page
 
   @advanced @data-dependent
   Scenario: Deleted message data displays correctly
-    Given I am on the Business Messages page for the business with SBI '1106552449'
+    Given I have selected the business with SBI '1106552449'
+    And I am on the Business Messages page
     And I have selected the contact 'Catherine Pallister'
     When I select the message with the subject 'Document approved'
     Then the Deleted field is 'true'

@@ -3,7 +3,7 @@ Feature: Consolidated View Business Linked Contacts page
   @basic @possible-vi-test
   Scenario: Page opens with correct components displayed.
     Given I am on the Contacts Linked Businesses page
-    Then I see a Search box in a left-hand side pane
+    Then I see a Search box
     And I see a Contacts table in a left hand side pane with column headers 'CRN, First Name, Last Name' in a left-hand side pane
     And the first item of the Contacts table is selected
     And I see a title in bold of the first name and second name of the contact concatenated in the right-hand side pane

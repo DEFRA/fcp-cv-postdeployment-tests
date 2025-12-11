@@ -5,7 +5,7 @@ Feature: Consolidated View CPH Details page
     Given I am on the CPH Details page
     Then I see a CPH table to the left with column headers for 'CPH number, Parish, Start Date, End Date'
     And the first row of the CPH table is selected
-    And A search box is present
+    And I see a search box
     And I see a CPH Details pane on the right with a title 'CPH Number: ' concatenated with CPH number
     And the CPH Details pane has fields for 'Parish, Start Date, End Date, Coordinates (x, y), Species, Address'
     And the CPH Details pane has the field data populated

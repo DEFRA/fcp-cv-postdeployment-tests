@@ -28,7 +28,7 @@ Feature: Consolidated View Business Land Details page
   Scenario: The Date selector cannot be blank
     Given I am on the Land Details page
     When I delete all the text in the Date field
-    And press enter
+    And Press the Enter key
     Then a warning message is displayed 'Date must be in dd/mm/yyy format. For example 25/12/2024'
 
   @intermediate
@@ -37,29 +37,29 @@ Feature: Consolidated View Business Land Details page
     When I enter the following as dates
       | label        | value                |
       | Sheet        | aaa, 01/01, 32/32/32 |
-    And press enter
+    And Press the Enter key
     Then a warning message is displayed 'Date must be in dd/mm/yyy format. For example 25/12/2024'
 
   @intermediate
   Scenario: The Date selector only accepts current or past dates
     Given I am on the Land Details page
     When I enter the date '31/12/2040'
-    And press enter
+    And Press the Enter key
     Then a warning message is displayed 'Date must be todays date or in the past.'
 
   @intermediate
   Scenario: The Date selected must be on or after 01/01/2015
     Given I am on the Land Details page
     When I enter the date '31/12/2014'
-    And press enter
+    And Press the Enter key
     Then a warning message is displayed 'Date must on or after 01/01/2015'
 
   @intermediate @data-dependent
   Scenario: Searching for a partially matching string in the Sheet column filters the Parcels table correctly.
     Given I have selected the business with SBI '0000000001'
     And I am on the Land Details page
-    When I click enter "TS0"
-    And press Enter
+    When I enter 'TS0' in the search box
+    And Press the Enter key
     Then I see the correct list of parcels as follows
       | label        | value            |
       | Sheet        | TS01, TS01, TS02 |
@@ -79,8 +79,8 @@ Feature: Consolidated View Business Land Details page
   Scenario: Searching for a partially matching string in the Parcel column filters the Parcels table correctly.
     Given I have selected the business with SBI '0000000001'
     And I am on the Land Details page
-    When I click enter "AB1"
-    And press Enter
+    When I enter 'AB1' in the search box
+    And Press the Enter key
     Then I see the correct list of parcels as follows
       | label        | value      |
       | Sheet        | TS01, TS01 |
@@ -160,7 +160,7 @@ Feature: Consolidated View Business Land Details page
     Given I have selected the business with SBI '0000000001'
     And I am on the Land Details page
     When I enter '01/01/2015' into the Date picker
-    And I press Enter
+    And Press the Enter key
     Then I see the following data in the Land Summary section
       | label                                                     | value |
       | Total Number of Parcels                                   | 5     |
@@ -196,7 +196,7 @@ Feature: Consolidated View Business Land Details page
     Given I have selected the business with SBI '0000000001'
     And I am on the Land Details page
     When I enter '15/06/2020' into the Date picker
-    And I press Enter
+    And Press the Enter key
     Then I see the following data in the Land Summary section
       | label                                                     | value |
       | Total Number of Parcels                                   | 5     |
