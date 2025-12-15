@@ -29,7 +29,7 @@ Feature: Consolidated View Business Land Details page
     Given I am on the Land Details page
     When I delete all the text in the Date field
     And Press the Enter key
-    Then a warning message is displayed 'Date must be in dd/mm/yyy format. For example 25/12/2024'
+    Then I see a warning message 'Date must be in dd/mm/yyy format. For example 25/12/2024' under the 'Land Date' table
 
   @intermediate
   Scenario: The Date selector only accepts the correct date format
@@ -38,21 +38,21 @@ Feature: Consolidated View Business Land Details page
       | label        | value                |
       | Sheet        | aaa, 01/01, 32/32/32 |
     And Press the Enter key
-    Then a warning message is displayed 'Date must be in dd/mm/yyy format. For example 25/12/2024'
+    Then I see a warning message 'Date must be in dd/mm/yyy format. For example 25/12/2024' under the 'Land Date' table
 
   @intermediate
   Scenario: The Date selector only accepts current or past dates
     Given I am on the Land Details page
     When I enter the date '31/12/2040'
     And Press the Enter key
-    Then a warning message is displayed 'Date must be todays date or in the past.'
+    Then I see a warning message 'Date must be todays date or in the past.' under the 'Land Date' table
 
   @intermediate
   Scenario: The Date selected must be on or after 01/01/2015
     Given I am on the Land Details page
     When I enter the date '31/12/2014'
     And Press the Enter key
-    Then a warning message is displayed 'Date must on or after 01/01/2015'
+    Then I see a warning message 'Date must on or after 01/01/2015' under the 'Land Date' table
 
   @intermediate @data-dependent
   Scenario: Searching for a partially matching string in the Sheet column filters the Parcels table correctly.
@@ -110,7 +110,7 @@ Feature: Consolidated View Business Land Details page
       | Code       | 110, 120, 130                                          |
       | Land Cover | Arable Land, Permanent grass land, Permanent crop land |
       | Area (ha)  | 0, 0, 0                                                |
-    And I see a warning message 'We didn't find any data to show at this time' under the Parcels table
+    And I see a warning message 'We didn't find any data to show at this time' under the 'Parcels' table
 
   @advanced
   Scenario: Date formatting is handled correctly.

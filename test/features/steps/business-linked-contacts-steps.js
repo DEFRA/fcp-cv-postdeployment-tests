@@ -163,13 +163,6 @@ Then(/^the Permission Description table is empty$/, async function () {
   // Assert empty table
 })
 
-Then(
-  /^warning message "(.+)" is shown below the Permission Description table$/,
-  async function (msg) {
-    // Validate warning message
-  }
-)
-
 //
 // ────────────────────────────────────────
 // SPECIAL CASES

@@ -156,14 +156,3 @@ Then(/^the Parcel Summary has field data as follows$/, function (dataTable) {
 Then(/^the Parcel Summary table has data as follows$/, function (dataTable) {
   // TODO
 })
-
-// ------------------------------------
-// EMPTY STATE / NO LAND DATA
-// ------------------------------------
-
-Then(
-  /^I see a warning message '([^']+)' under the Parcels table$/,
-  function (message) {
-    // TODO
-  }
-)

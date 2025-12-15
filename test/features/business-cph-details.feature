@@ -108,12 +108,12 @@ Feature: Consolidated View CPH Details page
       | End Date   | 31/12/9999, 29/09/2021, 12/08/2013, 12/08/2014     |
 
   @advanced @data-dependent
-  Scenario: Select a business that has no CPH’s -> A message is displayed in the table that indicates there are no CPH’s
+  Scenario: If I select a business that has no CPH’s, a message is displayed in the table that indicates there are no CPH’s
     Given I have selected the business with SBI '0000000002'
     And I am on the CPH Details page
     Then I see an empty CPH table
     And I see an empty CPH Details pane
-    And I see a warning message 'We didn't find any data to show at this time'
+    And I see a warning message 'We didn't find any data to show at this time' under the 'CPH Details' table
 
   @advanced @data-dependent
   Scenario: Check CPH data correctness

@@ -60,11 +60,6 @@ Then(
 
 Then(/^The agreements table is empty$/, function () {})
 
-Then(
-  /^a label is shown with the text 'We didn't find any data to show at this time'$/,
-  function () {}
-)
-
 // ------------------------------------------------------
 // Data Ordering & Table Result Checks
 // ------------------------------------------------------

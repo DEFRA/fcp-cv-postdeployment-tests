@@ -45,7 +45,7 @@ Feature: Consolidated View Business Messages page
     And I am on the Business Messages page
     When I select the contact 'Duncan Peacock'
     Then the Messages table is empty
-    And a message is displayed 'There are no messages to display'
+    And I see a warning message 'There are no messages to display' under the 'Messages' table
 
   @advanced @data-dependent
   Scenario: Contacts list is empty when a business has no contacts

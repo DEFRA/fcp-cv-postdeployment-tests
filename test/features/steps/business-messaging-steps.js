@@ -122,10 +122,6 @@ Then(/^the Messages table is empty$/, async function () {
   // Assert empty messages table
 })
 
-Then(/^a message is displayed '(.+)'$/, async function (msg) {
-  // Validate message text
-})
-
 Then(/^the Contacts drop-down is empty$/, async function () {
   // Assert contacts dropdown empty
 })

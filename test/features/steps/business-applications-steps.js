@@ -62,11 +62,6 @@ Then(/^The Applications table is empty$/, function () {})
 
 Then(/^the Applications details pane is empty$/, function () {})
 
-Then(
-  /^a label is shown with the text 'We didn't find any data to show at this time'$/,
-  function () {}
-)
-
 // ------------------------------------------------------
 // APPLICATION DETAILS DATA VALIDATION
 // ------------------------------------------------------

@@ -138,7 +138,7 @@ Feature: Consolidated View Applications page
     And I am on the Applications page
     Then The Applications table is empty
     And the Applications details pane is empty
-    And a label is shown with the text 'We didn't find any data to show at this time'
+    And I see a warning message 'We didn't find any data to show at this time' under the 'Application Details' table
 
   @advanced @data-dependent
   Scenario: The Applications data is correct

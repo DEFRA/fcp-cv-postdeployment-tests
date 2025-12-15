@@ -157,7 +157,7 @@ Feature: Consolidated View Agreements page
     Given I have selected the business with SBI '0000000002'
     And I am on the Agreements page
     Then The agreements table is empty
-    And a label is shown with the text 'We didn't find any data to show at this time'
+    And I see a warning message 'We didn't find any data to show at this time' under the 'Agreements' table
 
   @advanced @data-dependent
   Scenario: The Agreements table is ordered by Year, most recent first

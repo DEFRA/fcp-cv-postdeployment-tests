@@ -63,3 +63,16 @@ When(/^I enter a blank value in the search box$/, async function () {
 Then(/^I see a Search box$/, function () {
   // TODO
 })
+
+//
+// ────────────────────────────────────────
+// WARNING MESSAGES
+// ────────────────────────────────────────
+//
+
+Then(
+  /^I see a warning message '([^']+)' under the '([^']+)' table$/,
+  function (message, tableName) {
+    // TODO
+  }
+)

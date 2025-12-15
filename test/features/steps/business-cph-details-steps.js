@@ -72,10 +72,6 @@ Then(/^I see an empty CPH Details pane$/, function () {
   // TODO
 })
 
-Then(/^I see a warning message '([^']+)'$/, function (message) {
-  // TODO
-})
-
 // -------------------------------
 // DETAILS VALIDATION (DATA TABLES)
 // -------------------------------

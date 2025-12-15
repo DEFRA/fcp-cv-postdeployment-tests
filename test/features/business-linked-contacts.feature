@@ -174,4 +174,4 @@ Feature: Consolidated View Business Linked Contacts page
     And I have selected the contact with the CRN '1103020888' from the Contacts table
     And I select 'LAND_DETAILS' from the Permissions table
     Then the Permission Description table is empty
-    And warning message "We didn't find any data to show at this time" is shown below the Permission Description table
+    And I see a warning message 'We didn't find any data to show at this time' under the 'Permission Description' table
