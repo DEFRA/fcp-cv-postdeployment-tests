@@ -7,10 +7,6 @@ const { When, Then } = createBdd(test)
 // TABLE & DETAILS PANE EXPECTATIONS
 // -------------------------------
 
-Then(/^the first row of the CPH table is selected$/, function () {
-  // TODO
-})
-
 Then(
   /^I see a CPH Details pane on the right with a title 'CPH Number: ' concatenated with (.*)$/,
   function (cphNumber) {

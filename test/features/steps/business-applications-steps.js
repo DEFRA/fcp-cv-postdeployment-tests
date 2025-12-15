@@ -15,10 +15,6 @@ Given(/^I have selected an application with the ID '(\d+)'$/, function (appId) {
 // APPLICATIONS PAGE COMPONENTS
 // ------------------------------------------------------
 
-Then(/^the first item in the Applications table is selected$/, function () {
-  // TODO
-})
-
 Then(
   /^there is an Application Details pane on the right-hand pane$/,
   function () {

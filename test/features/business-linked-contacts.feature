@@ -5,15 +5,15 @@ Feature: Consolidated View Business Linked Contacts page
     Given I am on the Contacts Linked Businesses page
     Then I see a Search box
     And I see an 'Contacts' table with column headers as follows 'CRN, First Name, Last Name' in a left-hand side pane
-    And the first item of the Contacts table is selected
+    And the first item of the 'Contacts' table is selected
     And I see a title in bold of the first name and second name of the contact concatenated in the right-hand side pane
     And I see fields for 'CRN, Full Name, Role' in the right-hand side pane
     And I see a 'View customer' button in the right-hand side pane
     And I see a 'View Authenticate Questions' link in the right-hand side pane
     And I see an 'Permissions' table with column headers as follows 'Permission, Level' in the right-hand side pane
-    And the first item of the Permission table is selected
+    And the first item of the 'Permission' table is selected
     And I see an 'Permission Description' table with column headers as follows 'Permission Description'
-    And the first item of the Permission Description table is selected
+    And the first item of the 'Permission Description' table is selected
 
   @intermediate @possible-vi-test
   Scenario: Clicking the 'View Authenticate Questions' link displays a Contacts Authentication sub-screen

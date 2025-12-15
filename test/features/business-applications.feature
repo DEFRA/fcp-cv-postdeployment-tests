@@ -4,7 +4,7 @@ Feature: Consolidated View Applications page
   Scenario: Page opens with correct components displayed.
     Given I am on the Applications page
     Then I see an 'Applications' table with column headers as follows 'Application ID, Year, Application Name, Status'
-    And the first item in the Applications table is selected
+    And the first item of the 'Applications' table is selected
     And I see a search box
     And there is an Application Details pane on the right-hand pane
     And the Application Details pane has a title corresponding to the 'Application Name' field of the selected application

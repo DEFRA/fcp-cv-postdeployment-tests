@@ -15,7 +15,7 @@ Feature: Consolidated View Business Messages page
     Then the Date Range field becomes active with options for 'Last 12 months, Last 24 months, Last 36 months, All'
     And the Show Read/Unread field becomes active with options for 'All, Read, Unread'
     And I see an 'Messages' table with column headers as follows 'Status, Date, Subject'
-    And the first message of the table is selected
+    And the first item of the 'Messages' table is selected
 
   @basic @possible-vi-test
   Scenario: Message data updates correctly once a contact is selected.

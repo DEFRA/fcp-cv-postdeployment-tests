@@ -89,5 +89,11 @@ Then(/^I see the '([^']+)' table is empty$/, function () {
 
 Then(
   /^I see an '(.+)' table with column headers as follows '(.+)'$/,
-  function (tableName, headers) {}
+  function (tableName, headers) {
+    // TODO
+  }
 )
+
+Then(/^the first item of the '(.+)' table is selected$/, function () {
+  // TODO
+})
