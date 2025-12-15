@@ -44,32 +44,28 @@ When(
 // ────────────────────────────────────────
 //
 
-Then(
-  /^I see a Contacts table in a left hand side pane with column headers '(.+)' in a left-hand side pane$/,
-  async function (headers) {}
-)
 Then(/^the first item of the Contacts table is selected$/, async function () {})
 
 Then(
   /^I see a title in bold of the first name and second name of the contact concatenated in the right-hand side pane$/,
   async function () {}
 )
+
 Then(
   /^I see fields for '(.+)' in the right-hand side pane$/,
   async function (fields) {}
 )
+
 Then(
   /^I see a 'View customer' button in the right-hand side pane$/,
   async function () {}
 )
+
 Then(
   /^I see a 'View Authenticate Questions' link in the right-hand side pane$/,
   async function () {}
 )
-Then(
-  /^I see a table with column headers for '(.+)' in the right-hand side pane$/,
-  async function (headers) {}
-)
+
 Then(
   /^the first item of the Permission table is selected$/,
   async function () {}
@@ -86,15 +82,16 @@ Then(
 //
 
 Then(/^I see the Contacts Authentication sub-screen$/, async function () {})
+
 Then(/^a title in bold$/, async function () {})
+
 Then(/^a CRN field$/, async function () {})
+
 Then(/^a Full Name field$/, async function () {})
+
 Then(/^a Role field$/, async function () {})
+
 Then(/^a Date of Birth field$/, async function () {})
-Then(
-  /^an Authentication Information table with column headers for '(.+)'$/,
-  async function (headers) {}
-)
 
 Then(
   /^I see the Contacts Authentication sub-screen with the following information$/,
@@ -146,19 +143,6 @@ Then(
   /^I see the the correct list of contacts as follows$/,
   async function (table) {
     // Validate table structure
-  }
-)
-
-//
-// ────────────────────────────────────────
-// SPECIAL CASES
-// ────────────────────────────────────────
-//
-
-Then(
-  /^I see a (?:table|Contacts table|Permission table) with column headers '(.+)'$/,
-  async function (headers) {
-    // Generic table header validator
   }
 )
 

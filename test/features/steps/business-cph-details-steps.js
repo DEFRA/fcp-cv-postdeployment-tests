@@ -7,13 +7,6 @@ const { When, Then } = createBdd(test)
 // TABLE & DETAILS PANE EXPECTATIONS
 // -------------------------------
 
-Then(
-  /^I see a CPH table to the left with column headers for '([^']+)'$/,
-  function (headers) {
-    // TODO
-  }
-)
-
 Then(/^the first row of the CPH table is selected$/, function () {
   // TODO
 })

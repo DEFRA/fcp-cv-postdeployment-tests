@@ -14,7 +14,7 @@ Feature: Consolidated View Business Messages page
     When I select a contact
     Then the Date Range field becomes active with options for 'Last 12 months, Last 24 months, Last 36 months, All'
     And the Show Read/Unread field becomes active with options for 'All, Read, Unread'
-    And I see a Messages table with column headers for 'Status, Date, Subject'
+    And I see an 'Messages' table with column headers as follows 'Status, Date, Subject'
     And the first message of the table is selected
 
   @basic @possible-vi-test
@@ -76,7 +76,7 @@ Feature: Consolidated View Business Messages page
   Scenario: The list of contacts is correct.
     Given I have selected the business with SBI '1106552449'
     And I am on the Business Messages page
-    Then the Contacts drop-down contains entires for 'Catherine Pallister, Duncan Peacock'
+    Then the Contacts drop-down contains entries for 'Catherine Pallister, Duncan Peacock'
 
   @advanced @data-dependent @this-test-will-break-as-dates-get-out-of-sync
   Scenario: The message date filter works correctly.

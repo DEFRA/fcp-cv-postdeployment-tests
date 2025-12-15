@@ -79,8 +79,15 @@ Then(
 
 //
 // ────────────────────────────────────────
-// WARNING MESSAGES
+// TABLE HEADERS
 // ────────────────────────────────────────
 //
 
-Then(/^I see the '([^']+)' table is empty$/, function () {})
+Then(/^I see the '([^']+)' table is empty$/, function () {
+  // TODO
+})
+
+Then(
+  /^I see an '(.+)' table with column headers as follows '(.+)'$/,
+  function (tableName, headers) {}
+)

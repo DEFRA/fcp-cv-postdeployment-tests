@@ -78,11 +78,6 @@ Then(
   async function (options) {}
 )
 
-Then(
-  /^I see a Messages table with column headers for '(.+)'$/,
-  async function (headers) {}
-)
-
 Then(/^the first message of the table is selected$/, async function () {})
 
 //
@@ -130,7 +125,7 @@ Then(
 )
 
 Then(
-  /^the Contacts drop-down contains entires for '(.+)'$/,
+  /^the Contacts drop-down contains entries for '(.+)'$/,
   async function (names) {
     // Validate list of contacts present
   }

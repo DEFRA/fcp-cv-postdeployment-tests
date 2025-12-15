@@ -4,15 +4,15 @@ Feature: Consolidated View Business Linked Contacts page
   Scenario: Page opens with correct components displayed.
     Given I am on the Contacts Linked Businesses page
     Then I see a Search box
-    And I see a Contacts table in a left hand side pane with column headers 'CRN, First Name, Last Name' in a left-hand side pane
+    And I see an 'Contacts' table with column headers as follows 'CRN, First Name, Last Name' in a left-hand side pane
     And the first item of the Contacts table is selected
     And I see a title in bold of the first name and second name of the contact concatenated in the right-hand side pane
     And I see fields for 'CRN, Full Name, Role' in the right-hand side pane
     And I see a 'View customer' button in the right-hand side pane
     And I see a 'View Authenticate Questions' link in the right-hand side pane
-    And I see a table with column headers for 'Permission, Level' in the right-hand side pane
+    And I see an 'Permissions' table with column headers as follows 'Permission, Level' in the right-hand side pane
     And the first item of the Permission table is selected
-    And I see a table with column headers for 'Permission Description' in the right-hand side pane
+    And I see an 'Permission Description' table with column headers as follows 'Permission Description'
     And the first item of the Permission Description table is selected
 
   @intermediate @possible-vi-test
@@ -25,7 +25,7 @@ Feature: Consolidated View Business Linked Contacts page
     And a Full Name field
     And a Role field
     And a Date of Birth field
-    And an Authentication Information table with column headers for 'Menorable Date, Memorable Event, Memorable Place, Updated Date'
+    And I see an 'Authentication Information' table with column headers as follows 'Menorable Date, Memorable Event, Memorable Place, Updated Date'
 
   @intermediate @data-dependent
   Scenario: Clicking the View customer button navigates the user to the relevant Contacts page in CRM.

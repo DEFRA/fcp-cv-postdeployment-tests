@@ -3,7 +3,7 @@ Feature: Consolidated View Contacts Authentication page
   @basic @possible-vi-test
   Scenario: Page opens with correct components displayed.
     Given I am on the Contacts Authentication page
-    Then I see a table with column headers 'Memorable Date, Memorable Event, Memorable Place, Updated Date'
+    Then I see an 'Authentication' table with column headers as follows 'Memorable Date, Memorable Event, Memorable Place, Updated Date'
     And I see an 'Open Authentication Record' button
     And I see a 'Retrieved At' field
     And the table data row is populated

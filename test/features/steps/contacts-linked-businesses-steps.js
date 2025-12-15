@@ -10,13 +10,6 @@ const { Given, When, Then } = createBdd(test)
 //
 
 Then(
-  /^I see a Businesses table with column headers '(.+)' in a left-hand side pane$/,
-  async function (headers) {
-    // Validate businesses table headers
-  }
-)
-
-Then(
   /^the first item of the Businesses table is selected$/,
   async function () {}
 )
@@ -40,13 +33,6 @@ Then(
 Then(
   /^I see a 'View business' button in the right-hand side pane$/,
   async function () {}
-)
-
-Then(
-  /^I see a table with column headers for '(.+)' in the right-hand side pane$/,
-  async function (headers) {
-    // Validate generic table in right pane
-  }
 )
 
 Then(
@@ -127,7 +113,7 @@ Then(
 )
 
 Then(
-  /^I see the Permission Description table with '(.+)'$/,
+  /^I see the Permission Description table with data for '(.+)'$/,
   async function (values) {
     // Validate permission level list
   }

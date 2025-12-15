@@ -3,14 +3,14 @@ Feature: Consolidated View Applications page
   @basic @possible-vi-test
   Scenario: Page opens with correct components displayed.
     Given I am on the Applications page
-    Then I see an Applications table with column headers for 'Application ID, Year, Application Name, Status'
+    Then I see an 'Applications' table with column headers as follows 'Application ID, Year, Application Name, Status'
     And the first item in the Applications table is selected
     And I see a search box
     And there is an Application Details pane on the right-hand pane
     And the Application Details pane has a title corresponding to the 'Application Name' field of the selected application
     And the Application Details pane has fields for 'Application ID, Scheme, Year, Status, Status (Portal), Submitted Date, Agreement References, Last Movement, Last Movement Date/Time'
     And the Application Details pane has a Movement History section
-    And the Movement History section has a Movements History table with column headers for 'Date/Time, Movement, Check'
+    And I see a 'Movements History' table with column headers as follows 'Date/Time, Movement, Check'
 
   @advanced @data-dependent
   Scenario: Searching for a partially matching string in the Application ID column filters correctly

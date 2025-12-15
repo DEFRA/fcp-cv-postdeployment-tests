@@ -7,58 +7,58 @@ const { Given, Then } = createBdd(test)
 // PAGE NAVIGATION
 // ------------------------------------------------------
 
-Given(
-  /^I have selected an application with the ID '(\d+)'$/,
-  function (appId) {}
-)
+Given(/^I have selected an application with the ID '(\d+)'$/, function (appId) {
+  // TODO
+})
 
 // ------------------------------------------------------
 // APPLICATIONS PAGE COMPONENTS
 // ------------------------------------------------------
 
-Then(
-  /^I see an Applications table with column headers for '(.+)'$/,
-  function (headers) {}
-)
-
-Then(/^the first item in the Applications table is selected$/, function () {})
+Then(/^the first item in the Applications table is selected$/, function () {
+  // TODO
+})
 
 Then(
   /^there is an Application Details pane on the right-hand pane$/,
-  function () {}
+  function () {
+    // TODO
+  }
 )
 
 Then(
   /^the Application Details pane has a title corresponding to the 'Application Name' field of the selected application$/,
-  function () {}
+  function () {
+    // TODO
+  }
 )
 
-Then(
-  /^the Application Details pane has fields for '(.+)'$/,
-  function (fields) {}
-)
+Then(/^the Application Details pane has fields for '(.+)'$/, function (fields) {
+  // TODO
+})
 
 Then(
   /^the Application Details pane has a Movement History section$/,
-  function () {}
-)
-
-Then(
-  /^the Movement History section has a Movements History table with column headers for '(.+)'$/,
-  function (headers) {}
+  function () {
+    // TODO
+  }
 )
 
 // Generic reusable results handler
 Then(
   /^I see the the correct list of Applications as follows$/,
-  function (dataTable) {}
+  function (dataTable) {
+    // TODO
+  }
 )
 
 // ------------------------------------------------------
 // EMPTY STATE
 // ------------------------------------------------------
 
-Then(/^the Applications details pane is empty$/, function () {})
+Then(/^the Applications details pane is empty$/, function () {
+  // TODO
+})
 
 // ------------------------------------------------------
 // APPLICATION DETAILS DATA VALIDATION
@@ -66,12 +66,16 @@ Then(/^the Applications details pane is empty$/, function () {})
 
 Then(
   /^I see the correct data in the Application Details pane as follows$/,
-  function (dataTable) {}
+  function (dataTable) {
+    // TODO
+  }
 )
 
 Then(
   /^I see the correct data in the Movements History table as follows$/,
-  function (dataTable) {}
+  function (dataTable) {
+    // TODO
+  }
 )
 
 // ------------------------------------------------------
@@ -80,5 +84,7 @@ Then(
 
 Then(
   /^I see the correct data in the Movements History table ordered by date\/time as follows$/,
-  function (dataTable) {}
+  function (dataTable) {
+    // TODO
+  }
 )

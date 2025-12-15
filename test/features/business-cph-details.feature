@@ -3,7 +3,7 @@ Feature: Consolidated View CPH Details page
   @basic @possible-vi-test
   Scenario: Page opens with correct components displayed.
     Given I am on the CPH Details page
-    Then I see a CPH table to the left with column headers for 'CPH number, Parish, Start Date, End Date'
+    Then I see an 'CPH' table with column headers as follows 'CPH number, Parish, Start Date, End Date'
     And the first row of the CPH table is selected
     And I see a search box
     And I see a CPH Details pane on the right with a title 'CPH Number: ' concatenated with CPH number

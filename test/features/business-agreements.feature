@@ -3,7 +3,7 @@ Feature: Consolidated View Agreements page
   @basic @possible-vi-test
   Scenario: Agreements page opens with correct components displayed.
     Given I am on the Agreements page
-    Then I see an Agreements table with the column headers as follows 'Reference, Year, Agreement Name, Type, Start Date, End Date, Status'
+    Then I see an 'Agreements' table with column headers as follows 'Reference, Year, Agreement Name, Type, Start Date, End Date, Status'
     And each Agreements table has an option to view the record
     And I see a Search box
 
@@ -13,7 +13,7 @@ Feature: Consolidated View Agreements page
     When I click the 'View' link next to an agreement
     Then I see a header with 'Agreement Name' as the title
     And I see underneath the header the following fields 'Agreement Ref., Type, Scheme Year, Status, Start Date, End Date'
-    And I see a “payment schedules” table with the following column headers 'Sheet, Parcel, Description, Action Area (ha), Action Length (m), Action Units, Parcel Area (ha), Payment Schedule, Commitment Term'
+    And I see an 'payment schedules' table with column headers as follows 'Sheet, Parcel, Description, Action Area (ha), Action Length (m), Action Units, Parcel Area (ha), Payment Schedule, Commitment Term'
     And I see an option to go back to see the main screen with Agreements table
 
   @intermediate

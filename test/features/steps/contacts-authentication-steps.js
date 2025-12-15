@@ -39,10 +39,6 @@ When(/^I click the 'Open Authentication Record' button$/, async function () {
 // ────────────────────────────────────────
 //
 
-Then(/^I see a table with column headers '(.+)'$/, async function (headers) {
-  // Validate table headers
-})
-
 Then(/^I see an 'Open Authentication Record' button$/, async function () {
   // Validate button presence
 })

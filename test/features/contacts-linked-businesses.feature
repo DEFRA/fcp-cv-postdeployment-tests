@@ -4,14 +4,14 @@ Feature: Consolidated View Contacts Linked Businesses page
   Scenario: Page opens with correct components displayed.
     Given I am on the Contacts Linked Businesses page
     Then I see a Search box
-    And I see a Businesses table with column headers 'SBI, Name' in a left-hand side pane
+    And I see an 'Businesses' table with column headers as follows 'SBI, Name' in a left-hand side pane
     And the first item of the Businesses table is selected
     And I see a title in bold of the name of the business in the right-hand side pane
     And I see fields for 'SBI, Role' in the right-hand side pane
     And I see a 'View business' button in the right-hand side pane
-    And I see a table with column headers for 'Permission, Level' in the right-hand side pane
+    And I see an 'Permissions' table with column headers as follows 'Permission, Level' in the right-hand side pane
     And the first item of the Permission table is selected
-    And I see a table with column headers for 'Permission Description' in the right-hand side pane
+    And I see an 'Permission Description' table with column headers as follows 'Permission Description'
     And the first item of the Permission Description table is selected
 
   @advanced @data-dependent
@@ -95,7 +95,7 @@ Feature: Consolidated View Contacts Linked Businesses page
     Given I have selected the contact with CRN '0000000001'
     When I select 'Homenick, McDermott and Luettgen' in the Businesses table
     And I select 'BASIC_PAYMENT_SCHEME' from the Permissions table
-    Then I see the Permission Description table with 'SUBMIT, FULL_PERMISSION'
+    Then I see the Permission Description table with data for 'SUBMIT, FULL_PERMISSION'
 
   @advanced @data-dependent
   Scenario: When a business's permission is level "NO_ACCESS", the Permission Description list shows the correct warning message "We didn't find any data to show at this time".

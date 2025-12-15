@@ -23,22 +23,8 @@ Then(/^the Land Summary section has fields for '([^']+)'$/, function (fields) {
 })
 
 Then(
-  /^I see a Land Summary table with column headers for '([^']+)'$/,
-  function (headers) {
-    // TODO
-  }
-)
-
-Then(
   /^I see a Parcels pane with a search box and a Parcels table$/,
   function () {
-    // TODO
-  }
-)
-
-Then(
-  /^the Parcels table has column headers for '([^']+)'$/,
-  function (headers) {
     // TODO
   }
 )
@@ -69,13 +55,6 @@ Then(/^the Parcel Summary has fields for '([^']+)'$/, function (fields) {
   // TODO
 })
 
-Then(
-  /^the land parcel summary table has column headers for '([^']+)'$/,
-  function (headers) {
-    // TODO
-  }
-)
-
 // ------------------------------------
 // DATE SELECTOR
 // ------------------------------------
@@ -105,10 +84,6 @@ When(/^I enter '([^']+)' into the Date picker$/, function (date) {
 })
 
 When(/^I change the date to$/, function (dataTable) {
-  // TODO
-})
-
-Then(/^a warning message is displayed '([^']+)'$/, function (message) {
   // TODO
 })
 

@@ -6,9 +6,9 @@ Feature: Consolidated View Business Land Details page
     Then I see a Date filter
     And I see a Land Summary section with a header 'Land Summary'
     And the Land Summary section has fields for 'Total Number of Parcels, Total Area (ha), Total Parcels with Pending Customer Notified Land Changes'
-    And I see a Land Summary table with column headers for 'Code, Land Cover, Area (ha)'
+    And I see an 'Land Summary' table with column headers as follows 'Code, Land Cover, Area (ha)'
     And I see a Parcels pane with a search box and a Parcels table
-    And the Parcels table has column headers for 'Sheet, Parcel, Area (ha), Land Change?'
+    And I see an 'Parcels' table with column headers as follows 'Sheet, Parcel, Area (ha), Land Change?'
 
   @basic @possible-vi-test
   Scenario: Parcel summary section is displayed correctly.
@@ -16,7 +16,7 @@ Feature: Consolidated View Business Land Details page
     When I select a Parcel in the Parcels table
     Then I see a Parcel Summary with a bold header which is a concatenation of the sheet and parcel codes selected
     And the Parcel Summary has fields for 'Area (ha), Pending Customer Notified Land Change?, Effective Date From, Effective Date To'
-    And the land parcel summary table has column headers for 'Code, Land Cover and Area (ha)'
+    And I see an 'Land Parcel Summary' table with column headers as follows 'Code, Land Cover and Area (ha)'
 
   @intermediate
   Scenario: The Date selector updates the screen
