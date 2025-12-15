@@ -58,8 +58,6 @@ Then(
 // EMPTY STATE
 // ------------------------------------------------------
 
-Then(/^The Applications table is empty$/, function () {})
-
 Then(/^the Applications details pane is empty$/, function () {})
 
 // ------------------------------------------------------

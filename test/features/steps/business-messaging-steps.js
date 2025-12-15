@@ -118,10 +118,6 @@ Then(
 // ────────────────────────────────────────
 //
 
-Then(/^the Messages table is empty$/, async function () {
-  // Assert empty messages table
-})
-
 Then(/^the Contacts drop-down is empty$/, async function () {
   // Assert contacts dropdown empty
 })

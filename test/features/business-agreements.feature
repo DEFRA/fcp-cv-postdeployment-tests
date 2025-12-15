@@ -156,7 +156,7 @@ Feature: Consolidated View Agreements page
   Scenario: For a business with no Agreements, a warning message is shown indicating that there are no Agreements
     Given I have selected the business with SBI '0000000002'
     And I am on the Agreements page
-    Then The agreements table is empty
+    Then I see the 'Agreements' table is empty
     And I see a warning message 'We didn't find any data to show at this time' under the 'Agreements' table
 
   @advanced @data-dependent

@@ -157,7 +157,7 @@ Feature: Consolidated View Business Linked Contacts page
   Scenario: A contact with no contacts is shown without error
     Given I have selected the business with SBI '0000000002'
     And I am on the Business Linked Contacts page
-    Then the Contacts table is empty
+    Then I see the 'Contacts' table is empty
 
   @advanced @data-dependent
   Scenario: When a contact's permission is NOT level "NO_ACCESS", the Permission Description list is correct.
@@ -173,5 +173,5 @@ Feature: Consolidated View Business Linked Contacts page
     And I am on the Business Linked Contacts page
     And I have selected the contact with the CRN '1103020888' from the Contacts table
     And I select 'LAND_DETAILS' from the Permissions table
-    Then the Permission Description table is empty
+    Then I see the 'Permission Description' table is empty
     And I see a warning message 'We didn't find any data to show at this time' under the 'Permission Description' table

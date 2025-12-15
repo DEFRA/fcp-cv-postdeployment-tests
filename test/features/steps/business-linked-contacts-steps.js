@@ -151,20 +151,6 @@ Then(
 
 //
 // ────────────────────────────────────────
-// TABLE EMPTY / WARNINGS
-// ────────────────────────────────────────
-//
-
-Then(/^the Contacts table is empty$/, async function () {
-  // Assert empty table
-})
-
-Then(/^the Permission Description table is empty$/, async function () {
-  // Assert empty table
-})
-
-//
-// ────────────────────────────────────────
 // SPECIAL CASES
 // ────────────────────────────────────────
 //

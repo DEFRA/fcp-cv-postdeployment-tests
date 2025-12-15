@@ -111,7 +111,7 @@ Feature: Consolidated View CPH Details page
   Scenario: If I select a business that has no CPH’s, a message is displayed in the table that indicates there are no CPH’s
     Given I have selected the business with SBI '0000000002'
     And I am on the CPH Details page
-    Then I see an empty CPH table
+    Then I see the 'CPH table' table is empty
     And I see an empty CPH Details pane
     And I see a warning message 'We didn't find any data to show at this time' under the 'CPH Details' table
 

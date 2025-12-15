@@ -136,7 +136,7 @@ Feature: Consolidated View Applications page
   Scenario: For a business with no Applications, a warning message is shown indicating that there are no Applications
     Given I have selected the business with SBI '0000000002'
     And I am on the Applications page
-    Then The Applications table is empty
+    Then I see the 'Applications' table is empty
     And the Applications details pane is empty
     And I see a warning message 'We didn't find any data to show at this time' under the 'Application Details' table
 

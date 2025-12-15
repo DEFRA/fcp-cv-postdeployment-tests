@@ -106,10 +106,6 @@ Then(
   }
 )
 
-Then(/^the Businesses table is empty$/, async function () {
-  // Assert empty table
-})
-
 //
 // ────────────────────────────────────────
 // PAGE UPDATE / DATA DISPLAY
@@ -153,13 +149,3 @@ Then(
     // Validate navigation
   }
 )
-
-//
-// ────────────────────────────────────────
-// PERMISSION TABLE – DATA BEHAVIOUR
-// ────────────────────────────────────────
-//
-
-Then(/^the Permission Description table is empty$/, async function () {
-  // No permission descriptions shown
-})

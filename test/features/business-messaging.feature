@@ -44,7 +44,7 @@ Feature: Consolidated View Business Messages page
     Given I have selected the business with SBI '1106552449'
     And I am on the Business Messages page
     When I select the contact 'Duncan Peacock'
-    Then the Messages table is empty
+    Then I see the 'Messages' table is empty
     And I see a warning message 'There are no messages to display' under the 'Messages' table
 
   @advanced @data-dependent

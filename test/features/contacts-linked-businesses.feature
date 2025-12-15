@@ -88,7 +88,7 @@ Feature: Consolidated View Contacts Linked Businesses page
   Scenario: A contact with no businesses is shown without error
     Given I have selected the contact with CRN '0000000002'
     And I am on the Contacts Linked Businesses page
-    Then the Businesses table is empty
+    Then I see the 'Businesses' table is empty
 
   @advanced @data-dependent
   Scenario: When a business's permission is NOT level "NO_ACCESS", the Permission Description list is correct.
@@ -102,5 +102,5 @@ Feature: Consolidated View Contacts Linked Businesses page
     Given I have selected the contact with CRN '0000000001'
     When I select 'Homenick, McDermott and Luettgen' in the Businesses table
     And I select 'LAND_DETAILS' from the Permissions table
-    Then the Permission Description table is empty
+    Then I see the 'Permission Description' table is empty
     And I see a warning message 'We didn't find any data to show at this time' under the 'Permission Description' table

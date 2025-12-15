@@ -64,10 +64,6 @@ Then(/^the details in the right-hand side pane update$/, function () {
 // EMPTY STATES
 // -------------------------------
 
-Then(/^I see an empty CPH table$/, function () {
-  // TODO
-})
-
 Then(/^I see an empty CPH Details pane$/, function () {
   // TODO
 })

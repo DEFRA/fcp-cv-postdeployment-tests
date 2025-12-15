@@ -22,14 +22,20 @@ Then(/^each Agreements table has an option to view the record$/, function () {
 
 When(
   /^I click the 'View' link next to (?:an agreement|the agreement with reference '(\d+)')$/,
-  function (ref) {}
+  function (ref) {
+    // TODO
+  }
 )
 
-Then(/^I see a header with 'Agreement Name' as the title$/, function () {})
+Then(/^I see a header with 'Agreement Name' as the title$/, function () {
+  // TODO
+})
 
 Then(
   /^I see underneath the header the following fields '(.+)'$/,
-  function (fields) {}
+  function (fields) {
+    // TODO
+  }
 )
 
 Then(
@@ -39,26 +45,24 @@ Then(
 
 Then(
   /^I see an option to go back to see the main screen with Agreements table$/,
-  function () {}
+  function () {
+    // TODO
+  }
 )
 
 // ------------------------------------------------------
 // Back Navigation
 // ------------------------------------------------------
 
-When(/^I click the 'Back to Agreements list' link$/, function () {})
+When(/^I click the 'Back to Agreements list' link$/, function () {
+  // TODO
+})
 
 // Generic "correct list of Agreements" result table
 Then(
   /^I see the the correct list of Agreements as follows$/,
   function (dataTable) {}
 )
-
-// ------------------------------------------------------
-// Empty Agreements Case
-// ------------------------------------------------------
-
-Then(/^The agreements table is empty$/, function () {})
 
 // ------------------------------------------------------
 // Data Ordering & Table Result Checks
