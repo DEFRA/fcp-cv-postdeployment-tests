@@ -18,10 +18,10 @@ Feature: Consolidated View Contacts Linked Businesses page
   Scenario: On clicking on a business, information is shown correctly
     Given I have selected the contact with CRN '0000000001'
     And I am on the Contacts Linked Businesses page
-    When I select the business 'Goldner, Schmeler and Kutch' from the Businesses table
+    When I select the business 'Bailey, Dickens and Mraz' from the Businesses table
     Then the page updates to show the following information
       | label                   | value                                                       |
-      | Title                   | Goldner, Schmeler and Kutch                                 |
+      | Title                   | Bailey, Dickens and Mraz                                    |
       | SBI                     | 0000000123                                                  |
       | Role                    | Business Partner                                            |
       | Permissions             | BASIC_PAYMENT_SCHEME, BUSINESS_DETAILS                      |
