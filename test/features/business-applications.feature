@@ -12,7 +12,7 @@ Feature: Consolidated View Applications page
     And the Application Details pane has a Movement History section
     And I see a 'Movements History' table with column headers as follows 'Date/Time, Movement, Check'
 
-  @advanced @data-dependent
+  @advanced @data-dependent @require-mock-update
   Scenario: Searching for a partially matching string in the Application ID column filters correctly
     Given I have selected the business with SBI '0000000001'
     And I am on the Applications page
@@ -32,7 +32,7 @@ Feature: Consolidated View Applications page
       | Application Name | Domestic Capital Claim, Domestic Capital Claim, CO Rev Payments |
       | Status           | IN PROGRESS, IN PROGRESS, SUBMITTED                             |
 
-  @advanced @data-dependent
+  @advanced @data-dependent @require-mock-update
   Scenario: Searching for a partially matching string in the Year column filters correctly
     Given I have selected the business with SBI '0000000001'
     And I am on the Applications page
@@ -52,7 +52,7 @@ Feature: Consolidated View Applications page
       | Application Name | Domestic Capital Claim, Domestic Capital Claim, CO Rev Payments |
       | Status           | IN PROGRESS, IN PROGRESS, SUBMITTED                             |
 
-  @advanced @data-dependent
+  @advanced @data-dependent @require-mock-update
   Scenario: Searching for a partially matching string in the Application Name column filters correctly
     Given I have selected the business with SBI '0000000001'
     And I am on the Applications page
@@ -72,7 +72,7 @@ Feature: Consolidated View Applications page
       | Application Name | Domestic Capital Claim, Domestic Capital Claim, CO Rev Payments |
       | Status           | IN PROGRESS, IN PROGRESS, SUBMITTED                             |
 
-  @advanced @data-dependent
+  @advanced @data-dependent @require-mock-update
   Scenario: Searching for a partially matching string in the Status column filters correctly
     Given I have selected the business with SBI '0000000001'
     And I am on the Applications page
@@ -92,7 +92,7 @@ Feature: Consolidated View Applications page
       | Application Name | Domestic Capital Claim, Domestic Capital Claim, CO Rev Payments |
       | Status           | IN PROGRESS, IN PROGRESS, SUBMITTED                             |
 
-  @advanced @data-dependent
+  @advanced @data-dependent @require-mock-update
   Scenario: Searching for a partially matching string in the Scheme column filters correctly
     Given I have selected the business with SBI '0000000001'
     And I am on the Applications page
@@ -112,7 +112,7 @@ Feature: Consolidated View Applications page
       | Application Name | Domestic Capital Claim, Domestic Capital Claim, CO Rev Payments |
       | Status           | IN PROGRESS, IN PROGRESS, SUBMITTED                             |
 
-  @advanced @data-dependent
+  @advanced @data-dependent @require-mock-update
   Scenario: Searching for a partially matching string in the Agreement References column filters correctly
     Given I have selected the business with SBI '0000000001'
     And I am on the Applications page
@@ -134,7 +134,7 @@ Feature: Consolidated View Applications page
 
   @advanced @data-dependent
   Scenario: For a business with no Applications, a warning message is shown indicating that there are no Applications
-    Given I have selected the business with SBI '0000000002'
+    Given I have selected the business with SBI '1000000000'
     And I am on the Applications page
     Then I see the 'Applications' table is empty
     And the Applications details pane is empty
@@ -142,40 +142,34 @@ Feature: Consolidated View Applications page
 
   @advanced @data-dependent
   Scenario: The Applications data is correct
-    Given I have selected the business with SBI '0000000001'
+    Given I have selected the business with SBI '106238988'
     And I am on the Applications page
-    And I have selected an application with the ID '2200679'
-    Then I see the the correct list of Applications as follows
-      | label            | value                                                           |
-      | Application ID   | 2203658, 2203641, 2200679                                       |
-      | Year             | 2025,2024,2023                                                  |
-      | Application Name | Domestic Capital Claim, Domestic Capital Claim, CO Rev Payments |
-      | Status           | IN PROGRESS, IN PROGRESS, SUBMITTED                             |
-    And I see the correct data in the Application Details pane as follows
-      | label                   | value                    |
-      | Title                   | CO Rev Payments          |
-      | Application ID          | 2200679                  |
-      | Scheme                  | PILLAR II Payment Claims |
-      | Year                    | 2023                     |
-      | Status                  | SUBMITTED                |
-      | Status (Portal)         | Application Created      |
-      | Submitted Date          | 01/01/2015               |
-      | Agreement References    | 4646483                  |
-      | Last Movement           | RECEIVED CLAIM           |
-      | Last Movement Date/Time | 05/09/2025 15:38:09      |
+    And I have selected an application with the ID '9098148058'
+    Then I see the correct data in the Application Details pane as follows
+      | label                   | value                                                       |
+      | Title                   | SOLITO ABSQUE DECET DEMONSTRO REPREHENDERIT VIA SOLLERS UBI |
+      | Application ID          | 9098148058                                                  |
+      | Scheme                  | BIS DERIPIO SUFFICIO SUPPELLEX VILICUS                      |
+      | Year                    | 2022                                                        |
+      | Status                  | DELETED                                                     |
+      | Status (Portal)         | ...                                                         |
+      | Submitted Date          | 31/12/2022 03:33:24                                         |
+      | Agreement References    | 9190356161                                                  |
+      | Last Movement           | CREATE DRAFT APPLICATION                                    |
+      | Last Movement Date/Time | 31/12/2022 07:15:25                                         |
     And I see the correct data in the Movements History table as follows
       | label     | value                                                         |
-      | Date/Time | 05/09/2025 15:38:09, 05/09/2024 16:76:09, 05/09/2024 15:38:09 |
-      | Movement  | CREATE DRAFT APPLICATION, WITH CUSTOMER, RECEIVED CLAIM       |
-      | Check     | PASSED, PASSED, PASSED                                        |
+      | Date/Time | 31/12/2022 07:15:25, 31/12/2022 21:03:16, 31/12/2022 02:09:35 |
+      | Movement  | CREATE DRAFT APPLICATION,DELETE, CREATION                     |
+      | Check     | PASSED, PASSED, NOT PASSED                                    |
 
   @advanced @data-dependent
   Scenario: The “Movements History” table is ordered by date/time
-    Given I have selected the business with SBI '0000000001'
+    Given I have selected the business with SBI '106238988'
     And I am on the Applications page
-    And I have selected an application with the ID '2200679'
+    And I have selected an application with the ID '1890586021'
     And I see the correct data in the Movements History table ordered by date/time as follows
-      | label     | value                                                         |
-      | Date/Time | 05/09/2025 15:38:09, 05/09/2024 16:76:09, 05/09/2024 15:38:09 |
-      | Movement  | CREATE DRAFT APPLICATION, WITH CUSTOMER, RECEIVED CLAIM       |
-      | Check     | PASSED, PASSED, PASSED                                        |
+      | label     | value                                                                                                   |
+      | Date/Time | 31/12/2022 21:30:55, 31/12/2022 13:21:28, 31/12/2022 11:41:13, 31/12/2022 08:15:03, 31/12/2022 05:50:06 |
+      | Movement  | UPDATE, UPDATE, CREATION, UPDATE, UPDATE                                                                |
+      | Check     | PASSED, PASSED, PASSED, PASSED, PASSED                                                                  |

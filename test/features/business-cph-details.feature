@@ -18,98 +18,98 @@ Feature: Consolidated View CPH Details page
 
   @advanced @data-dependent
   Scenario: Searching for a partially matching string in the CPH number column filters correctly
-    Given I have selected the business with SBI '0000000001'
+    Given I have selected the business with SBI '107183280'
     And I am on the CPH Details page
-    When I enter '066' in the search box
+    When I enter '691' in the search box
     Then I see the the correct list of CPH's as follows
       | label      | value       |
-      | CPH number | 01/066/0285 |
-      | Parish     | TILBROOK    |
-      | Start Date | 14/02/2006  |
+      | CPH number | 04/691/1023 |
+      | Parish     | Pettistree  |
+      | Start Date | 05/10/2024  |
+      | End Date   | 25/05/2027  |
+    When I enter a blank value in the search box
+    And Press the Enter key
+    Then I see the the correct list of CPH's as follows
+      | label      | value                                                                                                                                 |
+      | CPH number | 04/691/1023, 14/434/2708, 20/213/7336, 23/552/0908, 48/541/7225, 55/721/0654, 57/309/1950, 80/531/7737                                |
+      | Parish     | Pettistree, Charlton, Upton-upon-Severn, Duntisbourne Abbots, Ascott-under-Wychwood,East Chiltington, Heaton-with-Oxcliffe, Riseholme |
+      | Start Date | 05/10/2024, 09/02/2024, 14/08/2022, 19/04/2022, 19/04/2020, 10/02/2020, 06/11/2022, 07/07/2022, 23/02/2023                            |
+      | End Date   | 25/05/2027, 31/12/9999, 23/12/2025, 31/12/9999, 31/12/9999, 22/09/2024, 31/12/9999, 03/06/2023                                        |
+
+  @advanced @data-dependent
+  Scenario: Searching for a partially matching string in the Parish column filters correctly
+    Given I have selected the business with SBI '107183280'
+    And I am on the CPH Details page
+    When I enter 'Charl' in the search box
+    Then I see the the correct list of CPH's as follows
+      | label      | value       |
+      | CPH number | 14/434/2708 |
+      | Parish     | Charlton       |
+      | Start Date | 09/02/2024  |
       | End Date   | 31/12/9999  |
     When I enter a blank value in the search box
     And Press the Enter key
     Then I see the the correct list of CPH's as follows
-      | label      | value                                              |
-      | CPH number | 01/066/0285, 01/094/0042, 05/026/7008, 05/026/7008 |
-      | Parish     | TILBROOK, STAPLOE, MANEA, CHEDDLETON               |
-      | Start Date | 14/02/2006, 20/05/2013, 01/05/2007, 01/05/2008     |
-      | End Date   | 31/12/9999, 29/09/2021, 12/08/2013, 12/08/2014     |
-
-  @advanced @data-dependent
-  Scenario: Searching for a partially matching string in the Parish column filters correctly
-    Given I have selected the business with SBI '0000000001'
-    And I am on the CPH Details page
-    When I enter 'STAPLO' in the search box
-    Then I see the the correct list of CPH's as follows
-      | label      | value       |
-      | CPH number | 01/094/0042 |
-      | Parish     | STAPLOE     |
-      | Start Date | 20/05/2013  |
-      | End Date   | 29/09/2021  |
-    When I enter a blank value in the search box
-    And Press the Enter key
-    Then I see the the correct list of CPH's as follows
-      | label      | value                                              |
-      | CPH number | 01/066/0285, 01/094/0042, 05/026/7008, 05/026/7008 |
-      | Parish     | TILBROOK, STAPLOE, MANEA, CHEDDLETON               |
-      | Start Date | 14/02/2006, 20/05/2013, 01/05/2007, 01/05/2008     |
-      | End Date   | 31/12/9999, 29/09/2021, 12/08/2013, 12/08/2014     |
+      | label      | value                                                                                                                                 |
+      | CPH number | 04/691/1023, 14/434/2708, 20/213/7336, 23/552/0908, 48/541/7225, 55/721/0654, 57/309/1950, 80/531/7737                                |
+      | Parish     | Pettistree, Charlton, Upton-upon-Severn, Duntisbourne Abbots, Ascott-under-Wychwood,East Chiltington, Heaton-with-Oxcliffe, Riseholme |
+      | Start Date | 05/10/2024, 09/02/2024, 14/08/2022, 19/04/2022, 19/04/2020, 10/02/2020, 06/11/2022, 07/07/2022, 23/02/2023                            |
+      | End Date   | 25/05/2027, 31/12/9999, 23/12/2025, 31/12/9999, 31/12/9999, 22/09/2024, 31/12/9999, 03/06/2023                                        |
 
   @advanced @data-dependent
   Scenario: Searching for a partially matching string in the Species field filters correctly
-    Given I have selected the business with SBI '0000000001'
+    Given I have selected the business with SBI '107183280'
     And I am on the CPH Details page
     When I enter 'SHEEP' in the search box
     Then I see the the correct list of CPH's as follows
-      | label      | value       |
-      | CPH number | 01/094/0042 |
-      | Parish     | STAPLOE     |
-      | Start Date | 20/05/2013  |
-      | End Date   | 29/09/2021  |
+      | label      | value                                           |
+      | CPH number | 04/691/1023, 20/213/7336, 55/721/0654           |
+      | Parish     | Pettistree, Upton-upon-Severn, East Chiltington |
+      | Start Date | 05/10/2024, 14/08/2022, 06/11/2022  |
+      | End Date   | 25/05/2027, 23/12/2025, 22/09/2024  |
     When I enter a blank value in the search box
     And Press the Enter key
     Then I see the the correct list of CPH's as follows
-      | label      | value                                              |
-      | CPH number | 01/066/0285, 01/094/0042, 05/026/7008, 05/026/7008 |
-      | Parish     | TILBROOK, STAPLOE, MANEA, CHEDDLETON               |
-      | Start Date | 14/02/2006, 20/05/2013, 01/05/2007, 01/05/2008     |
-      | End Date   | 31/12/9999, 29/09/2021, 12/08/2013, 12/08/2014     |
+      | label      | value                                                                                                                                 |
+      | CPH number | 04/691/1023, 14/434/2708, 20/213/7336, 23/552/0908, 48/541/7225, 55/721/0654, 57/309/1950, 80/531/7737                                |
+      | Parish     | Pettistree, Charlton, Upton-upon-Severn, Duntisbourne Abbots, Ascott-under-Wychwood,East Chiltington, Heaton-with-Oxcliffe, Riseholme |
+      | Start Date | 05/10/2024, 09/02/2024, 14/08/2022, 19/04/2022, 19/04/2020, 10/02/2020, 06/11/2022, 07/07/2022, 23/02/2023                            |
+      | End Date   | 25/05/2027, 31/12/9999, 23/12/2025, 31/12/9999, 31/12/9999, 22/09/2024, 31/12/9999, 03/06/2023                                        |
 
   @advanced @data-dependent
   Scenario: Searching for a partially matching string in the Address field filters correctly
-    Given I have selected the business with SBI '0000000001'
+    Given I have selected the business with SBI '107183280'
     And I am on the CPH Details page
-    When I enter 'WORKSOP' in the search box
+    When I enter 'DEMUM' in the search box
     Then I see the the correct list of CPH's as follows
       | label      | value       |
-      | CPH number | 05/026/7008 |
-      | Parish     | MANEA       |
-      | Start Date | 01/05/2007  |
-      | End Date   | 12/08/2013  |
+      | CPH number | 04/691/1023 |
+      | Parish     | Pettistree  |
+      | Start Date | 05/10/2024  |
+      | End Date   | 25/05/2027  |
     When I enter a blank value in the search box
     And Press the Enter key
     Then I see the the correct list of CPH's as follows
-      | label      | value                                              |
-      | CPH number | 01/066/0285, 01/094/0042, 05/026/7008, 05/026/7008 |
-      | Parish     | TILBROOK, STAPLOE, MANEA, CHEDDLETON               |
-      | Start Date | 14/02/2006, 20/05/2013, 01/05/2007, 01/05/2008     |
-      | End Date   | 31/12/9999, 29/09/2021, 12/08/2013, 12/08/2014     |
+      | label      | value                                                                                                                                 |
+      | CPH number | 04/691/1023, 14/434/2708, 20/213/7336, 23/552/0908, 48/541/7225, 55/721/0654, 57/309/1950, 80/531/7737                                |
+      | Parish     | Pettistree, Charlton, Upton-upon-Severn, Duntisbourne Abbots, Ascott-under-Wychwood,East Chiltington, Heaton-with-Oxcliffe, Riseholme |
+      | Start Date | 05/10/2024, 09/02/2024, 14/08/2022, 19/04/2022, 19/04/2020, 10/02/2020, 06/11/2022, 07/07/2022, 23/02/2023                            |
+      | End Date   | 25/05/2027, 31/12/9999, 23/12/2025, 31/12/9999, 31/12/9999, 22/09/2024, 31/12/9999, 03/06/2023                                        |
 
-  @advanced @data-dependent
+  @advanced @data-dependent @require-mock-update
   Scenario: The CPH table is ordered by CPH number, then start date
-    Given I have selected the business with SBI '0000000001'
+    Given I have selected the business with SBI '107183280'
     And I am on the CPH Details page
     Then I see the the correctly ordered list of CPH's as follows
-      | label      | value                                              |
-      | CPH number | 01/066/0285, 01/094/0042, 05/026/7008, 05/026/7008 |
-      | Parish     | TILBROOK, STAPLOE, MANEA, CHEDDLETON               |
-      | Start Date | 14/02/2006, 20/05/2013, 01/05/2007, 01/05/2008     |
-      | End Date   | 31/12/9999, 29/09/2021, 12/08/2013, 12/08/2014     |
+      | label      | value                                                                                                                                 |
+      | CPH number | 04/691/1023, 14/434/2708, 20/213/7336, 23/552/0908, 48/541/7225, 55/721/0654, 57/309/1950, 80/531/7737                                |
+      | Parish     | Pettistree, Charlton, Upton-upon-Severn, Duntisbourne Abbots, Ascott-under-Wychwood,East Chiltington, Heaton-with-Oxcliffe, Riseholme |
+      | Start Date | 05/10/2024, 09/02/2024, 14/08/2022, 19/04/2022, 19/04/2020, 10/02/2020, 06/11/2022, 07/07/2022, 23/02/2023                            |
+      | End Date   | 25/05/2027, 31/12/9999, 23/12/2025, 31/12/9999, 31/12/9999, 22/09/2024, 31/12/9999, 03/06/2023                                        |
 
   @advanced @data-dependent
   Scenario: If I select a business that has no CPH’s, a message is displayed in the table that indicates there are no CPH’s
-    Given I have selected the business with SBI '0000000002'
+    Given I have selected the business with SBI '1000000000'
     And I am on the CPH Details page
     Then I see the 'CPH table' table is empty
     And I see an empty CPH Details pane
@@ -117,21 +117,21 @@ Feature: Consolidated View CPH Details page
 
   @advanced @data-dependent
   Scenario: Check CPH data correctness
-    Given I have selected the business with SBI '0000000001'
+    Given I have selected the business with SBI '107183280'
     And I am on the CPH Details page
     Then I see the the correct list of CPH's as follows
-      | label      | value                                              |
-      | CPH number | 01/066/0285, 01/094/0042, 05/026/7008, 05/026/7008 |
-      | Parish     | TILBROOK, STAPLOE, MANEA, CHEDDLETON               |
-      | Start Date | 14/02/2006, 20/05/2013, 01/05/2007, 01/05/2008     |
-      | End Date   | 31/12/9999, 29/09/2021, 12/08/2013, 12/08/2014     |
-    When I select the CPH '01/094/0042'
+      | label      | value                                                                                                                                 |
+      | CPH number | 04/691/1023, 14/434/2708, 20/213/7336, 23/552/0908, 48/541/7225, 55/721/0654, 57/309/1950, 80/531/7737                                |
+      | Parish     | Pettistree, Charlton, Upton-upon-Severn, Duntisbourne Abbots, Ascott-under-Wychwood,East Chiltington, Heaton-with-Oxcliffe, Riseholme |
+      | Start Date | 05/10/2024, 09/02/2024, 14/08/2022, 19/04/2022, 19/04/2020, 10/02/2020, 06/11/2022, 07/07/2022, 23/02/2023                            |
+      | End Date   | 25/05/2027, 31/12/9999, 23/12/2025, 31/12/9999, 31/12/9999, 22/09/2024, 31/12/9999, 03/06/2023                                        |
+    When I select the CPH '20/213/7336'
     Then then I see the following CPH Details
-      | label              | value                                         |
-      | Title              | CPH Number: 01/094/0042                       |
-      | Parish             | STAPLOE                                       |
-      | Start Date         | 0/05/2013                                     |
-      | End Date           | 29/09/2021                                    |
-      | Coordinates (x, y) | "352075, 247411"                              |
-      | Species            | CATTLE                                        |
-      | Address            | Little Paddocks Paradise Green Marden HR1 3DW |
+      | label              | value                                                                 |
+      | Title              | CPH Number: 20/213/7336                                               |
+      | Parish             | Upton-upon-Severn                                                     |
+      | Start Date         | 14/08/2022                                                            |
+      | End Date           | 23/12/2025                                                            |
+      | Coordinates (x, y) | "176949, 434894"                                                      |
+      | Species            | PIG(S),CAMELIDS,POULTRY,OTHER,PIGEONS,CATTLE,GOAT(S),SHEEP            |
+      | Address            | "TANTILLUS CATTUS CONDICO FARM, HERZOG WYND, UPPER SCHILLER, KF0 5GZ" |

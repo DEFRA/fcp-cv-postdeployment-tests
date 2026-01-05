@@ -56,49 +56,49 @@ Feature: Consolidated View Business Land Details page
 
   @intermediate @data-dependent
   Scenario: Searching for a partially matching string in the Sheet column filters the Parcels table correctly.
-    Given I have selected the business with SBI '0000000001'
+    Given I have selected the business with SBI '1111111111'
     And I am on the Land Details page
-    When I enter 'TS0' in the search box
+    When I enter 'SS66' in the search box
     And Press the Enter key
     Then I see the correct list of parcels as follows
-      | label        | value            |
-      | Sheet        | TS01, TS01, TS02 |
-      | Parcel       | AB12, AB13, XE22 |
-      | Area (ha)    | 12, 2, 2         |
-      | Land Change? | No, No, Yes      |
+      | label        | value  |
+      | Sheet        | SS6627 |
+      | Parcel       | 5662   |
+      | Area (ha)    | 1.027  |
+      | Land Change? | No     |
     When I enter a blank value in the search box
     And Press the Enter key
     Then I see the correct list of parcels as follows
-      | label        | value                        |
-      | Sheet        | TS01, TS01, TS02, XT32, XT54 |
-      | Parcel       | AB12, AB13, XE22, RR22, RR23 |
-      | Area (ha)    | 12, 2, 2, 66, 23             |
-      | Land Change? | No, No, Yes, Yes, No         |
+      | label        | value          |
+      | Sheet        | SS6627, SS6828 |
+      | Parcel       | 5662, 3818     |
+      | Area (ha)    | 1.027, 1.027   |
+      | Land Change? | No, No         |
 
   @intermediate @data-dependent
   Scenario: Searching for a partially matching string in the Parcel column filters the Parcels table correctly.
-    Given I have selected the business with SBI '0000000001'
+    Given I have selected the business with SBI '1111111111'
     And I am on the Land Details page
-    When I enter 'AB1' in the search box
+    When I enter '818' in the search box
     And Press the Enter key
     Then I see the correct list of parcels as follows
-      | label        | value      |
-      | Sheet        | TS01, TS01 |
-      | Parcel       | AB12, AB13 |
-      | Area (ha)    | 12, 2      |
-      | Land Change? | No, No     |
+      | label        | value  |
+      | Sheet        | SS6828 |
+      | Parcel       | 3818   |
+      | Area (ha)    | 1.027  |
+      | Land Change? | No     |
     When I enter a blank value in the search box
     And Press the Enter key
     Then I see the correct list of parcels as follows
-      | label        | value                        |
-      | Sheet        | TS01, TS01, TS02, XT32, XT54 |
-      | Parcel       | AB12, AB13, XE22, RR22, RR23 |
-      | Area (ha)    | 12, 2, 2, 66, 23             |
-      | Land Change? | No, No, Yes, Yes, No         |
+      | label        | value          |
+      | Sheet        | SS6627, SS6828 |
+      | Parcel       | 5662, 3818     |
+      | Area (ha)    | 1.027, 1.027   |
+      | Land Change? | No, No         |
 
   @advanced @data-dependent
   Scenario: An appropriate warning is shown when a business has no land entries.
-    Given I have selected the business with SBI '0000000002'
+    Given I have selected the business with SBI '1000000000'
     When I navigate to the Land Details page
     Then I see the following data in the Land Summary section
       | label                                                     | value |
@@ -114,7 +114,7 @@ Feature: Consolidated View Business Land Details page
 
   @advanced
   Scenario: Date formatting is handled correctly.
-    Given I have selected the business with SBI '0000000001'
+    Given I have selected the business with SBI '1111111111'
     And I am on the Land Details page
     When I change the date to
       | label | value                                                                                                                               |
@@ -123,108 +123,108 @@ Feature: Consolidated View Business Land Details page
 
   @advanced @data-dependent
   Scenario: Land details data is shown correctly for today's date
-    Given I have selected the business with SBI '0000000001'
+    Given I have selected the business with SBI '1111111111'
     And I am on the Land Details page
     Then I see the following data in the Land Summary section
-      | label                                                     | value |
-      | Total Number of Parcels                                   | 5     |
-      | Total Area (ha)                                           | 12.5  |
-      | Total Parcels with Pending Customer Notified Land Changes | 1     |
+      | label                                                     | value  |
+      | Total Number of Parcels                                   | 2      |
+      | Total Area (ha)                                           | 2.0541 |
+      | Total Parcels with Pending Customer Notified Land Changes | 0      |
     And I see the following data in the Land Summary table
       | label      | value                                                  |
-      | Code       | 110, 120, 130                                          |
-      | Land Cover | Arable Land, Permanent grass land, Permanent crop land |
-      | Area (ha)  | 10, 2.5, 0                                             |
+      | Code       | 110, 130, 140                                          |
+      | Land Cover | Arable Land, Permanent Grassland, Permanent Crops      |
+      | Area (ha)  | 1.027, 0, 0                                            |
     And I see the correct list of parcels in the Parcels table as follows
-      | label        | value                        |
-      | Sheet        | TS01, TS01, TS02, XT32, XT54 |
-      | Parcel       | AB12, AB13, XE22, RR22, RR23 |
-      | Area (ha)    | 12, 2, 2, 66, 23             |
-      | Land Change? | No, No, Yes, Yes, No         |
-    When I click on the parcel 'TS01 AB12'
-    Then I see a Parcel Summary section with a bold header 'TS01 AB12'
+      | label        | value          |
+      | Sheet        | SS6627, SS6828 |
+      | Parcel       | 5662, 3818     |
+      | Area (ha)    | 1.027          |
+      | Land Change? | No, No         |
+    When I click on the parcel 'SS6627 5662'
+    Then I see a Parcel Summary section with a bold header 'SS6627 5662'
     And the Parcel Summary has field data as follows
       | label                                  | value      |
-      | Area (ha)                              | 5.3        |
-      | Pending Customer Notified Land Change? | No         |
-      | Effective Date From                    | 01/01/2020 |
-      | Effective Date To                      | 31/12/2040 |
+      | Area (ha)                              | 1.027      |
+      | Pending Customer Notified Land Change? | ...        |
+      | Effective Date From                    | 25/07/2024 |
+      | Effective Date To                      | 25/07/2024 |
     And the Parcel Summary table has data as follows
-      | label                                  | value                     |
-      | Code                                   | 130, 243                  |
-      | Land Cover                             | Permanent Grassland, Pond |
-      | Area (ha)                              | 5.3, 0.1                  |
+      | label                                  | value                            |
+      | Code                                   | 110, 131                         |
+      | Land Cover                             | Arable Land, Permanent Grassland |
+      | Area (ha)                              | 1.027, 2.541                     |
 
-  @advanced @data-dependent
+  @advanced @data-dependent @require-mock-update
   Scenario: Land details data is shown correctly for the earliest valid date - 01/01/2015
     Given I have selected the business with SBI '0000000001'
     And I am on the Land Details page
     When I enter '01/01/2015' into the Date picker
     And Press the Enter key
     Then I see the following data in the Land Summary section
-      | label                                                     | value |
-      | Total Number of Parcels                                   | 5     |
-      | Total Area (ha)                                           | 12.5  |
-      | Total Parcels with Pending Customer Notified Land Changes | 1     |
+      | label                                                     | value  |
+      | Total Number of Parcels                                   | 2      |
+      | Total Area (ha)                                           | 2.0541 |
+      | Total Parcels with Pending Customer Notified Land Changes | 0      |
     And I see the following data in the Land Summary table
       | label      | value                                                  |
-      | Code       | 110, 120, 130                                          |
-      | Land Cover | Arable Land, Permanent grass land, Permanent crop land |
-      | Area (ha)  | 10, 2.5, 0                                             |
+      | Code       | 110, 130, 140                                          |
+      | Land Cover | Arable Land, Permanent Grassland, Permanent Crops      |
+      | Area (ha)  | 1.027, 0, 0                                            |
     And I see the correct list of parcels in the Parcels table as follows
-      | label        | value                        |
-      | Sheet        | TS01, TS01, TS02, XT32, XT54 |
-      | Parcel       | AB12, AB13, XE22, RR22, RR23 |
-      | Area (ha)    | 12, 2, 2, 66, 23             |
-      | Land Change? | No, No, Yes, Yes, No         |
-    When I click on the parcel 'TS01 AB12'
-    Then I see a Parcel Summary section with a bold header 'TS01 AB12'
+      | label        | value          |
+      | Sheet        | SS6627, SS6828 |
+      | Parcel       | 5662, 3818     |
+      | Area (ha)    | 1.027          |
+      | Land Change? | No, No         |
+    When I click on the parcel 'SS6627 5662'
+    Then I see a Parcel Summary section with a bold header 'SS6627 5662'
     And the Parcel Summary has field data as follows
       | label                                  | value      |
-      | Area (ha)                              | 5.3        |
-      | Pending Customer Notified Land Change? | No         |
-      | Effective Date From                    | 01/01/2020 |
-      | Effective Date To                      | 31/12/2040 |
+      | Area (ha)                              | 1.027      |
+      | Pending Customer Notified Land Change? | ...        |
+      | Effective Date From                    | 25/07/2024 |
+      | Effective Date To                      | 25/07/2024 |
     And the Parcel Summary table has data as follows
-      | label                                  | value                     |
-      | Code                                   | 130, 243                  |
-      | Land Cover                             | Permanent Grassland, Pond |
-      | Area (ha)                              | 5.3, 0.1                  |
+      | label                                  | value                            |
+      | Code                                   | 110, 131                         |
+      | Land Cover                             | Arable Land, Permanent Grassland |
+      | Area (ha)                              | 1.027, 2.541                     |
 
-  @advanced @data-dependent
+  @advanced @data-dependent @require-mock-update
   Scenario: Land details data is shown correctly for a valid date
     Given I have selected the business with SBI '0000000001'
     And I am on the Land Details page
     When I enter '15/06/2020' into the Date picker
     And Press the Enter key
     Then I see the following data in the Land Summary section
-      | label                                                     | value |
-      | Total Number of Parcels                                   | 5     |
-      | Total Area (ha)                                           | 12.5  |
-      | Total Parcels with Pending Customer Notified Land Changes | 1     |
+      | label                                                     | value  |
+      | Total Number of Parcels                                   | 2      |
+      | Total Area (ha)                                           | 2.0541 |
+      | Total Parcels with Pending Customer Notified Land Changes | 0      |
     And I see the following data in the Land Summary table
       | label      | value                                                  |
-      | Code       | 110, 120, 130                                          |
-      | Land Cover | Arable Land, Permanent grass land, Permanent crop land |
-      | Area (ha)  | 10, 2.5, 0                                             |
+      | Code       | 110, 130, 140                                          |
+      | Land Cover | Arable Land, Permanent Grassland, Permanent Crops      |
+      | Area (ha)  | 1.027, 0, 0                                            |
     And I see the correct list of parcels in the Parcels table as follows
-      | label        | value                        |
-      | Sheet        | TS01, TS01, TS02, XT32, XT54 |
-      | Parcel       | AB12, AB13, XE22, RR22, RR23 |
-      | Area (ha)    | 12, 2, 2, 66, 23             |
-      | Land Change? | No, No, Yes, Yes, No         |
-    When I click on the parcel 'TS01 AB12'
-    Then I see a Parcel Summary section with a bold header 'TS01 AB12'
+      | label        | value          |
+      | Sheet        | SS6627, SS6828 |
+      | Parcel       | 5662, 3818     |
+      | Area (ha)    | 1.027          |
+      | Land Change? | No, No         |
+    When I click on the parcel 'SS6627 5662'
+    Then I see a Parcel Summary section with a bold header 'SS6627 5662'
     And the Parcel Summary has field data as follows
       | label                                  | value      |
-      | Area (ha)                              | 5.3        |
-      | Pending Customer Notified Land Change? | No         |
-      | Effective Date From                    | 01/01/2020 |
-      | Effective Date To                      | 31/12/2040 |
+      | Area (ha)                              | 1.027      |
+      | Pending Customer Notified Land Change? | ...        |
+      | Effective Date From                    | 25/07/2024 |
+      | Effective Date To                      | 25/07/2024 |
     And the Parcel Summary table has data as follows
-      | label                                  | value                     |
-      | Code                                   | 130, 243                  |
-      | Land Cover                             | Permanent Grassland, Pond |
-      | Area (ha)                              | 5.3, 0.1                  |
+      | label                                  | value                            |
+      | Code                                   | 110, 131                         |
+      | Land Cover                             | Arable Land, Permanent Grassland |
+      | Area (ha)                              | 1.027, 2.541                     |
 
 

@@ -16,28 +16,29 @@ Feature: Consolidated View Contacts Linked Businesses page
 
   @advanced @data-dependent
   Scenario: On clicking on a business, information is shown correctly
-    Given I have selected the contact with CRN '0000000001'
+    Given I have selected the contact with CRN '1103020285'
     And I am on the Contacts Linked Businesses page
     When I select the business 'Bailey, Dickens and Mraz' from the Businesses table
     Then the page updates to show the following information
-      | label                   | value                                                       |
-      | Title                   | Bailey, Dickens and Mraz                                    |
-      | SBI                     | 0000000123                                                  |
-      | Role                    | Business Partner                                            |
-      | Permissions             | BASIC_PAYMENT_SCHEME, BUSINESS_DETAILS                      |
-      | Permissions Levels      | SUBMIT, FULL_PERMISSION                                     |
-      | Permission Descriptions | View business summary, View claims, Create and edit a claim |
+      | label                   | value                                                                                                                                                                                                                                        |
+      | Title                   | Bailey, Dickens and Mraz                                                                                                                                                                                                                     |
+      | SBI                     | 1103020285                                                                                                                                                                                                                                   |
+      | Role                    | Business Partner                                                                                                                                                                                                                             |
+      | Permissions             | BASIC_PAYMENT_SCHEME, BUSINESS_DETAILS, COUNTRYSIDE_STEWARDSHIP_AGREEMENTS, COUNTRYSIDE_STEWARDSHIP_APPLICATIONS, ENTITLEMENTS, ENVIRONMENTAL_LAND_MANAGEMENT_APPLICATIONS, LAND_DETAILS                                                     |
+      | Permissions Levels      | SUBMIT, FULL_PERMISSION, SUBMIT, SUBMIT, AMEND, SUBMIT, AMEND                                                                                                                                                                                |
+      | Permission Descriptions | View business summary, View claims, "View land, features and covers", Create and edit a claim, Amend a previously submitted claim, "Amend land, features and covers", Submit a claim, Withdraw a claim, "Receive warnings and notifications" |
 
   @advanced @data-dependent
   Scenario: On clicking on a Permission, the Permission Description table updates correctly
-    Given I have selected the contact with CRN '0000000001'
+    Given I have selected the contact with CRN '1103020285'
     And I am on the Contacts Linked Businesses page
-    When I select the Permission 'ENTITLEMENTS' from the Permission table
+    When I select the business 'Goldner, Schmeler and Kutch' from the Businesses table
+    And I select the Permission 'ENTITLEMENTS' from the Permission table
     Then the Permission Description table updates with the following descriptions 'View entitlements, Transfer entitlements, Apply for new entitlements'
 
   @advanced @data-dependent
   Scenario: Searching for a partially matching string in the Name column filters correctly
-    Given I have selected the contact with CRN '0000000001'
+    Given I have selected the contact with CRN '1103020285'
     And I am on the Contacts Linked Businesses page
     When I enter 'Bailey' in the search box
     Then I see the the correct list of businesses as follows
@@ -47,29 +48,29 @@ Feature: Consolidated View Contacts Linked Businesses page
     When I enter a blank value in the search box
     And Press the Enter key
     Then I see the the correct list of businesses as follows
-      | label | value                                                          |
-      | SBI   | 121428499, 881499499                                           |
-      | Name  | "Homenick, McDermott and Luettgen", "Bailey, Dickens and Mraz" |
+      | label | value                                                                                                                          |
+      | SBI   | 121428499, 106238988, 106284736, 107591843                                                                                     |
+      | Name  | "Bailey, Dickens and Mraz", "Gleichner,Okuneva and Murazik", "Goldner, Schmeler and Kutch", "Homenick, McDermott and Luettgen" |
 
   @advanced @data-dependent
   Scenario: Searching for a partially matching string in the SBI column filters correctly
-    Given I have selected the contact with CRN '0000000001'
+    Given I have selected the contact with CRN '1103020285'
     And I am on the Contacts Linked Businesses page
     When I enter '10759' in the search box
     Then I see the the correct list of businesses as follows
       | label | value                              |
-      | SBI   | 881499499                 |
+      | SBI   | 107591843                          |
       | Name  | "Homenick, McDermott and Luettgen" |
     When I enter a blank value in the search box
     And Press the Enter key
     Then I see the the correct list of businesses as follows
-      | label | value                                                          |
-      | SBI   | 121428499, 881499499                                           |
-      | Name  | "Homenick, McDermott and Luettgen", "Bailey, Dickens and Mraz" |
+      | label | value                                                                                                                          |
+      | SBI   | 121428499, 106238988, 106284736, 107591843                                                                                     |
+      | Name  | "Bailey, Dickens and Mraz", "Gleichner,Okuneva and Murazik", "Goldner, Schmeler and Kutch", "Homenick, McDermott and Luettgen" |
 
   @intermediate @data-dependent
   Scenario: Clicking the View Business button navigates the user to the relevant Business page in CRM.
-    Given I have selected the contact with CRN '0000000001'
+    Given I have selected the contact with CRN '1103020285'
     And I am on the Contacts Linked Businesses page
     And I have selected 'Homenick, McDermott and Luettgen' in the Businesses table
     When I click the View Business button
@@ -77,27 +78,27 @@ Feature: Consolidated View Contacts Linked Businesses page
 
   @advanced @data-dependent
   Scenario: The correct Linked Businesses are shown for a contact
-    Given I have selected the contact with CRN '0000000001'
+    Given I have selected the contact with CRN '1103020285'
     And I am on the Contacts Linked Businesses page
     Then I see the the correct list of businesses as follows
-      | label | value                                                          |
-      | SBI   | 121428499, 881499499                                           |
-      | Name  | "Homenick, McDermott and Luettgen", "Bailey, Dickens and Mraz" |
+      | label | value                                                                                                                          |
+      | SBI   | 121428499, 106238988, 106284736, 107591843                                                                                     |
+      | Name  | "Bailey, Dickens and Mraz", "Gleichner,Okuneva and Murazik", "Goldner, Schmeler and Kutch", "Homenick, McDermott and Luettgen" |
 
   @advanced @data-dependent
   Scenario: A contact with no businesses is shown without error
-    Given I have selected the contact with CRN '0000000002'
+    Given I have selected the contact with CRN '9000000000'
     And I am on the Contacts Linked Businesses page
     Then I see the 'Businesses' table is empty
 
   @advanced @data-dependent
   Scenario: When a business's permission is NOT level "NO_ACCESS", the Permission Description list is correct.
-    Given I have selected the contact with CRN '0000000001'
+    Given I have selected the contact with CRN '1103020285'
     When I select 'Homenick, McDermott and Luettgen' in the Businesses table
     And I select 'BASIC_PAYMENT_SCHEME' from the Permissions table
-    Then I see the Permission Description table with data for 'SUBMIT, FULL_PERMISSION'
+    Then I see the Permission Description table with data for 'View business summary, View claims, "View land, features and covers", Create and edit a claim, Amend a previously submitted claim, "Amend land, features and covers", Submit a claim, Withdraw a claim, "Receive warnings and notifications"'
 
-  @advanced @data-dependent
+  @advanced @data-dependent @require-mock-update
   Scenario: When a business's permission is level "NO_ACCESS", the Permission Description list shows the correct warning message "We didn't find any data to show at this time".
     Given I have selected the contact with CRN '0000000001'
     When I select 'Homenick, McDermott and Luettgen' in the Businesses table
