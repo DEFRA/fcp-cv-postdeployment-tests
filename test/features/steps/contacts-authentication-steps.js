@@ -1,5 +1,6 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
+import { ContactsAuthenticationPage } from '../page-objects/contacts-authentication-page.js'
 
 const { Given, When, Then } = createBdd(test)
 
@@ -14,6 +15,7 @@ Given(
   async function () {
     // Select a contact with no auth data
     // TODO
+    ContactsAuthenticationPage.checkTitle()
   }
 )
 

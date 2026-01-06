@@ -1,5 +1,6 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
+import { BusinessLinkedContactsPage } from '../page-objects/business-linked-contacts-page.js'
 
 const { When, Then } = createBdd(test)
 
@@ -10,8 +11,7 @@ const { When, Then } = createBdd(test)
 //
 
 When(/^I click the View customer button$/, async function () {
-  // Click the button
-  // TODO
+  BusinessLinkedContactsPage.clickViewCustomerButton()
 })
 
 When(/^'View Authenticate Questions' link$/, async function () {

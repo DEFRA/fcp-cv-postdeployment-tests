@@ -1,5 +1,6 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
+import { BusinessAgreementsPage } from '../page-objects/business-agreements-page.js'
 
 const { When, Then } = createBdd(test)
 
@@ -9,6 +10,7 @@ const { When, Then } = createBdd(test)
 
 Then(/^each Agreements table has an option to view the record$/, function () {
   // TODO
+  BusinessAgreementsPage.checkTitle()
 })
 
 // ------------------------------------------------------

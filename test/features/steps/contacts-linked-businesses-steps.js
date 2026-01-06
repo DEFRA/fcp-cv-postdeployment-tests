@@ -1,5 +1,6 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
+import { ContactsLinkedBusinessesPage } from '../page-objects/contacts-linked-businesses-page.js'
 
 const { Given, When, Then } = createBdd(test)
 
@@ -13,6 +14,7 @@ Then(
   /^I see a title in bold of the name of the business in the right-hand side pane$/,
   async function () {
     // TODO
+    ContactsLinkedBusinessesPage.checkTitle()
   }
 )
 

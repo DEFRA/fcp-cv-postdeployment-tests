@@ -1,5 +1,6 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
+import { BusinessLandDetailsPage } from '../page-objects/business-land-details-page.js'
 
 const { When, Then } = createBdd(test)
 
@@ -9,6 +10,7 @@ const { When, Then } = createBdd(test)
 
 Then(/^I see a Date filter$/, function () {
   // TODO
+  BusinessLandDetailsPage.checkTitle()
 })
 
 Then(

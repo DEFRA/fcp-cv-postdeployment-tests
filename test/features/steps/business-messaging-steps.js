@@ -1,5 +1,6 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
+import { BusinessMessagingPage } from '../page-objects/business-messaging-page.js'
 
 const { Given, When, Then } = createBdd(test)
 
@@ -12,6 +13,7 @@ const { Given, When, Then } = createBdd(test)
 When(/^I select a contact$/, async function () {
   // Select a generic contact
   // TODO
+  BusinessMessagingPage.checkTitle()
 })
 
 Given(/^I have selected a contact$/, async function () {

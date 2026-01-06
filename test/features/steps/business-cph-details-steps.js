@@ -1,5 +1,6 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
+import { BusinessCphDetailsPage } from '../page-objects/business-cph-details-page.js'
 
 const { When, Then } = createBdd(test)
 
@@ -11,6 +12,7 @@ Then(
   /^I see a CPH Details pane on the right with a title 'CPH Number: ' concatenated with (.*)$/,
   function (cphNumber) {
     // TODO
+    BusinessCphDetailsPage.checkTitle()
   }
 )
 

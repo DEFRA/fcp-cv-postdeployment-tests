@@ -1,5 +1,13 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
+import { ContactsLinkedBusinessesPage } from '../page-objects/contacts-linked-businesses-page.js'
+import { ContactsAuthenticationPage } from '../page-objects/contacts-authentication-page.js'
+import { BusinessMessagingPage } from '../page-objects/business-messaging-page.js'
+import { BusinessLinkedContactsPage } from '../page-objects/business-linked-contacts-page.js'
+import { BusinessLandDetailsPage } from '../page-objects/business-land-details-page.js'
+import { BusinessCphDetailsPage } from '../page-objects/business-cph-details-page.js'
+import { BusinessApplicationsPage } from '../page-objects/business-applications-page.js'
+import { BusinessAgreementsPage } from '../page-objects/business-agreements-page.js'
 
 const { Given, When, Then } = createBdd(test)
 
@@ -9,6 +17,14 @@ const { Given, When, Then } = createBdd(test)
 
 Given(/^I have selected the business with SBI '(\d+)'$/, function (sbi) {
   // TODO
+  ContactsLinkedBusinessesPage.checkTitle()
+  ContactsAuthenticationPage.checkTitle()
+  BusinessMessagingPage.checkTitle()
+  BusinessLinkedContactsPage.checkTitle()
+  BusinessLandDetailsPage.checkTitle()
+  BusinessCphDetailsPage.checkTitle()
+  BusinessApplicationsPage.checkTitle()
+  BusinessAgreementsPage.checkTitle()
 })
 
 Given(/^I have selected the contact with CRN '(.+)'$/, async function (crn) {

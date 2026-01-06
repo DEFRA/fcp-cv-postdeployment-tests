@@ -1,5 +1,6 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
+import { BusinessApplicationsPage } from '../page-objects/business-applications-page.js'
 
 const { Given, Then } = createBdd(test)
 
@@ -9,6 +10,7 @@ const { Given, Then } = createBdd(test)
 
 Given(/^I have selected an application with the ID '(\d+)'$/, function (appId) {
   // TODO
+  BusinessApplicationsPage.checkTitle()
 })
 
 // ------------------------------------------------------
