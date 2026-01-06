@@ -35,8 +35,8 @@ When(/^I select the contact '(.+)'$/, async function (name) {
 // ────────────────────────────────────────
 //
 
-When(/^I select a message$/, async function () {
-  // Select first or default message
+When(/^I select the first message$/, async function () {
+  // Select first message
   // TODO
 })
 

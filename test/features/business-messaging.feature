@@ -21,7 +21,7 @@ Feature: Consolidated View Business Messages page
   Scenario: Message data updates correctly once a contact is selected.
     Given I am on the Business Messages page
     And I have selected a contact
-    When I select a message
+    When I select the first message
     Then the right-hand pane updates with a bold title, a Date field, a Read field, a Deleted field and a Message field
     And there is a label in the right-hand pane 'Links in the message below do not work'
 
