@@ -1,6 +1,5 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
-import { BusinessLinkedContactsPage } from '../page-objects/business-linked-contacts-page.js'
 
 const { When, Then } = createBdd(test)
 
@@ -10,36 +9,39 @@ const { When, Then } = createBdd(test)
 // ────────────────────────────────────────
 //
 
-When(/^I click the View customer button$/, async function () {
-  BusinessLinkedContactsPage.clickViewCustomerButton()
-})
+When(
+  /^I click the View customer button$/,
+  async function ({ businessLinkedContactsPage }) {
+    businessLinkedContactsPage.clickViewCustomerButton()
+  }
+)
 
-When(/^'View Authenticate Questions' link$/, async function () {
-  // Click authenticate link
-  // TODO
-})
+When(
+  /^'View Authenticate Questions' link$/,
+  async function ({ businessLinkedContactsPage }) {
+    businessLinkedContactsPage.clickAuthenticateLink()
+  }
+)
 
 When(
   /^I select the contact with the CRN '(.+)' from the Contacts table$/,
-  async function (crn) {
-    // Select contact by CRN
-    // TODO
+  async function ({ businessLinkedContactsPage }, crn) {
+    businessLinkedContactsPage.selectContactByCrn(crn)
   }
 )
 
 When(
   /^I select the Permission '(.+)' from the Permission table$/,
-  async function (permission) {
-    // Select permission
-    // TODO
+  async function ({ businessLinkedContactsPage }, permission) {
+    businessLinkedContactsPage.selectPermission(permission)
   }
 )
 
+// Is this exactly the same as above?
 When(
   /^I select '(.+)' from the Permissions table$/,
-  async function (permission) {
-    // Same as above, reused
-    // TODO
+  async function ({ businessLinkedContactsPage }, permission) {
+    businessLinkedContactsPage.selectPermission(permission)
   }
 )
 
@@ -51,29 +53,33 @@ When(
 
 Then(
   /^I see a title in bold of the first name and second name of the contact concatenated in the right-hand side pane$/,
-  async function () {
-    // TODO
+  async function ({ businessLinkedContactsPage }) {
+    businessLinkedContactsPage.checkTitleInRightPane()
   }
 )
 
 Then(
   /^I see fields for '(.+)' in the right-hand side pane$/,
-  async function (fields) {
-    // TODO
+  async function ({ businessLinkedContactsPage }, fields) {
+    const expectedFields = fields.split(',')
+    await expectedFields.forEach((text) => {
+      const found = businessLinkedContactsPage.fieldExists(text)
+      expect(found).toEqual(true)
+    })
   }
 )
 
 Then(
   /^I see a 'View customer' button in the right-hand side pane$/,
-  async function () {
-    // TODO
+  async function ({ businessLinkedContactsPage }) {
+    businessLinkedContactsPage.viewCustomerButtonIsVisible()
   }
 )
 
 Then(
   /^I see a 'View Authenticate Questions' link in the right-hand side pane$/,
-  async function () {
-    // TODO
+  async function ({ businessLinkedContactsPage }) {
+    businessLinkedContactsPage.viewAuthenticateQuestionsLinkIsVisible()
   }
 )
 
@@ -83,35 +89,40 @@ Then(
 // ────────────────────────────────────────
 //
 
-Then(/^I see the Contacts Authentication sub-screen$/, async function () {
-  // TODO
+Then(
+  /^I see the Contacts Authentication sub-screen$/,
+  async function ({ businessLinkedContactsPage }) {
+    businessLinkedContactsPage.contactsAuthenticationSubScreenIsVisible()
+  }
+)
+
+Then(/^a title in bold$/, async function ({ businessLinkedContactsPage }) {
+  businessLinkedContactsPage.contactsAuthenticationSubScreenTitleIsVisible()
 })
 
-Then(/^a title in bold$/, async function () {
-  // TODO
+Then(/^a CRN field$/, async function ({ businessLinkedContactsPage }) {
+  businessLinkedContactsPage.contactsAuthenticationSubScreenCrnIsVisible()
 })
 
-Then(/^a CRN field$/, async function () {
-  // TODO
+Then(/^a Full Name field$/, async function ({ businessLinkedContactsPage }) {
+  businessLinkedContactsPage.contactsAuthenticationSubScreenFullNameIsVisible()
 })
 
-Then(/^a Full Name field$/, async function () {
-  // TODO
-})
-
-Then(/^a Role field$/, async function () {
-  // TODO
-})
-
-Then(/^a Date of Birth field$/, async function () {
-  // TODO
+Then(/^a Role field$/, async function ({ businessLinkedContactsPage }) {
+  businessLinkedContactsPage.contactsAuthenticationSubScreenRoleIsVisible()
 })
 
 Then(
+  /^a Date of Birth field$/,
+  async function ({ businessLinkedContactsPage }) {
+    businessLinkedContactsPage.contactsAuthenticationSubScreenDobIsVisible()
+  }
+)
+
+Then(
   /^I see the Contacts Authentication sub-screen with the following information$/,
-  async function (table) {
-    // Validate table
-    // TODO
+  async function ({ businessLinkedContactsPage }, table) {
+    businessLinkedContactsPage.checkContactsAuthenticationSubScreen(table)
   }
 )
 
@@ -123,15 +134,14 @@ Then(
 
 Then(
   /^the page updates to show the following information$/,
-  async function (table) {
-    // Validate table
-    // TODO
+  async function ({ businessLinkedContactsPage }, table) {
+    businessLinkedContactsPage.checkContactsScreen(table)
   }
 )
 
 Then(
   /^the Permission Description table updates with the following descriptions '(.+)'$/,
-  async function (descriptions) {
+  async function ({ businessLinkedContactsPage }, descriptions) {
     // Validate descriptions
     // TODO
   }
@@ -145,7 +155,7 @@ Then(
 
 Then(
   /^I see the CRM Contact Details page for the contact with the CRN '(.+)'$/,
-  async function (crn) {
+  async function ({ businessLinkedContactsPage }, crn) {
     // Assert CRM page opened
     // TODO
   }
@@ -159,7 +169,7 @@ Then(
 
 Then(
   /^I see the the correct list of contacts as follows$/,
-  async function (table) {
+  async function ({ businessLinkedContactsPage }, table) {
     // Validate table structure
     // TODO
   }
@@ -168,7 +178,7 @@ Then(
 // Generic reusable table step
 Then(
   /^I see the following data in the (.+)$/,
-  async function (sectionName, table) {
+  async function ({ businessLinkedContactsPage }, sectionName, table) {
     // Validate data table
     // TODO
   }

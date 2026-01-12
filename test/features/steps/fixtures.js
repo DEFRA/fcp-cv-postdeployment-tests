@@ -1,12 +1,36 @@
 import { test as base } from 'playwright-bdd'
-import HomePage from '../../page-objects/cdphomepage.js'
-import DocumentationPage from '../../page-objects/cdpdocumentationpage.js'
+import { ContactsLinkedBusinessesPage } from '../page-objects/contacts-linked-businesses-page.js'
+import { ContactsAuthenticationPage } from '../page-objects/contacts-authentication-page.js'
+import { BusinessMessagingPage } from '../page-objects/business-messaging-page.js'
+import { BusinessLinkedContactsPage } from '../page-objects/business-linked-contacts-page.js'
+import { BusinessLandDetailsPage } from '../page-objects/business-land-details-page.js'
+import { BusinessCphDetailsPage } from '../page-objects/business-cph-details-page.js'
+import { BusinessApplicationsPage } from '../page-objects/business-applications-page.js'
+import { BusinessAgreementsPage } from '../page-objects/business-agreements-page.js'
 
 export const test = base.extend({
-  homePage: async ({ page }, use) => {
-    await use(new HomePage(page))
+  contactsLinkedBusinessesPage: async ({ page }, use) => {
+    await use(new ContactsLinkedBusinessesPage(page))
   },
-  documentationPage: async ({ page }, use) => {
-    await use(new DocumentationPage(page))
+  contactsAuthenticationPage: async ({ page }, use) => {
+    await use(new ContactsAuthenticationPage(page))
+  },
+  businessMessagingPage: async ({ page }, use) => {
+    await use(new BusinessMessagingPage(page))
+  },
+  businessLinkedContactsPage: async ({ page }, use) => {
+    await use(new BusinessLinkedContactsPage(page))
+  },
+  businessLandDetailsPage: async ({ page }, use) => {
+    await use(new BusinessLandDetailsPage(page))
+  },
+  businessCphDetailsPage: async ({ page }, use) => {
+    await use(new BusinessCphDetailsPage(page))
+  },
+  businessApplicationsPage: async ({ page }, use) => {
+    await use(new BusinessApplicationsPage(page))
+  },
+  businessAgreementsPage: async ({ page }, use) => {
+    await use(new BusinessAgreementsPage(page))
   }
 })
