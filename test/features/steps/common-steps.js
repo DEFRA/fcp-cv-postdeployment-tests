@@ -1,5 +1,6 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
+import { navigate } from '../helpers/commonfunctions.js'
 import { ContactsLinkedBusinessesPage } from '../page-objects/contacts-linked-businesses-page.js'
 import { ContactsAuthenticationPage } from '../page-objects/contacts-authentication-page.js'
 import { BusinessMessagingPage } from '../page-objects/business-messaging-page.js'
@@ -17,14 +18,6 @@ const { Given, When, Then } = createBdd(test)
 
 Given(/^I have selected the business with SBI '(\d+)'$/, function (sbi) {
   // TODO
-  ContactsLinkedBusinessesPage.checkTitle()
-  ContactsAuthenticationPage.checkTitle()
-  BusinessMessagingPage.checkTitle()
-  BusinessLinkedContactsPage.checkTitle()
-  BusinessLandDetailsPage.checkTitle()
-  BusinessCphDetailsPage.checkTitle()
-  BusinessApplicationsPage.checkTitle()
-  BusinessAgreementsPage.checkTitle()
 })
 
 Given(/^I have selected the contact with CRN '(.+)'$/, async function (crn) {
@@ -32,34 +25,59 @@ Given(/^I have selected the contact with CRN '(.+)'$/, async function (crn) {
 })
 
 Given(/^I am on the (.+) page$/, async function (pageName) {
-  // TODO
-  // Navigate to the given page
-  // Contacts Linked Businesses
-  // Agreements
-  // Agreement Details
-  // Applications
-  // CPH Details
-  // Land Details
-  // Business Messages
-  // Contacts Authentication
+  await navigate(pageName)
 })
 
 When(/^I navigate to the (.+) page$/, async function (pageName) {
-  // TODO
-  // Navigate to pages as above
+  await navigate(pageName)
 })
 
-Then(/^I am on the (.+) page$/, function (pageName) {
-  // TODO
-  // Check you are on the pageName specified
+Then(/^I am on the (.+) page$/, async function (pageName) {
+  switch (pageName) {
+    case 'Contacts Linked Businesses':
+      await ContactsLinkedBusinessesPage.checkTitle()
+      break
+
+    case 'Contacts Authentication':
+      await ContactsAuthenticationPage.checkTitle()
+      break
+
+    case 'Business Messages':
+      await BusinessMessagingPage.checkTitle()
+      break
+
+    case 'Business Linked Contacts':
+      await BusinessLinkedContactsPage.checkTitle()
+      break
+
+    case 'Land Details':
+      await BusinessLandDetailsPage.checkTitle()
+      break
+
+    case 'CPH Details':
+      await BusinessCphDetailsPage.checkTitle()
+      break
+
+    case 'Applications':
+      await BusinessApplicationsPage.checkTitle()
+      break
+
+    case 'Agreements':
+      await BusinessAgreementsPage.checkTitle()
+      break
+
+    default:
+      // console.log('Page check failed - page name not recognised')
+      throw new Error('Page check failed - page name not recognised')
+  }
 })
 
 // ------------------------------------------------------
 // KEYBOARD INTERACTION
 // ------------------------------------------------------
 
-When(/^Press the Enter key$/, function () {
-  // TODO
+When(/^Press the Enter key$/, async function ({ page }) {
+  await page.keyboard.press('Enter')
 })
 
 //
@@ -68,16 +86,21 @@ When(/^Press the Enter key$/, function () {
 // ────────────────────────────────────────
 //
 
-When(/^I enter '(.+)' in the search box$/, async function (value) {
-  // TODO
+When(/^I enter '(.+)' in the search box$/, async function ({ page }, value) {
+  const searchBox = await page.getByTestId('search-box')
+  await searchBox.press_sequentially(value)
+  await expect(searchBox).toHaveText(value)
 })
 
-When(/^I enter a blank value in the search box$/, async function () {
-  // TODO
+When(/^I enter a blank value in the search box$/, async function ({ page }) {
+  const searchBox = await page.getByTestId('search-box')
+  await searchBox.fill('')
+  await expect(searchBox).toHaveText('')
 })
 
-Then(/^I see a Search box$/, function () {
-  // TODO
+Then(/^I see a Search box$/, async function ({ page }) {
+  const searchBox = await page.getByTestId('search-box')
+  await expect(searchBox).toBeVisible()
 })
 
 //
@@ -87,9 +110,11 @@ Then(/^I see a Search box$/, function () {
 //
 
 Then(
-  /^I see a warning message '([^']+)' under the '([^']+)' table$/,
-  function (message, tableName) {
-    // TODO
+  /^I see a warning message '(.+)' under the '(.+)' table$/,
+  async function ({ page }, message, tableName) {
+    // TODO - there may be multiple warning labels, how will we pick the correct one?
+    const warningTextBox = await page.getByTestId('warning-text')
+    await expect(warningTextBox).toHaveText(message)
   }
 )
 
@@ -99,17 +124,32 @@ Then(
 // ────────────────────────────────────────
 //
 
-Then(/^I see the '([^']+)' table is empty$/, function () {
-  // TODO
+Then(/^I see the '(.+)' table is empty$/, async function ({ page }, tableName) {
+  const myTable = await page.getByTestId(tableName + '-table')
+  await expect(myTable.locator('tr')).toHaveCount(0)
 })
 
 Then(
   /^I see an '(.+)' table with column headers as follows '(.+)'$/,
-  function (tableName, headers) {
-    // TODO
+  async function ({ page }, tableName, headers) {
+    const myTable = await page.getByTestId(tableName + '-table')
+    const expectedText = headers.split(',')
+    const tableHeader = await myTable.locator('th')
+    const tableHeaderTexts = await tableHeader.allTextContents()
+    await tableHeaderTexts.forEach((text, index) => {
+      expect(text).toEqual(expectedText[index])
+    })
   }
 )
 
-Then(/^the first item of the '(.+)' table is selected$/, function () {
-  // TODO
-})
+Then(
+  /^the first item of the '(.+)' table is selected$/,
+  async function ({ page }, tableName) {
+    const myTable = await page.getByTestId(tableName + '-table')
+    const tableFirstRow = await myTable.locator('tr').nth(0)
+
+    // TODO
+    // Unclear at the moment how the row will be highlighted
+    await expect(tableFirstRow).toBeVisible()
+  }
+)
