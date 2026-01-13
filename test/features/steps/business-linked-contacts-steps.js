@@ -5,7 +5,7 @@ const { When, Then } = createBdd(test)
 
 //
 // ────────────────────────────────────────
-// GENERIC INTERACTIONS
+// INTERACTIONS
 // ────────────────────────────────────────
 //
 
@@ -30,6 +30,7 @@ When(
   }
 )
 
+// This is used for Given and When but Playwright will match either
 When(
   /^I select the Permission '(.+)' from the Permission table$/,
   async function ({ businessLinkedContactsPage }, permission) {
@@ -37,17 +38,9 @@ When(
   }
 )
 
-// Is this exactly the same as above?
-When(
-  /^I select '(.+)' from the Permissions table$/,
-  async function ({ businessLinkedContactsPage }, permission) {
-    businessLinkedContactsPage.selectPermission(permission)
-  }
-)
-
 //
 // ────────────────────────────────────────
-// GENERIC ASSERTIONS
+// ASSERTIONS
 // ────────────────────────────────────────
 //
 
@@ -85,50 +78,7 @@ Then(
 
 //
 // ────────────────────────────────────────
-// AUTHENTICATION SUB-SCREEN
-// ────────────────────────────────────────
-//
-
-Then(
-  /^I see the Contacts Authentication sub-screen$/,
-  async function ({ businessLinkedContactsPage }) {
-    businessLinkedContactsPage.contactsAuthenticationSubScreenIsVisible()
-  }
-)
-
-Then(/^a title in bold$/, async function ({ businessLinkedContactsPage }) {
-  businessLinkedContactsPage.contactsAuthenticationSubScreenTitleIsVisible()
-})
-
-Then(/^a CRN field$/, async function ({ businessLinkedContactsPage }) {
-  businessLinkedContactsPage.contactsAuthenticationSubScreenCrnIsVisible()
-})
-
-Then(/^a Full Name field$/, async function ({ businessLinkedContactsPage }) {
-  businessLinkedContactsPage.contactsAuthenticationSubScreenFullNameIsVisible()
-})
-
-Then(/^a Role field$/, async function ({ businessLinkedContactsPage }) {
-  businessLinkedContactsPage.contactsAuthenticationSubScreenRoleIsVisible()
-})
-
-Then(
-  /^a Date of Birth field$/,
-  async function ({ businessLinkedContactsPage }) {
-    businessLinkedContactsPage.contactsAuthenticationSubScreenDobIsVisible()
-  }
-)
-
-Then(
-  /^I see the Contacts Authentication sub-screen with the following information$/,
-  async function ({ businessLinkedContactsPage }, table) {
-    businessLinkedContactsPage.checkContactsAuthenticationSubScreen(table)
-  }
-)
-
-//
-// ────────────────────────────────────────
-// CONTACT DETAILS & PERMISSIONS
+// VALIDATION
 // ────────────────────────────────────────
 //
 
@@ -142,8 +92,14 @@ Then(
 Then(
   /^the Permission Description table updates with the following descriptions '(.+)'$/,
   async function ({ businessLinkedContactsPage }, descriptions) {
-    // Validate descriptions
-    // TODO
+    businessLinkedContactsPage.checkPermissionDescriptionsTable(descriptions)
+  }
+)
+
+Then(
+  /^I see the the correct list of contacts as follows$/,
+  async function ({ businessLinkedContactsPage }, table) {
+    businessLinkedContactsPage.checkContactsTable(table)
   }
 )
 
@@ -157,29 +113,7 @@ Then(
   /^I see the CRM Contact Details page for the contact with the CRN '(.+)'$/,
   async function ({ businessLinkedContactsPage }, crn) {
     // Assert CRM page opened
-    // TODO
-  }
-)
-
-//
-// ────────────────────────────────────────
-// SEARCH RESULTS VALIDATION
-// ────────────────────────────────────────
-//
-
-Then(
-  /^I see the the correct list of contacts as follows$/,
-  async function ({ businessLinkedContactsPage }, table) {
-    // Validate table structure
-    // TODO
-  }
-)
-
-// Generic reusable table step
-Then(
-  /^I see the following data in the (.+)$/,
-  async function ({ businessLinkedContactsPage }, sectionName, table) {
-    // Validate data table
+    // Unclear if this can be done in an automated way
     // TODO
   }
 )

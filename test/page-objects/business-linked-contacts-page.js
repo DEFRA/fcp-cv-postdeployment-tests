@@ -29,6 +29,7 @@ export default class BusinessLinkedContactsPage {
       [
         { label: 'Full Name', value: 'Mr Merl Elody Kemmer' },
         { label: 'Role', value: 'Business Partner' }
+        ...
       ]
     */
 
@@ -40,16 +41,17 @@ export default class BusinessLinkedContactsPage {
     }
   }
 
-  async checkContactsScreen(table) {
+  async checkContactsScreen(expectedTableData) {
     /*
       EXAMPLE: table.hashes() returns:
       [
         { label: 'CRN', value: '1103020285' },
         { label: 'Role', value: 'Business Partner' }
+        ...
       ]
     */
 
-    for (const row of table.hashes()) {
+    for (const row of expectedTableData.hashes()) {
       if (
         row.label === 'Permissions' ||
         row.label === 'Permissions Levels' ||
@@ -67,6 +69,37 @@ export default class BusinessLinkedContactsPage {
           row.value
         )
       }
+    }
+  }
+
+  async checkPermissionDescriptionsTable(expectedData) {
+    const expectedText = expectedData.split(',')
+    const myTable = await this.page.getByTestId(
+      'permissions-descriptions-table'
+    )
+    const tableData = await myTable.locator('td')
+    await tableData.forEach((text, index) => {
+      expect(text).toEqual(expectedText[index])
+    })
+  }
+
+  async checkContactsTable(expectedTableData) {
+    /*
+      EXAMPLE: table.hashes() returns:
+      [
+        { label: 'CRN', value: '1103020285,1103969349' },
+        { label: 'First Name', value: 'Merl,Velma' }
+        { label: 'Last Name', value: 'Kemmer,Deckow' }
+      ]
+    */
+
+    for (const row of expectedTableData.hashes()) {
+      const expectedText = row.value.split(',')
+      const myTable = await this.page.getByTestId(row.label + '-table')
+      const tableData = await myTable.locator('td')
+      await tableData.forEach((text, index) => {
+        expect(text).toEqual(expectedText[index])
+      })
     }
   }
 }

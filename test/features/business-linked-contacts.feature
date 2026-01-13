@@ -164,7 +164,7 @@ Feature: Consolidated View Business Linked Contacts page
     Given I have selected the business with SBI '107591843'
     And I am on the Business Linked Contacts page
     And I have selected the contact with the CRN '1103969349' from the Contacts table
-    And I select 'BASIC_PAYMENT_SCHEME' from the Permissions table
+    And I select the Permission 'BASIC_PAYMENT_SCHEME' from the Permission table
     Then I see the Permission Description table with 'View business summary, View claims, View land, features and covers, Create and edit a claim, Amend a previously submitted claim, Amend land, features and covers, Submit a claim'
 
   @advanced @data-dependent @require-mock-update
@@ -172,6 +172,6 @@ Feature: Consolidated View Business Linked Contacts page
     Given I have selected the business with SBI '0000000001'
     And I am on the Business Linked Contacts page
     And I have selected the contact with the CRN '1103020888' from the Contacts table
-    And I select 'LAND_DETAILS' from the Permissions table
+    And I select the Permission 'LAND_DETAILS' from the Permission table
     Then I see the 'Permission Description' table is empty
     And I see a warning message 'We didn't find any data to show at this time' under the 'Permission Description' table
