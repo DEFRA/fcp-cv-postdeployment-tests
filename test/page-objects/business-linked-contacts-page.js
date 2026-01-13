@@ -9,6 +9,7 @@ export default class BusinessLinkedContactsPage {
       '.cdp-int.defra.cloud/' +
       'businessLinkedContacts'
     this.viewCustomerButton = page.getByTestId('view-customer-button')
+    this.authenticateLink = page.getByTestId('authenticate-link')
   }
 
   async gotoPage() {
@@ -21,6 +22,10 @@ export default class BusinessLinkedContactsPage {
 
   async clickViewCustomerButton() {
     await this.viewCustomerButton.click()
+  }
+
+  async clickAuthenticateLink() {
+    await this.authenticateLink.click()
   }
 
   async checkContactsAuthenticationSubScreen(table) {
@@ -101,5 +106,33 @@ export default class BusinessLinkedContactsPage {
         expect(text).toEqual(expectedText[index])
       })
     }
+  }
+
+  async checkContactNameTitle() {
+    await expect(this.businessNameLabel).toBeVisible()
+    await expect(this.businessNameLabel).toHaveCSS('.font-bold')
+  }
+
+  async checkFields(expectedFields) {
+    const expectedFieldsArray = expectedFields.split(',')
+    await expectedFieldsArray.forEach((name) => {
+      expect(this.page.getByTestId(name)).toBeVisible()
+    })
+  }
+
+  async viewAuthenticateQuestionsLinkIsVisible() {
+    expect(this.authenticateLink).toBeVisible()
+  }
+
+  async viewCustomerButtonIsVisible() {
+    expect(this.viewCustomerButton).toBeVisible()
+  }
+
+  async selectContactByCrn(crn) {
+    // TODO
+  }
+
+  async selectPermission() {
+    // TODO
   }
 }

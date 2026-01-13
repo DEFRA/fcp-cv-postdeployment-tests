@@ -3,6 +3,7 @@ import { ContactsLinkedBusinessesPage } from '../page-objects/contacts-linked-bu
 import { ContactsAuthenticationPage } from '../page-objects/contacts-authentication-page.js'
 import { BusinessMessagingPage } from '../page-objects/business-messaging-page.js'
 import { BusinessLinkedContactsPage } from '../page-objects/business-linked-contacts-page.js'
+import { BusinessLinkedContactsAuthenticationPage } from '../page-objects/business-linked-contacts-authentication-page.js'
 import { BusinessLandDetailsPage } from '../page-objects/business-land-details-page.js'
 import { BusinessCphDetailsPage } from '../page-objects/business-cph-details-page.js'
 import { BusinessApplicationsPage } from '../page-objects/business-applications-page.js'
@@ -20,6 +21,9 @@ export const test = base.extend({
   },
   businessLinkedContactsPage: async ({ page }, use) => {
     await use(new BusinessLinkedContactsPage(page))
+  },
+  businessLinkedContactsAuthenticationPage: async ({ page }, use) => {
+    await use(new BusinessLinkedContactsAuthenticationPage(page))
   },
   businessLandDetailsPage: async ({ page }, use) => {
     await use(new BusinessLandDetailsPage(page))

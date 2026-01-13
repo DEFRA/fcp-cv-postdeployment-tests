@@ -47,18 +47,14 @@ When(
 Then(
   /^I see a title in bold of the first name and second name of the contact concatenated in the right-hand side pane$/,
   async function ({ businessLinkedContactsPage }) {
-    businessLinkedContactsPage.checkTitleInRightPane()
+    businessLinkedContactsPage.checkContactNameTitle()
   }
 )
 
 Then(
   /^I see fields for '(.+)' in the right-hand side pane$/,
   async function ({ businessLinkedContactsPage }, fields) {
-    const expectedFields = fields.split(',')
-    await expectedFields.forEach((text) => {
-      const found = businessLinkedContactsPage.fieldExists(text)
-      expect(found).toEqual(true)
-    })
+    businessLinkedContactsPage.checkFields()
   }
 )
 
@@ -72,7 +68,7 @@ Then(
 Then(
   /^I see a 'View Authenticate Questions' link in the right-hand side pane$/,
   async function ({ businessLinkedContactsPage }) {
-    businessLinkedContactsPage.viewAuthenticateQuestionsLinkIsVisible()
+    businessLinkedContactsPage.viewAuthenticateQuestionsLinkIsVisible() //
   }
 )
 

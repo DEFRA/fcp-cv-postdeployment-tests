@@ -1,6 +1,5 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
-import { ContactsLinkedBusinessesPage } from '../page-objects/contacts-linked-businesses-page.js'
 
 const { Given, When, Then } = createBdd(test)
 
@@ -12,23 +11,22 @@ const { Given, When, Then } = createBdd(test)
 
 Then(
   /^I see a title in bold of the name of the business in the right-hand side pane$/,
-  async function () {
-    // TODO
-    ContactsLinkedBusinessesPage.checkTitle()
+  async function ({ contactsLinkedBusinessesPage }) {
+    contactsLinkedBusinessesPage.checkBusinessNameTitle()
   }
 )
 
 Then(
   /^I see fields for '(.+)' in the right-hand side pane$/,
-  async function (fields) {
-    // TODO
+  async function ({ contactsLinkedBusinessesPage }, fields) {
+    contactsLinkedBusinessesPage.checkAllFields(fields)
   }
 )
 
 Then(
   /^I see a 'View business' button in the right-hand side pane$/,
-  async function () {
-    // TODO
+  async function ({ contactsLinkedBusinessesPage }) {
+    contactsLinkedBusinessesPage.checkViewBusinessButton()
   }
 )
 
@@ -40,7 +38,7 @@ Then(
 
 When(
   /^I select the business '(.+)' from the Businesses table$/,
-  async function (business) {
+  async function ({ contactsLinkedBusinessesPage }, business) {
     // Select business by name
     // TODO
   }
@@ -48,7 +46,7 @@ When(
 
 Given(
   /^I have selected '(.+)' in the Businesses table$/,
-  async function (business) {
+  async function ({ contactsLinkedBusinessesPage }, business) {
     // Select business by name (Given variant)
     // TODO
   }
@@ -56,7 +54,7 @@ Given(
 
 When(
   /^I select the Permission '(.+)' from the Permission table$/,
-  async function (permission) {
+  async function ({ contactsLinkedBusinessesPage }, permission) {
     // Select permission
     // TODO
   }
@@ -64,7 +62,7 @@ When(
 
 When(
   /^I select '(.+)' from the Permissions table$/,
-  async function (permission) {
+  async function ({ contactsLinkedBusinessesPage }, permission) {
     // Same as above (alternate wording)
     // TODO
   }
@@ -78,7 +76,7 @@ When(
 
 Then(
   /^I see the the correct list of businesses as follows$/,
-  async function (table) {
+  async function ({ contactsLinkedBusinessesPage }, table) {
     // Validate SBI & Name table results
     // TODO
   }
@@ -92,7 +90,7 @@ Then(
 
 Then(
   /^the page updates to show the following information$/,
-  async function (table) {
+  async function ({ contactsLinkedBusinessesPage }, table) {
     // Validate business info + permissions + descriptions
     // TODO
   }
@@ -100,7 +98,7 @@ Then(
 
 Then(
   /^the Permission Description table updates with the following descriptions '(.+)'$/,
-  async function (descriptions) {
+  async function ({ contactsLinkedBusinessesPage }, descriptions) {
     // Validate description list
     // TODO
   }
@@ -108,7 +106,7 @@ Then(
 
 Then(
   /^I see the Permission Description table with data for '(.+)'$/,
-  async function (values) {
+  async function ({ contactsLinkedBusinessesPage }, values) {
     // Validate permission level list
     // TODO
   }
@@ -120,14 +118,17 @@ Then(
 // ────────────────────────────────────────
 //
 
-When(/^I click the View Business button$/, async function () {
-  // Click view business
-  // TODO
-})
+When(
+  /^I click the View Business button$/,
+  async function ({ contactsLinkedBusinessesPage }) {
+    // Click view business
+    // TODO
+  }
+)
 
 Then(
   /^I see the CRM Organisation Details page for the '(.+)' organisation$/,
-  async function (orgName) {
+  async function ({ contactsLinkedBusinessesPage }, orgName) {
     // Validate navigation
     // TODO
   }

@@ -12,7 +12,7 @@ const { Then } = createBdd(test)
 Then(
   /^I see the Contacts Authentication sub-screen$/,
   async function ({ businessLinkedContactsPage }) {
-    businessLinkedContactsPage.contactsAuthenticationSubScreenIsVisible()
+    businessLinkedContactsPage.checkTitle()
   }
 )
 
