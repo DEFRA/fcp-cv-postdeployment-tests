@@ -14,6 +14,7 @@ export default class BusinessLinkedContactsAuthenticationPage {
     this.roleLabel = page.getByTestId('role-label')
     this.dobLabel = page.getByTestId('dob-label')
     this.title = page.getByTestId('title')
+    this.authenticationTable = page.getByTestId('authentication-table')
   }
 
   async gotoPage() {
@@ -46,7 +47,40 @@ export default class BusinessLinkedContactsAuthenticationPage {
     expect(this.dobLabel).toBeVisible()
   }
 
-  async checkContactsAuthenticationSubScreen() {
-    // TODO
+  async checkContactsAuthenticationSubScreen(expectedTableData) {
+    /*
+      EXAMPLE: table.hashes() returns:
+      [
+        { label: 'Full Name', value: 'Mr Merl Elody Kemmer' },
+        { label: 'Role', value: 'Business Partner' }
+        ...
+      ]
+    */
+
+    for (const row of expectedTableData.hashes()) {
+      // For any values that are embedded in the authentication table, work out the column position
+      let columnPosition = null
+      if (row.label === 'Memorable Date') columnPosition = 0
+      else if (row.label === 'Memorable Event') columnPosition = 1
+      else if (row.label === 'Memorable Place') columnPosition = 2
+      else if (row.label === 'Updated Date') columnPosition = 3
+
+      if (
+        row.label === 'Memorable Date' ||
+        row.label === 'Memorable Event' ||
+        row.label === 'Memorable Place' ||
+        row.label === 'Updated Date'
+      ) {
+        const tableData = await this.authenticationTable
+          .locator('tr > td')
+          .nth(columnPosition)
+        expect(tableData).toHaveText(row.value)
+      } else {
+        await expect(this.page.getByLabel(row.label)).toBeVisible()
+        await expect(this.page.getByLabel(row.label + '-box')).toHaveText(
+          row.value
+        )
+      }
+    }
   }
 }

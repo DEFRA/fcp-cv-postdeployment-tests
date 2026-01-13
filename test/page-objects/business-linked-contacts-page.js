@@ -10,6 +10,8 @@ export default class BusinessLinkedContactsPage {
       'businessLinkedContacts'
     this.viewCustomerButton = page.getByTestId('view-customer-button')
     this.authenticateLink = page.getByTestId('authenticate-link')
+    this.contactsTable = page.getByTestId('contacts-table')
+    this.permissionsTable = page.getByTestId('permissions-table')
   }
 
   async gotoPage() {
@@ -129,10 +131,14 @@ export default class BusinessLinkedContactsPage {
   }
 
   async selectContactByCrn(crn) {
-    // TODO
+    const tableRowsData = await this.contactsTable.locator('tr')
+    const targetRow = tableRowsData.filter({ hasText: crn })
+    await targetRow.click()
   }
 
-  async selectPermission() {
-    // TODO
+  async selectPermission(permission) {
+    const tableRowsData = await this.permissionsTable.locator('tr')
+    const targetRow = tableRowsData.filter({ hasText: permission })
+    await targetRow.click()
   }
 }
