@@ -38,33 +38,22 @@ Then(
 
 When(
   /^I select the business '(.+)' from the Businesses table$/,
-  async function ({ contactsLinkedBusinessesPage }, business) {
-    // Select business by name
-    // TODO
+  async function ({ contactsLinkedBusinessesPage }, businessName) {
+    contactsLinkedBusinessesPage.selectBusiness(businessName)
   }
 )
 
 Given(
   /^I have selected '(.+)' in the Businesses table$/,
-  async function ({ contactsLinkedBusinessesPage }, business) {
-    // Select business by name (Given variant)
-    // TODO
+  async function ({ contactsLinkedBusinessesPage }, businessName) {
+    contactsLinkedBusinessesPage.selectBusiness(businessName)
   }
 )
 
 When(
-  /^I select the Permission '(.+)' from the Permission table$/,
+  /^I select the Permission '(.+)' from the Permissions table$/,
   async function ({ contactsLinkedBusinessesPage }, permission) {
-    // Select permission
-    // TODO
-  }
-)
-
-When(
-  /^I select '(.+)' from the Permissions table$/,
-  async function ({ contactsLinkedBusinessesPage }, permission) {
-    // Same as above (alternate wording)
-    // TODO
+    contactsLinkedBusinessesPage.selectPermission(permission)
   }
 )
 
@@ -76,9 +65,8 @@ When(
 
 Then(
   /^I see the the correct list of businesses as follows$/,
-  async function ({ contactsLinkedBusinessesPage }, table) {
-    // Validate SBI & Name table results
-    // TODO
+  async function ({ contactsLinkedBusinessesPage }, businessList) {
+    contactsLinkedBusinessesPage.checkBusinessList(businessList)
   }
 )
 
@@ -90,25 +78,17 @@ Then(
 
 Then(
   /^the page updates to show the following information$/,
-  async function ({ contactsLinkedBusinessesPage }, table) {
-    // Validate business info + permissions + descriptions
-    // TODO
+  async function ({ contactsLinkedBusinessesPage }, expectedBusinessDetails) {
+    contactsLinkedBusinessesPage.checkBusinessData(expectedBusinessDetails)
   }
 )
 
 Then(
   /^the Permission Description table updates with the following descriptions '(.+)'$/,
-  async function ({ contactsLinkedBusinessesPage }, descriptions) {
-    // Validate description list
-    // TODO
-  }
-)
-
-Then(
-  /^I see the Permission Description table with data for '(.+)'$/,
-  async function ({ contactsLinkedBusinessesPage }, values) {
-    // Validate permission level list
-    // TODO
+  async function ({ contactsLinkedBusinessesPage }, expectedDescriptions) {
+    contactsLinkedBusinessesPage.checkPermissionDescriptionTable(
+      expectedDescriptions
+    )
   }
 )
 
@@ -121,8 +101,7 @@ Then(
 When(
   /^I click the View Business button$/,
   async function ({ contactsLinkedBusinessesPage }) {
-    // Click view business
-    // TODO
+    contactsLinkedBusinessesPage.clickViewBusinessButton()
   }
 )
 
@@ -131,5 +110,6 @@ Then(
   async function ({ contactsLinkedBusinessesPage }, orgName) {
     // Validate navigation
     // TODO
+    // Unclear if this can be automated
   }
 )

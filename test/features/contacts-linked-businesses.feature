@@ -33,7 +33,7 @@ Feature: Consolidated View Contacts Linked Businesses page
     Given I have selected the contact with CRN '1103020285'
     And I am on the Contacts Linked Businesses page
     When I select the business 'Goldner, Schmeler and Kutch' from the Businesses table
-    And I select the Permission 'ENTITLEMENTS' from the Permission table
+    And I select the Permission 'ENTITLEMENTS' from the Permissions table
     Then the Permission Description table updates with the following descriptions 'View entitlements, Transfer entitlements, Apply for new entitlements'
 
   @advanced @data-dependent
@@ -95,13 +95,13 @@ Feature: Consolidated View Contacts Linked Businesses page
   Scenario: When a business's permission is NOT level "NO_ACCESS", the Permission Description list is correct.
     Given I have selected the contact with CRN '1103020285'
     When I select 'Homenick, McDermott and Luettgen' in the Businesses table
-    And I select 'BASIC_PAYMENT_SCHEME' from the Permissions table
-    Then I see the Permission Description table with data for 'View business summary, View claims, "View land, features and covers", Create and edit a claim, Amend a previously submitted claim, "Amend land, features and covers", Submit a claim, Withdraw a claim, "Receive warnings and notifications"'
+    And I select the Permission 'BASIC_PAYMENT_SCHEME' from the Permissions table
+    Then the Permission Description table updates with the following descriptions 'View business summary, View claims, "View land, features and covers", Create and edit a claim, Amend a previously submitted claim, "Amend land, features and covers", Submit a claim, Withdraw a claim, "Receive warnings and notifications"'
 
   @advanced @data-dependent @require-mock-update
   Scenario: When a business's permission is level "NO_ACCESS", the Permission Description list shows the correct warning message "We didn't find any data to show at this time".
     Given I have selected the contact with CRN '0000000001'
     When I select 'Homenick, McDermott and Luettgen' in the Businesses table
-    And I select 'LAND_DETAILS' from the Permissions table
+    And I select the Permission 'LAND_DETAILS' from the Permissions table
     Then I see the 'Permission Description' table is empty
     And I see a warning message 'We didn't find any data to show at this time' under the 'Permission Description' table
