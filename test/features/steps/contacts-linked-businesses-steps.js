@@ -105,6 +105,12 @@ When(
   }
 )
 
+//
+// ────────────────────────────────────────
+// VALIDATION
+// ────────────────────────────────────────
+//
+
 Then(
   /^I see the CRM Organisation Details page for the '(.+)' organisation$/,
   async function ({ contactsLinkedBusinessesPage }, orgName) {

@@ -48,15 +48,6 @@ export default class BusinessLinkedContactsAuthenticationPage {
   }
 
   async checkContactsAuthenticationSubScreen(expectedTableData) {
-    /*
-      EXAMPLE: table.hashes() returns:
-      [
-        { label: 'Full Name', value: 'Mr Merl Elody Kemmer' },
-        { label: 'Role', value: 'Business Partner' }
-        ...
-      ]
-    */
-
     for (const row of expectedTableData.hashes()) {
       // For any values that are embedded in the authentication table, work out the column position
       let columnPosition = null

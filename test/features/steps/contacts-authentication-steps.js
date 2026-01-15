@@ -1,8 +1,7 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
-import { ContactsAuthenticationPage } from '../page-objects/contacts-authentication-page.js'
 
-const { Given, When, Then } = createBdd(test)
+const { Given, Then } = createBdd(test)
 
 //
 // ────────────────────────────────────────
@@ -12,31 +11,17 @@ const { Given, When, Then } = createBdd(test)
 
 Given(
   /^I have selected a contact with no authentication data set$/,
-  async function () {
-    // Select a contact with no auth data
-    // TODO
-    ContactsAuthenticationPage.checkTitle()
+  async function ({ contactsAuthenticationPage }) {
+    contactsAuthenticationPage.selectContactWithNoAuthDataSet()
   }
 )
 
 Given(
   /^I have selected a contact who is not in the authentication database$/,
-  async function () {
-    // Select a contact not found in DB
-    // TODO
+  async function ({ contactsAuthenticationPage }) {
+    contactsAuthenticationPage.selectContactNotPresentInTheAuthDb()
   }
 )
-
-//
-// ────────────────────────────────────────
-// BUTTON ACTIONS
-// ────────────────────────────────────────
-//
-
-When(/^I click the 'Open Authentication Record' button$/, async function () {
-  // Click button
-  // TODO
-})
 
 //
 // ────────────────────────────────────────
@@ -44,25 +29,19 @@ When(/^I click the 'Open Authentication Record' button$/, async function () {
 // ────────────────────────────────────────
 //
 
-Then(/^I see an 'Open Authentication Record' button$/, async function () {
-  // Validate button presence
-  // TODO
-})
+Then(
+  /^I see a 'Retrieved At' field$/,
+  async function ({ contactsAuthenticationPage }) {
+    contactsAuthenticationPage.checkRetrievedAtFieldExists()
+  }
+)
 
-Then(/^I see a 'Retrieved At' field$/, async function () {
-  // Validate field presence
-  // TODO
-})
-
-Then(/^the table data row is populated$/, async function () {
-  // Assert non-empty row
-  // TODO
-})
-
-Then(/^an 'Authentication App' web page is present$/, async function () {
-  // Assert new page opened
-  // TODO
-})
+Then(
+  /^the table data row is populated$/,
+  async function ({ contactsAuthenticationPage }) {
+    contactsAuthenticationPage.checkAuthenticationTableIsPopulated()
+  }
+)
 
 //
 // ────────────────────────────────────────
@@ -70,15 +49,21 @@ Then(/^an 'Authentication App' web page is present$/, async function () {
 // ────────────────────────────────────────
 //
 
-Then(/^All table entries should be shown as '(.+)'$/, async function (value) {
-  // Assert all fields match value
-  // TODO
-})
+Then(
+  /^All table entries should be shown as '(.+)'$/,
+  async function ({ contactsAuthenticationPage }, expectedString) {
+    contactsAuthenticationPage.checkAuthenticationTableCellsHaveSameValues(
+      expectedString
+    )
+  }
+)
 
-Then(/^All table entries should be shown as follows$/, async function (table) {
-  // Validate the table key/value pairs
-  // TODO
-})
+Then(
+  /^All table entries should be shown as follows$/,
+  async function ({ contactsAuthenticationPage }, expectedValues) {
+    contactsAuthenticationPage.checkAuthenticationTableValues(expectedValues)
+  }
+)
 
 //
 // ────────────────────────────────────────
@@ -87,9 +72,8 @@ Then(/^All table entries should be shown as follows$/, async function (table) {
 //
 
 Then(
-  /^the Retrieved At field is equal to today's date and current time$/,
-  async function () {
-    // Validate timestamp matches current date/time
-    // TODO
+  /^the Retrieved At field is equal to todays date and current time$/,
+  async function ({ contactsAuthenticationPage }) {
+    contactsAuthenticationPage.checkRetrievedAtValue()
   }
 )

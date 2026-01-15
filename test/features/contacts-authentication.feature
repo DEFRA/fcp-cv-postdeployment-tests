@@ -4,15 +4,8 @@ Feature: Consolidated View Contacts Authentication page
   Scenario: Page opens with correct components displayed.
     Given I am on the Contacts Authentication page
     Then I see an 'Authentication' table with column headers as follows 'Memorable Date, Memorable Event, Memorable Place, Updated Date'
-    And I see an 'Open Authentication Record' button
     And I see a 'Retrieved At' field
     And the table data row is populated
-
-  @intermediate @deprecated
-  Scenario: Clicking the Open Authentication Record button opens a new web page with the Authentication app displayed.
-    Given I am on the Contacts Authentication page
-    When I click the 'Open Authentication Record' button
-    Then an 'Authentication App' web page is present
 
   @advanced @data-dependent
   Scenario: Contacts with no authentication data set should have all table data shown as NOT SET.
@@ -40,4 +33,4 @@ Feature: Consolidated View Contacts Authentication page
   @advanced
   Scenario: The "Retrieved At" field is accurate
     Given I am on the Contacts Authentication page
-    Then the Retrieved At field is equal to today's date and current time
+    Then the Retrieved At field is equal to todays date and current time
