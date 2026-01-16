@@ -61,7 +61,7 @@ Feature: Consolidated View Business Messages page
     When I enter 'anci' in the search box
     Then I see the the correct list of messages as follows
       | label   | value                      |
-      | Status  | Unread,                    |
+      | Status  | Unread                     |
       | Date    | 1723577035401              |
       | Subject | "Agnosco cohaero ancilla." |
     When I enter a blank value in the search box
