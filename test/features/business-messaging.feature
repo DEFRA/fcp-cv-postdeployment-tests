@@ -20,7 +20,7 @@ Feature: Consolidated View Business Messages page
   @basic @possible-vi-test
   Scenario: Message data updates correctly once a contact is selected.
     Given I am on the Business Messages page
-    And I have selected a contact
+    And I select a contact
     When I select the first message
     Then the right-hand pane updates with a bold title, a Date field, a Read field, a Deleted field and a Message field
     And there is a label in the right-hand pane 'Links in the message below do not work'
@@ -43,7 +43,7 @@ Feature: Consolidated View Business Messages page
   Scenario: Correct message is displayed when a contact has no messages for that business
     Given I have selected the business with SBI '1106552449'
     And I am on the Business Messages page
-    When I select the contact 'Duncan Peacock'
+    When I have selected the contact 'Duncan Peacock'
     Then I see the 'Messages' table is empty
     And I see a warning message 'There are no messages to display' under the 'Messages' table
 
