@@ -32,25 +32,37 @@ Feature: Consolidated View Business Land Details page
     Then I see a warning message 'Date must be in dd/mm/yyy format. For example 25/12/2024' under the 'Land Date' table
 
   @intermediate
-  Scenario: The Date selector only accepts the correct date format
+  Scenario: The Date selector only accepts the correct date format - no non numeric characters
     Given I am on the Land Details page
-    When I enter the following as dates
-      | label        | value                |
-      | Sheet        | aaa, 01/01, 32/32/32 |
+    When I enter 'aaa' into the date picker
+    And Press the Enter key
+    Then I see a warning message 'Date must be in dd/mm/yyy format. For example 25/12/2024' under the 'Land Date' table
+
+  @intermediate
+  Scenario: The Date selector only accepts the correct date format - no incomplete dates
+    Given I am on the Land Details page
+    When I enter '01/01' into the date picker
+    And Press the Enter key
+    Then I see a warning message 'Date must be in dd/mm/yyy format. For example 25/12/2024' under the 'Land Date' table
+
+  @intermediate
+  Scenario: The Date selector only accepts the correct date format - no incorrect dates
+    Given I am on the Land Details page
+    When I enter '32/32/32' into the date picker
     And Press the Enter key
     Then I see a warning message 'Date must be in dd/mm/yyy format. For example 25/12/2024' under the 'Land Date' table
 
   @intermediate
   Scenario: The Date selector only accepts current or past dates
     Given I am on the Land Details page
-    When I enter the date '31/12/2040'
+    When I enter '31/12/2040' into the date picker
     And Press the Enter key
     Then I see a warning message 'Date must be todays date or in the past.' under the 'Land Date' table
 
   @intermediate
   Scenario: The Date selected must be on or after 01/01/2015
     Given I am on the Land Details page
-    When I enter the date '31/12/2014'
+    When I enter '31/12/2014' into the date picker
     And Press the Enter key
     Then I see a warning message 'Date must on or after 01/01/2015' under the 'Land Date' table
 
@@ -60,7 +72,7 @@ Feature: Consolidated View Business Land Details page
     And I am on the Land Details page
     When I enter 'SS66' in the search box
     And Press the Enter key
-    Then I see the correct list of parcels as follows
+    Then I see the correct list of parcels in the Parcels table as follows
       | label        | value  |
       | Sheet        | SS6627 |
       | Parcel       | 5662   |
@@ -68,7 +80,7 @@ Feature: Consolidated View Business Land Details page
       | Land Change? | No     |
     When I enter a blank value in the search box
     And Press the Enter key
-    Then I see the correct list of parcels as follows
+    Then I see the correct list of parcels in the Parcels table as follows
       | label        | value          |
       | Sheet        | SS6627, SS6828 |
       | Parcel       | 5662, 3818     |
@@ -81,7 +93,7 @@ Feature: Consolidated View Business Land Details page
     And I am on the Land Details page
     When I enter '818' in the search box
     And Press the Enter key
-    Then I see the correct list of parcels as follows
+    Then I see the correct list of parcels in the Parcels table as follows
       | label        | value  |
       | Sheet        | SS6828 |
       | Parcel       | 3818   |
@@ -89,7 +101,7 @@ Feature: Consolidated View Business Land Details page
       | Land Change? | No     |
     When I enter a blank value in the search box
     And Press the Enter key
-    Then I see the correct list of parcels as follows
+    Then I see the correct list of parcels in the Parcels table as follows
       | label        | value          |
       | Sheet        | SS6627, SS6828 |
       | Parcel       | 5662, 3818     |
@@ -116,10 +128,8 @@ Feature: Consolidated View Business Land Details page
   Scenario: Date formatting is handled correctly.
     Given I have selected the business with SBI '1111111111'
     And I am on the Land Details page
-    When I change the date to
-      | label | value                                                                                                                               |
-      | Date  | 01/01/2025,01/02/2025,01/03/2025,01/04/2025,01/05/2025,01/06/2025,01/07/2025,01/08/2025,01/09/2025,01/10/2025,01/11/2025,01/12/2025 |
-    Then the page refreshes the data
+    When I select the first day of every month
+    Then no error is shown on screen
 
   @advanced @data-dependent
   Scenario: Land details data is shown correctly for today's date
@@ -159,7 +169,7 @@ Feature: Consolidated View Business Land Details page
   Scenario: Land details data is shown correctly for the earliest valid date - 01/01/2015
     Given I have selected the business with SBI '0000000001'
     And I am on the Land Details page
-    When I enter '01/01/2015' into the Date picker
+    When I enter '01/01/2015' into the date picker
     And Press the Enter key
     Then I see the following data in the Land Summary section
       | label                                                     | value  |
@@ -195,7 +205,7 @@ Feature: Consolidated View Business Land Details page
   Scenario: Land details data is shown correctly for a valid date
     Given I have selected the business with SBI '0000000001'
     And I am on the Land Details page
-    When I enter '15/06/2020' into the Date picker
+    When I enter '15/06/2020' into the date picker
     And Press the Enter key
     Then I see the following data in the Land Summary section
       | label                                                     | value  |

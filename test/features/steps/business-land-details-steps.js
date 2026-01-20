@@ -46,21 +46,21 @@ When(
 Then(
   /^I see a Parcel Summary with a bold header which is a concatenation of the sheet and parcel codes selected$/,
   function ({ businessLandDetailsPage }) {
-    // TODO
+    businessLandDetailsPage.checkParcelSummaryHeader(null)
   }
 )
 
 Then(
   /^I see a Parcel Summary section with a bold header '([^']+)'$/,
-  function ({ businessLandDetailsPage }, header) {
-    // TODO
+  function ({ businessLandDetailsPage }, expectedHeaderString) {
+    businessLandDetailsPage.checkParcelSummaryHeader(expectedHeaderString)
   }
 )
 
 Then(
   /^the Parcel Summary has fields for '([^']+)'$/,
-  function ({ businessLandDetailsPage }, fields) {
-    // TODO
+  function ({ businessLandDetailsPage }, expectedFields) {
+    businessLandDetailsPage.checkParcelSummaryFields(expectedFields)
   }
 )
 
@@ -69,45 +69,24 @@ Then(
 // ------------------------------------
 
 When(/^I select a new date$/, function ({ businessLandDetailsPage }) {
-  // TODO
+  businessLandDetailsPage.changeDate()
 })
 
 Then(/^the page refreshes the data$/, function ({ businessLandDetailsPage }) {
-  // TODO
+  businessLandDetailsPage.checkScreenDataUpdate()
 })
 
 When(
   /^I delete all the text in the Date field$/,
   function ({ businessLandDetailsPage }) {
-    // TODO
+    businessLandDetailsPage.enterDate('')
   }
 )
 
 When(
-  /^I enter the following as dates$/,
-  function ({ businessLandDetailsPage }, dataTable) {
-    // TODO
-  }
-)
-
-When(
-  /^I enter the date '([^']+)'$/,
-  function ({ businessLandDetailsPage }, date) {
-    // TODO
-  }
-)
-
-When(
-  /^I enter '([^']+)' into the Date picker$/,
-  function ({ businessLandDetailsPage }, date) {
-    // TODO
-  }
-)
-
-When(
-  /^I change the date to$/,
-  function ({ businessLandDetailsPage }, dataTable) {
-    // TODO
+  /^I enter '([^']+)' into the date picker$/,
+  function ({ businessLandDetailsPage }, dateString) {
+    businessLandDetailsPage.enterDate(dateString)
   }
 )
 
@@ -115,22 +94,33 @@ When(
 // DATA ASSERTIONS – LAND SUMMARY & TABLES
 // ------------------------------------
 
+Then(/^no error is shown on screen$/, function ({ businessLandDetailsPage }) {
+  businessLandDetailsPage.checkNoErrors()
+})
+
 Then(
   /^I see the following data in the Land Summary section$/,
-  function ({ businessLandDetailsPage }, dataTable) {
-    // TODO
+  function ({ businessLandDetailsPage }, expectedFieldData) {
+    businessLandDetailsPage.checkLandSummaryData(expectedFieldData)
   }
 )
 
 Then(
   /^I see the following data in the Land Summary table$/,
+  function ({ businessLandDetailsPage }, expectedSummaryTable) {
+    businessLandDetailsPage.checkLandSummaryTableData(expectedSummaryTable)
+  }
+)
+
+Then(
+  /^the Parcel Summary has field data as follows$/,
   function ({ businessLandDetailsPage }, dataTable) {
     // TODO
   }
 )
 
 Then(
-  /^I see the correct list of parcels as follows$/,
+  /^the Parcel Summary table has data as follows$/,
   function ({ businessLandDetailsPage }, dataTable) {
     // TODO
   }
@@ -151,19 +141,5 @@ When(
   /^I click on the parcel '([^']+)'$/,
   function ({ businessLandDetailsPage }, parcelCode) {
     businessLandDetailsPage.selectParcel(parcelCode)
-  }
-)
-
-Then(
-  /^the Parcel Summary has field data as follows$/,
-  function ({ businessLandDetailsPage }, dataTable) {
-    // TODO
-  }
-)
-
-Then(
-  /^the Parcel Summary table has data as follows$/,
-  function ({ businessLandDetailsPage }, dataTable) {
-    // TODO
   }
 )
