@@ -3,10 +3,6 @@ import { test } from './fixtures.js'
 
 const { When, Then } = createBdd(test)
 
-// ------------------------------------------------------
-// UI Components on Agreements Page
-// ------------------------------------------------------
-
 Then(
   /^each Agreements table has an option to view the record$/,
   function ({ businessAgreementsPage }) {
@@ -14,46 +10,10 @@ Then(
   }
 )
 
-// ------------------------------------------------------
-// Agreement Details Page Components
-// ------------------------------------------------------
-
 When(
   /^I click the 'View' link next to (?:an agreement|the agreement with reference '(\d+)')$/,
   function ({ businessAgreementsPage }, ref) {
-    // TODO
-  }
-)
-
-Then(
-  /^I see a header with 'Agreement Name' as the title$/,
-  function ({ businessAgreementsPage }) {
-    // TODO
-  }
-)
-
-Then(
-  /^I see underneath the header the following fields '(.+)'$/,
-  function ({ businessAgreementsPage }, fields) {
-    // TODO
-  }
-)
-
-Then(
-  /^I see an option to go back to see the main screen with Agreements table$/,
-  function ({ businessAgreementsPage }) {
-    // TODO
-  }
-)
-
-// ------------------------------------------------------
-// Back Navigation
-// ------------------------------------------------------
-
-When(
-  /^I click the 'Back to Agreements list' link$/,
-  function ({ businessAgreementsPage }) {
-    // TODO
+    businessAgreementsPage.clickViewRecordForAgreement(ref)
   }
 )
 
@@ -65,38 +25,9 @@ Then(
   }
 )
 
-// ------------------------------------------------------
-// Data Ordering & Table Result Checks
-// ------------------------------------------------------
-
 Then(
   /^I see the correct data in the Agreements table, ordered by most recent year first, as follows$/,
   function ({ businessAgreementsPage }, dataTable) {
-    // TODO
-  }
-)
-
-// ------------------------------------------------------
-// Agreement Details Table Ordering & Data Checks
-// ------------------------------------------------------
-
-Then(
-  /^I see the Agreement Details table ordered by 'Sheet', 'Parcel', 'Description', 'Payment Schedule' alphabetically ascending$/,
-  function ({ businessAgreementsPage }, dataTable) {
-    // TODO
-  }
-)
-
-Then(
-  /^The screen data for Action Area \(ha\) in the Payment Schedule selected is the amount in the JSON divided by 10,000 as it is provided in m2 but displayed in ha\.$/,
-  function ({ businessAgreementsPage }) {
-    // TODO
-  }
-)
-
-Then(
-  /^The screen data for Parcel Area \(ha\) in the Payment Schedule selected is the amount in the JSON divided by 10,000 as it is provided in m2 but displayed in ha\.$/,
-  function ({ businessAgreementsPage }) {
     // TODO
   }
 )

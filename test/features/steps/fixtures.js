@@ -8,6 +8,7 @@ import { BusinessLandDetailsPage } from '../page-objects/business-land-details-p
 import { BusinessCphDetailsPage } from '../page-objects/business-cph-details-page.js'
 import { BusinessApplicationsPage } from '../page-objects/business-applications-page.js'
 import { BusinessAgreementsPage } from '../page-objects/business-agreements-page.js'
+import { BusinessAgreementDetailsPage } from '../page-objects/business-agreement-details-page.js'
 
 export const test = base.extend({
   contactsLinkedBusinessesPage: async ({ page }, use) => {
@@ -36,5 +37,8 @@ export const test = base.extend({
   },
   businessAgreementsPage: async ({ page }, use) => {
     await use(new BusinessAgreementsPage(page))
+  },
+  businessAgreementDetailsPage: async ({ page }, use) => {
+    await use(new BusinessAgreementDetailsPage(page))
   }
 })

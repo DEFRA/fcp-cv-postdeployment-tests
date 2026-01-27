@@ -47,13 +47,13 @@ export default class BusinessMessagingPage {
     await expect(this.messagesTable).toBeVisible()
     const tableRowsData = await this.messagesTable.locator('tr')
 
+    let targetRow = null
     if (subject === null) {
-      const targetRow = await tableRowsData.first()
-      await targetRow.click()
+      targetRow = await tableRowsData.first()
     } else {
-      const targetRow = await tableRowsData.filter({ hasText: subject })
-      await targetRow.click()
+      targetRow = await tableRowsData.filter({ hasText: subject })
     }
+    await targetRow.click()
   }
 
   async selectDateRange(rangeString) {
