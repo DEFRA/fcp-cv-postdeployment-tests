@@ -32,4 +32,23 @@ export default class BusinessAgreementsPage {
     }
     await targetRow.locator('td').first().click()
   }
+
+  async checkAgreementsData(expectedAgreementsData, checkOrder) {
+    /*
+      | label          | value                                                                        |
+      | Reference      | 8579482786, 8097698033, 2617418139                                           |
+      | Year           | 2025, 2025, 2024                                                             |
+      | Agreement Name | BPS AGREEMENT,ELS AGREEMENT,BPS AGREEMENT                                    |
+      | Type           | Countryside Stewardship (MT), Basic Payment Scheme, Higher Level Stewardship |
+      | Start Date     | 03/01/2023, 28/12/2024, 05/10/2022                                           |
+      | End Date       | 03/04/2026, 22/08/2028, 14/09/2026                                           |
+      | Status         | EXPIRED, WITHDRAWN, EXPIRED                                                  |
+    */
+
+    // TODO
+
+    if (checkOrder) {
+      // check ordered by most recent year first
+    }
+  }
 }

@@ -27,20 +27,20 @@ Then(
 Then(
   /^I see the Agreement Details table ordered by 'Sheet', 'Parcel', 'Description', 'Payment Schedule' alphabetically ascending$/,
   function ({ businessAgreementDetailsPage }, dataTable) {
-    // TODO
+    businessAgreementDetailsPage.checkAgreementDetailsColumnOrdering()
   }
 )
 
 Then(
   /^The screen data for Action Area \(ha\) in the Payment Schedule selected is the amount in the JSON divided by 10,000 as it is provided in m2 but displayed in ha\.$/,
   function ({ businessAgreementDetailsPage }) {
-    // TODO
+    businessAgreementDetailsPage.checkActionAreaHaValues()
   }
 )
 
 Then(
   /^The screen data for Parcel Area \(ha\) in the Payment Schedule selected is the amount in the JSON divided by 10,000 as it is provided in m2 but displayed in ha\.$/,
-  function ({ businessAgreementsPage }) {
-    // TODO
+  function ({ businessAgreementDetailsPage }) {
+    businessAgreementDetailsPage.checkParcelAreaHaValues()
   }
 )

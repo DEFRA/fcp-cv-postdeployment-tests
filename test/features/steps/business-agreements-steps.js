@@ -20,14 +20,14 @@ When(
 // Generic "correct list of Agreements" result table
 Then(
   /^I see the the correct list of Agreements as follows$/,
-  function ({ businessAgreementsPage }, dataTable) {
-    // TODO
+  function ({ businessAgreementsPage }, expectedAgreementsData) {
+    businessAgreementsPage.checkAgreementsData(expectedAgreementsData, false)
   }
 )
 
 Then(
   /^I see the correct data in the Agreements table, ordered by most recent year first, as follows$/,
-  function ({ businessAgreementsPage }, dataTable) {
-    // TODO
+  function ({ businessAgreementsPage }, expectedAgreementsData) {
+    businessAgreementsPage.checkAgreementsData(expectedAgreementsData, true)
   }
 )

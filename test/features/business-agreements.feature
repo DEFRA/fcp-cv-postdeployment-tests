@@ -181,7 +181,7 @@ Feature: Consolidated View Agreements page
       | label          | value                                                                        |
       | Reference      | 8579482786, 8097698033, 2617418139                                           |
       | Year           | 2025, 2025, 2024                                                             |
-      | Agreement Name | BPS AGREEMENT , ELS AGREEMENT , BPS AGREEMENT                                |
+      | Agreement Name | BPS AGREEMENT,ELS AGREEMENT,BPS AGREEMENT                                    |
       | Type           | Countryside Stewardship (MT), Basic Payment Scheme, Higher Level Stewardship |
       | Start Date     | 03/01/2023, 28/12/2024, 05/10/2022                                           |
       | End Date       | 03/04/2026, 22/08/2028, 14/09/2026                                           |
@@ -198,7 +198,6 @@ Feature: Consolidated View Agreements page
       | Parcel Area (ha)  | 1.6975, 2.3073, 2.01                                                                                                                                            |
       | Payment Schedule  | 29/11/2023-21/09/2026, 18/07/2020-16/09/2026, 24/05/2021-07/08/2025                                                                                             |
       | Commitment Term   | 20/07/2019-25/01/2025, 11/08/2017-30/09/2028, 04/01/2022-17/05/2025                                                                                             |
-
     And The screen data for Action Area (ha) in the Payment Schedule selected is the amount in the JSON divided by 10,000 as it is provided in m2 but displayed in ha.
     And The screen data for Parcel Area (ha) in the Payment Schedule selected is the amount in the JSON divided by 10,000 as it is provided in m2 but displayed in ha.
 
