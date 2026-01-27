@@ -7,7 +7,19 @@ export default class BusinessLandDetailsPage {
     this.landSummaryTable = page.getByTestId('land-summary-table')
     this.landSummaryHeaderLabel = page.getByTestId('land-summary-header-label')
     this.parcelsSearchTextbox = page.getByTestId('parcels-search-textbox')
+    this.parcelSummaryAreaHaDataLabel = page.getByTestId(
+      'parcels-areaHa-datalabel'
+    )
+    this.parcelSummaryPendingCustomerNotifiedLandChangeDataLabel =
+      page.getByTestId('parcels-pcnlc-datalabel')
+    this.parcelSummaryEffectiveDateFromDataLabel = page.getByTestId(
+      'parcels-effective-date-from-datalabel'
+    )
+    this.parcelSummaryEffectiveDateToDataLabel = page.getByTestId(
+      'parcels-effective-date-to-datalabel'
+    )
     this.parcelsTable = page.getByTestId('parcels-table')
+    this.parcelSummaryTable = page.getByTestId('parcel-summary-table')
     this.parcelSummaryHeaderLabel = page.getByTestId(
       'parcel-summary-header-label'
     )
@@ -166,6 +178,86 @@ export default class BusinessLandDetailsPage {
     const actualTableRows = await this.landSummaryTable.locator('tr')
 
     for (const expRow of expectedSummaryTable.hashes()) {
+      for (let i = 0; i < actualTableRows.length; i++) {
+        const cellValue = await actualTableRows[i]
+          .locator('td')
+          .nth(columnNumber)
+        await expect(cellValue).toEqual(expRow.value)
+      }
+      columnNumber++
+    }
+  }
+
+  async checkParcelSummaryFieldData(expectedFieldData) {
+    /*
+    | Area (ha)                              | 1.027      |
+    | Pending Customer Notified Land Change? | ...        |
+    | Effective Date From                    | 25/07/2024 |
+    | Effective Date To                      | 25/07/2024 |
+    */
+    for (const row of expectedFieldData.hashes()) {
+      switch (row.label) {
+        case 'Area (ha)':
+          await expect(this.parcelSummaryAreaHaDataLabel).toHaveText(row.value)
+          break
+
+        case 'Pending Customer Notified Land Change?':
+          await expect(
+            this.parcelSummaryPendingCustomerNotifiedLandChangeDataLabel
+          ).toHaveText(row.value)
+          break
+
+        case 'Effective Date From':
+          await expect(this.parcelSummaryEffectiveDateFromDataLabel).toHaveText(
+            row.value
+          )
+          break
+
+        case 'Effective Date To':
+          await expect(this.parcelSummaryEffectiveDateToDataLabel).toHaveText(
+            row.value
+          )
+          break
+
+        default:
+          throw new Error(
+            'Check parcel summary data failed - field name not recognised'
+          )
+      }
+    }
+  }
+
+  async checkParcelSummaryTableData(expectedSummaryTable) {
+    /*
+      | Code                                   | 110, 131                         |
+      | Land Cover                             | Arable Land, Permanent Grassland |
+      | Area (ha)                              | 1.027, 2.541                     |
+    */
+    let columnNumber = 0
+    const actualTableRows = await this.parcelSummaryTable.locator('tr')
+
+    for (const expRow of expectedSummaryTable.hashes()) {
+      for (let i = 0; i < actualTableRows.length; i++) {
+        const cellValue = await actualTableRows[i]
+          .locator('td')
+          .nth(columnNumber)
+        await expect(cellValue).toEqual(expRow.value)
+      }
+      columnNumber++
+    }
+  }
+
+  async checkParcelTableData(expectedParcelTable) {
+    /*
+      | Sheet        | SS6627, SS6828 |
+      | Parcel       | 5662, 3818     |
+      | Area (ha)    | 1.027          |
+      | Land Change? | No, No         |
+    */
+    let columnNumber = 0
+    const actualTableRows = await this.parcelsTable.locator('tr')
+
+    for (const expRow of expectedParcelTable.hashes()) {
       for (let i = 0; i < actualTableRows.length; i++) {
         const cellValue = await actualTableRows[i]
           .locator('td')

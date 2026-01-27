@@ -114,22 +114,22 @@ Then(
 
 Then(
   /^the Parcel Summary has field data as follows$/,
-  function ({ businessLandDetailsPage }, dataTable) {
-    // TODO
+  function ({ businessLandDetailsPage }, expectedFieldData) {
+    businessLandDetailsPage.checkParcelSummaryFieldData(expectedFieldData)
   }
 )
 
 Then(
   /^the Parcel Summary table has data as follows$/,
-  function ({ businessLandDetailsPage }, dataTable) {
-    // TODO
+  function ({ businessLandDetailsPage }, expectedSummaryTable) {
+    businessLandDetailsPage.checkParcelSummaryTableData(expectedSummaryTable)
   }
 )
 
 Then(
   /^I see the correct list of parcels in the Parcels table as follows$/,
-  function ({ businessLandDetailsPage }, dataTable) {
-    // TODO
+  function ({ businessLandDetailsPage }, expectedParcelsTable) {
+    businessLandDetailsPage.checkParcelTableData(expectedParcelsTable)
   }
 )
 
