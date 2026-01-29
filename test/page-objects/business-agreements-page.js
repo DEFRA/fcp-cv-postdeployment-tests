@@ -44,11 +44,33 @@ export default class BusinessAgreementsPage {
       | End Date       | 03/04/2026, 22/08/2028, 14/09/2026                                           |
       | Status         | EXPIRED, WITHDRAWN, EXPIRED                                                  |
     */
-
-    // TODO
+    expectedAgreementsData.hashes().forEach((expectedRow, columnNumber) => {
+      const expectedText = expectedRow.value.split(',')
+      const actualRows = this.agreementsTable.locator('tr')
+      actualRows.forEach((actualRow, rowNumber) => {
+        expect(actualRow.locator('td').nth(columnNumber)).toEqual(
+          expectedText[rowNumber]
+        )
+      })
+    })
 
     if (checkOrder) {
-      // check ordered by most recent year first
+      // check ordered by most recent year first - we know that actual=expected from above
+      let lastDate = null
+      expectedAgreementsData.hashes().forEach((expectedRow, columnNumber) => {
+        if (expectedRow.label === 'Start Date') {
+          const expectedText = expectedRow.value.split(',')
+          expectedText.forEach((text) => {
+            if (lastDate !== null) {
+              const textDate = new Date(text)
+              expect(lastDate > textDate).toBeTruthy()
+              lastDate = textDate
+            } else {
+              lastDate = new Date(text)
+            }
+          })
+        }
+      })
     }
   }
 }

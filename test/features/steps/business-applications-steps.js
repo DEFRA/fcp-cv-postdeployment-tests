@@ -1,88 +1,83 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
-import { BusinessApplicationsPage } from '../page-objects/business-applications-page.js'
-
+import {} from '../page-objects/business-applications-page.js'
 const { Given, Then } = createBdd(test)
 
-// ------------------------------------------------------
-// PAGE NAVIGATION
-// ------------------------------------------------------
-
-Given(/^I have selected an application with the ID '(\d+)'$/, function (appId) {
-  // TODO
-  BusinessApplicationsPage.checkTitle()
-})
-
-// ------------------------------------------------------
-// APPLICATIONS PAGE COMPONENTS
-// ------------------------------------------------------
+Given(
+  /^I have selected an application with the ID '(\d+)'$/,
+  function ({ businessApplicationsPage }, appId) {
+    businessApplicationsPage.selectApplication(appId)
+  }
+)
 
 Then(
   /^there is an Application Details pane on the right-hand pane$/,
-  function () {
-    // TODO
+  function ({ businessApplicationsPage }) {
+    businessApplicationsPage.checkApplicationDetailsPaneExists()
   }
 )
 
 Then(
   /^the Application Details pane has a title corresponding to the 'Application Name' field of the selected application$/,
-  function () {
-    // TODO
+  function ({ businessApplicationsPage }) {
+    businessApplicationsPage.checkApplicationDetailsPaneTitle(null)
   }
 )
 
-Then(/^the Application Details pane has fields for '(.+)'$/, function (fields) {
-  // TODO
-})
+Then(
+  /^the Application Details pane has fields for '(.+)'$/,
+  function ({ businessApplicationsPage }, expectedFields) {
+    businessApplicationsPage.checkApplicationDetailsFields(expectedFields)
+  }
+)
 
 Then(
   /^the Application Details pane has a Movement History section$/,
-  function () {
-    // TODO
+  function ({ businessApplicationsPage }) {
+    businessApplicationsPage.checkMovementHistorySectionExists()
   }
 )
 
 // Generic reusable results handler
 Then(
   /^I see the the correct list of Applications as follows$/,
-  function (dataTable) {
-    // TODO
+  function ({ businessApplicationsPage }, expectedApplicationsDataList) {
+    businessApplicationsPage.checkApplicationsData(expectedApplicationsDataList)
   }
 )
 
-// ------------------------------------------------------
-// EMPTY STATE
-// ------------------------------------------------------
-
-Then(/^the Applications details pane is empty$/, function () {
-  // TODO
-})
-
-// ------------------------------------------------------
-// APPLICATION DETAILS DATA VALIDATION
-// ------------------------------------------------------
+Then(
+  /^the Applications details pane is empty$/,
+  function ({ businessApplicationsPage }) {
+    businessApplicationsPage.ApplicationDetailsPaneIsEmpty()
+  }
+)
 
 Then(
   /^I see the correct data in the Application Details pane as follows$/,
-  function (dataTable) {
-    // TODO
+  function ({ businessApplicationsPage }, expectedApplicationData) {
+    businessApplicationsPage.checkApplicationDetailsData(
+      expectedApplicationData
+    )
   }
 )
 
 Then(
   /^I see the correct data in the Movements History table as follows$/,
-  function (dataTable) {
-    // TODO
+  function ({ businessApplicationsPage }, expectedMovementsHistoryData) {
+    businessApplicationsPage.checkMovementsHistoryData(
+      expectedMovementsHistoryData,
+      false
+    )
   }
 )
 
-// ------------------------------------------------------
-// ORDERING CHECKS
-// ------------------------------------------------------
-
 Then(
   /^I see the correct data in the Movements History table ordered by date\/time as follows$/,
-  function (dataTable) {
-    // TODO
+  function ({ businessApplicationsPage }, expectedMovementsHistoryData) {
+    businessApplicationsPage.checkMovementsHistoryData(
+      expectedMovementsHistoryData,
+      true
+    )
   }
 )

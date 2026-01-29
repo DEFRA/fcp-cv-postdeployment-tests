@@ -5,6 +5,7 @@ export default class BusinessAgreementDetailsPage {
     this.page = page
     this.headerLabel = page.getByTestId('header-label')
     this.backButton = page.getByTestId('back-button')
+    this.agreementDetailsTable = page.getByTestId('agreement-details-table')
   }
 
   async checkHeader(expectedHeaderText) {
@@ -26,7 +27,7 @@ export default class BusinessAgreementDetailsPage {
     await this.backButton.click()
   }
 
-  async checkAgreementDetailsColumnOrdering() {
+  async checkAgreementDetailsColumnOrdering(expectedAgreementDetailsList) {
     /*
           | label             | value                                                                                                                                                           |
           | Sheet             | HFUTNN, KQYCHH, SNXADR                                                                                                                                          |
@@ -40,7 +41,14 @@ export default class BusinessAgreementDetailsPage {
           | Commitment Term   | 20/07/2019-25/01/2025, 11/08/2017-30/09/2028, 04/01/2022-17/05/2025
     */
     // Check the table contents
-    // TODO
+    for (const row of expectedAgreementDetailsList.hashes()) {
+      const expectedText = row.value.split(',')
+      const tableData = await this.agreementDetailsTable.locator('td')
+      await tableData.forEach((text, index) => {
+        expect(text).toEqual(expectedText[index])
+      })
+    }
+
     // Check that the table is ordered by 'Sheet', 'Parcel', 'Description', 'Payment Schedule' alphabetically ascending
     // TODO
   }
