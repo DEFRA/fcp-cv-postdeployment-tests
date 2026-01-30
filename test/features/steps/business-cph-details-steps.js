@@ -1,7 +1,5 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
-import { BusinessCphDetailsPage } from '../page-objects/business-cph-details-page.js'
-
 const { When, Then } = createBdd(test)
 
 // -------------------------------
@@ -9,67 +7,79 @@ const { When, Then } = createBdd(test)
 // -------------------------------
 
 Then(
-  /^I see a CPH Details pane on the right with a title 'CPH Number: ' concatenated with (.*)$/,
-  function (cphNumber) {
-    // TODO
-    BusinessCphDetailsPage.checkTitle()
+  /^I see a CPH Details pane on the right with a title '(.+)' concatenated with with CPH number$/,
+  function ({ businessCphDetailsPage }, titlePrefix) {
+    businessCphDetailsPage.checkDetailsPaneTitle(titlePrefix)
   }
 )
 
-Then(/^the CPH Details pane has fields for '([^']+)'$/, function (fields) {
-  // TODO
-})
+Then(
+  /^the CPH Details pane has fields for '(.+)'$/,
+  function ({ businessCphDetailsPage }, expectedFields) {
+    businessCphDetailsPage.checkDetailsPaneFields(expectedFields)
+  }
+)
 
-Then(/^the CPH Details pane has the field data populated$/, function () {
-  // TODO
-})
+Then(
+  /^the CPH Details pane has the field data populated$/,
+  function ({ businessCphDetailsPage }) {
+    businessCphDetailsPage.checkDetailsPaneFieldsArePopulated()
+  }
+)
 
-Then(/^I see the the correct list of CPH's as follows$/, function (dataTable) {
-  // TODO
-})
+Then(
+  /^I see the the correct list of CPHs as follows$/,
+  function ({ businessCphDetailsPage }, expectedCphData) {
+    businessCphDetailsPage.checkCphListData(expectedCphData, false)
+  }
+)
 
 Then(
   /^I see the correctly ordered list of CPH's as follows$/,
-  function (dataTable) {
-    // TODO
+  function ({ businessCphDetailsPage }, expectedCphData) {
+    businessCphDetailsPage.checkCphListData(expectedCphData, true)
   }
 )
 
-// -------------------------------
-// TABLE SELECTION
-// -------------------------------
+When(
+  /^When I select a new CPH from the CPH Table$/,
+  function ({ businessCphDetailsPage }) {
+    businessCphDetailsPage.selectCph(null)
+  }
+)
 
-When(/^When I select a new CPH from the CPH Table$/, function () {
-  // TODO
-})
+When(
+  /^I select the CPH '([^']+)'$/,
+  function ({ businessCphDetailsPage }, cphNumber) {
+    businessCphDetailsPage.selectCph(cphNumber)
+  }
+)
 
-When(/^I select the CPH '([^']+)'$/, function (cph) {
-  // TODO
-})
+Then(
+  /^the details in the right-hand side pane update$/,
+  function ({ businessCphDetailsPage }) {
+    // TODO
+    // Unclear how best to do this
+  }
+)
 
-Then(/^the details in the right-hand side pane update$/, function () {
-  // TODO
-})
+Then(
+  /^I see an empty CPH Details pane$/,
+  function ({ businessCphDetailsPage }) {
+    businessCphDetailsPage.checkDetailsPaneIsEmpty()
+  }
+)
 
-// -------------------------------
-// EMPTY STATES
-// -------------------------------
-
-Then(/^I see an empty CPH Details pane$/, function () {
-  // TODO
-})
-
-// -------------------------------
-// DETAILS VALIDATION (DATA TABLES)
-// -------------------------------
-
-Then(/^then I see the following CPH Details$/, function (dataTable) {
-  // TODO
-})
+Then(
+  /^then I see the following CPH Details$/,
+  function ({ businessCphDetailsPage }, expectedCphDetails) {
+    businessCphDetailsPage.checkCphFieldData(expectedCphDetails)
+  }
+)
 
 Then(
   /^I see the CPH Details pane has fields for '([^']+)'$/,
-  function (fields) {
-    // TODO
+  function ({ businessCphDetailsPage }, expectedFields) {
+    businessCphDetailsPage.checkCphFieldsExist(expectedFields)
   }
 )

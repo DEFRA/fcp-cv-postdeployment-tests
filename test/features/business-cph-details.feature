@@ -21,7 +21,7 @@ Feature: Consolidated View CPH Details page
     Given I have selected the business with SBI '107183280'
     And I am on the CPH Details page
     When I enter '691' in the search box
-    Then I see the the correct list of CPH's as follows
+    Then I see the the correct list of CPHs as follows
       | label      | value       |
       | CPH number | 04/691/1023 |
       | Parish     | Pettistree  |
@@ -29,7 +29,7 @@ Feature: Consolidated View CPH Details page
       | End Date   | 25/05/2027  |
     When I enter a blank value in the search box
     And Press the Enter key
-    Then I see the the correct list of CPH's as follows
+    Then I see the the correct list of CPHs as follows
       | label      | value                                                                                                                                 |
       | CPH number | 04/691/1023, 14/434/2708, 20/213/7336, 23/552/0908, 48/541/7225, 55/721/0654, 57/309/1950, 80/531/7737                                |
       | Parish     | Pettistree, Charlton, Upton-upon-Severn, Duntisbourne Abbots, Ascott-under-Wychwood,East Chiltington, Heaton-with-Oxcliffe, Riseholme |
@@ -41,7 +41,7 @@ Feature: Consolidated View CPH Details page
     Given I have selected the business with SBI '107183280'
     And I am on the CPH Details page
     When I enter 'Charl' in the search box
-    Then I see the the correct list of CPH's as follows
+    Then I see the the correct list of CPHs as follows
       | label      | value       |
       | CPH number | 14/434/2708 |
       | Parish     | Charlton       |
@@ -49,7 +49,7 @@ Feature: Consolidated View CPH Details page
       | End Date   | 31/12/9999  |
     When I enter a blank value in the search box
     And Press the Enter key
-    Then I see the the correct list of CPH's as follows
+    Then I see the the correct list of CPHs as follows
       | label      | value                                                                                                                                 |
       | CPH number | 04/691/1023, 14/434/2708, 20/213/7336, 23/552/0908, 48/541/7225, 55/721/0654, 57/309/1950, 80/531/7737                                |
       | Parish     | Pettistree, Charlton, Upton-upon-Severn, Duntisbourne Abbots, Ascott-under-Wychwood,East Chiltington, Heaton-with-Oxcliffe, Riseholme |
@@ -61,7 +61,7 @@ Feature: Consolidated View CPH Details page
     Given I have selected the business with SBI '107183280'
     And I am on the CPH Details page
     When I enter 'SHEEP' in the search box
-    Then I see the the correct list of CPH's as follows
+    Then I see the the correct list of CPHs as follows
       | label      | value                                           |
       | CPH number | 04/691/1023, 20/213/7336, 55/721/0654           |
       | Parish     | Pettistree, Upton-upon-Severn, East Chiltington |
@@ -69,7 +69,7 @@ Feature: Consolidated View CPH Details page
       | End Date   | 25/05/2027, 23/12/2025, 22/09/2024  |
     When I enter a blank value in the search box
     And Press the Enter key
-    Then I see the the correct list of CPH's as follows
+    Then I see the the correct list of CPHs as follows
       | label      | value                                                                                                                                 |
       | CPH number | 04/691/1023, 14/434/2708, 20/213/7336, 23/552/0908, 48/541/7225, 55/721/0654, 57/309/1950, 80/531/7737                                |
       | Parish     | Pettistree, Charlton, Upton-upon-Severn, Duntisbourne Abbots, Ascott-under-Wychwood,East Chiltington, Heaton-with-Oxcliffe, Riseholme |
@@ -81,7 +81,7 @@ Feature: Consolidated View CPH Details page
     Given I have selected the business with SBI '107183280'
     And I am on the CPH Details page
     When I enter 'DEMUM' in the search box
-    Then I see the the correct list of CPH's as follows
+    Then I see the the correct list of CPHs as follows
       | label      | value       |
       | CPH number | 04/691/1023 |
       | Parish     | Pettistree  |
@@ -89,7 +89,7 @@ Feature: Consolidated View CPH Details page
       | End Date   | 25/05/2027  |
     When I enter a blank value in the search box
     And Press the Enter key
-    Then I see the the correct list of CPH's as follows
+    Then I see the the correct list of CPHs as follows
       | label      | value                                                                                                                                 |
       | CPH number | 04/691/1023, 14/434/2708, 20/213/7336, 23/552/0908, 48/541/7225, 55/721/0654, 57/309/1950, 80/531/7737                                |
       | Parish     | Pettistree, Charlton, Upton-upon-Severn, Duntisbourne Abbots, Ascott-under-Wychwood,East Chiltington, Heaton-with-Oxcliffe, Riseholme |
@@ -100,7 +100,7 @@ Feature: Consolidated View CPH Details page
   Scenario: The CPH table is ordered by CPH number, then start date
     Given I have selected the business with SBI '107183280'
     And I am on the CPH Details page
-    Then I see the the correctly ordered list of CPH's as follows
+    Then I see the the correctly ordered list of CPHs as follows
       | label      | value                                                                                                                                 |
       | CPH number | 04/691/1023, 14/434/2708, 20/213/7336, 23/552/0908, 48/541/7225, 55/721/0654, 57/309/1950, 80/531/7737                                |
       | Parish     | Pettistree, Charlton, Upton-upon-Severn, Duntisbourne Abbots, Ascott-under-Wychwood,East Chiltington, Heaton-with-Oxcliffe, Riseholme |
@@ -119,7 +119,7 @@ Feature: Consolidated View CPH Details page
   Scenario: Check CPH data correctness
     Given I have selected the business with SBI '107183280'
     And I am on the CPH Details page
-    Then I see the the correct list of CPH's as follows
+    Then I see the the correct list of CPHs as follows
       | label      | value                                                                                                                                 |
       | CPH number | 04/691/1023, 14/434/2708, 20/213/7336, 23/552/0908, 48/541/7225, 55/721/0654, 57/309/1950, 80/531/7737                                |
       | Parish     | Pettistree, Charlton, Upton-upon-Severn, Duntisbourne Abbots, Ascott-under-Wychwood,East Chiltington, Heaton-with-Oxcliffe, Riseholme |
