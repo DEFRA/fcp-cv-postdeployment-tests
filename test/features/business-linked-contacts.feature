@@ -167,6 +167,26 @@ Feature: Consolidated View Business Linked Contacts page
     And I select the Permission 'BASIC_PAYMENT_SCHEME' from the Permission table
     Then I see the Permission Description table with 'View business summary, View claims, View land, features and covers, Create and edit a claim, Amend a previously submitted claim, Amend land, features and covers, Submit a claim'
 
+  @advanced @data-dependent
+  Scenario: When a contact has no first name, data is displayed correctly on the Linked Contacts screen
+    Given I have selected the business with SBI '3333333333'
+    And I am on the Business Linked Contacts page
+    And I select the contact with the CRN '1111111901' from the Contacts table
+    Then I see the the correct list of contacts as follows
+      | label      | value      |
+      | CRN        | 1111111901 |
+      | First Name |            |
+      | Last Name  | Grey       |
+    And the page updates to show the following information
+      | label                   | value                                                                                                                                                                                    |
+      | Title                   | Lady Grey                                                                                                                                                                             |
+      | CRN                     | 1111111901                                                                                                                                                                               |
+      | Full Name               | Lady Grey                                                                                                                                                                 |
+      | Role                    | Business Partner                                                                                                                                                                         |
+      | Permissions             | BASIC_PAYMENT_SCHEME, BUSINESS_DETAILS, COUNTRYSIDE_STEWARDSHIP_AGREEMENTS, COUNTRYSIDE_STEWARDSHIP_APPLICATIONS, ENTITLEMENTS, ENVIRONMENTAL_LAND_MANAGEMENT_APPLICATIONS, LAND_DETAILS |
+      | Permissions Levels      | SUBMIT, FULL_PERMISSION, SUBMIT, SUBMIT, AMEND, SUBMIT, AMEND                                                                                                                            |
+      | Permission Descriptions | View business summary, View claims, View land, features and covers, Create and edit a claim, Amend a previously submitted claim, Amend land, features and covers, Submit a claim         |
+
   @advanced @data-dependent @require-mock-update
   Scenario: When a contact's permission is level "NO_ACCESS", the Permission Description list shows the correct warning message "We didn't find any data to show at this time".
     Given I have selected the business with SBI '0000000001'
@@ -175,3 +195,4 @@ Feature: Consolidated View Business Linked Contacts page
     And I select the Permission 'LAND_DETAILS' from the Permission table
     Then I see the 'Permission Description' table is empty
     And I see a warning message 'We didn't find any data to show at this time' under the 'Permission Description' table
+
