@@ -1,4 +1,5 @@
 import { expect } from '@playwright/test'
+import { checkFieldAndTableValues } from '../helpers/commonfunctions.js'
 
 export default class ContactsLinkedBusinessesPage {
   constructor(page) {
@@ -67,34 +68,12 @@ export default class ContactsLinkedBusinessesPage {
   }
 
   async checkBusinessData(expectedBusinessDetails) {
-    /*
-      | Title                   | Bailey, Dickens and Mraz                                                                                                                                                                                                                     |
-      | SBI                     | 1103020285                                                                                                                                                                                                                                   |
-      | Role                    | Business Partner                                                                                                                                                                                                                             |
-      | Permissions             | BASIC_PAYMENT_SCHEME, BUSINESS_DETAILS, COUNTRYSIDE_STEWARDSHIP_AGREEMENTS, COUNTRYSIDE_STEWARDSHIP_APPLICATIONS, ENTITLEMENTS, ENVIRONMENTAL_LAND_MANAGEMENT_APPLICATIONS, LAND_DETAILS                                                     |
-      | Permissions Levels      | SUBMIT, FULL_PERMISSION, SUBMIT, SUBMIT, AMEND, SUBMIT, AMEND                                                                                                                                                                                |
-      | Permission Descriptions | View business summary, View claims, "View land, features and covers", Create and edit a claim, Amend a previously submitted claim, "Amend land, features and covers", Submit a claim, Withdraw a claim, "Receive warnings and notifications" |
-      */
-
-    for (const row of expectedBusinessDetails.hashes()) {
-      if (
-        row.label === 'Permissions' ||
-        row.label === 'Permissions Levels' ||
-        row.label === 'Permission Descriptions'
-      ) {
-        const expectedText = row.value.split(',')
-        const myTable = await this.page.getByTestId(row.label + '-table')
-        const tableData = await myTable.locator('td')
-        await tableData.forEach((text, index) => {
-          expect(text).toEqual(expectedText[index])
-        })
-      } else {
-        await expect(this.page.getByLabel(row.label)).toBeVisible()
-        await expect(this.page.getByLabel(row.label + '-box')).toHaveText(
-          row.value
-        )
-      }
-    }
+    const tableData = [
+      'Permissions',
+      'Permissions Levels',
+      'Permission Descriptions'
+    ]
+    await checkFieldAndTableValues(expectedBusinessDetails, tableData)
   }
 
   async checkPermissionDescriptionTable(expectedDescriptions) {
