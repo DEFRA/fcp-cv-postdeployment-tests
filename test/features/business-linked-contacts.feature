@@ -8,7 +8,7 @@ Feature: Consolidated View Business Linked Contacts page
     And the first item of the 'Contacts' table is selected
     And I see a title in bold of the first name and second name of the contact concatenated in the right-hand side pane
     And I see fields for 'CRN, Full Name, Role' in the right-hand side pane
-    And I see a 'View customer' button in the right-hand side pane
+    And I see a 'View Contact' button in the right-hand side pane
     And I see a 'View Authenticate Questions' link in the right-hand side pane
     And I see an 'Permissions' table with column headers as follows 'Permission, Level' in the right-hand side pane
     And the first item of the 'Permission' table is selected
@@ -25,7 +25,7 @@ Feature: Consolidated View Business Linked Contacts page
     And a Full Name field
     And a Role field
     And a Date of Birth field
-    And I see an 'Authentication Information' table with column headers as follows 'Menorable Date, Memorable Event, Memorable Place, Updated Date'
+    And I see an 'Authentication Information' table with column headers as follows 'Memorable Date, Memorable Event, Memorable Place, Updated Date'
 
   @intermediate @data-dependent
   Scenario: Clicking the View customer button navigates the user to the relevant Contacts page in CRM.
@@ -127,6 +127,13 @@ Feature: Consolidated View Business Linked Contacts page
       | Last Name  | Kemmer,Deckow         |
 
   @advanced @data-dependent
+  Scenario: Searching for a string that returns no results results in a warning message
+    Given I have selected the business with SBI '107591843'
+    And I am on the Business Linked Contacts page
+    When I enter '1-2-3-a-b-c' in the search box
+    Then I see a warning 'There are no linked contacts for the search criteria entered'
+
+  @advanced @data-dependent
   Scenario: Clicking the 'View Authenticate Questions' link displays a the correct information in the Contacts Authentication sub-screen
     Given I have selected the business with SBI '107591843'
     And I am on the Business Linked Contacts page
@@ -154,10 +161,11 @@ Feature: Consolidated View Business Linked Contacts page
       | Last Name  | Kemmer,Deckow         |
 
   @advanced @data-dependent
-  Scenario: A contact with no contacts is shown without error
+  Scenario: A contact with no contacts is shown with a warning
     Given I have selected the business with SBI '1000000000'
     And I am on the Business Linked Contacts page
     Then I see the 'Contacts' table is empty
+    And I see a warning 'There are no linked contacts for this business with SBI 1000000000'
 
   @advanced @data-dependent
   Scenario: When a contact's permission is NOT level "NO_ACCESS", the Permission Description list is correct.
@@ -187,12 +195,31 @@ Feature: Consolidated View Business Linked Contacts page
       | Permissions Levels      | SUBMIT, FULL_PERMISSION, SUBMIT, SUBMIT, AMEND, SUBMIT, AMEND                                                                                                                            |
       | Permission Descriptions | View business summary, View claims, View land, features and covers, Create and edit a claim, Amend a previously submitted claim, Amend land, features and covers, Submit a claim         |
 
-  @advanced @data-dependent @require-mock-update
+  @advanced @data-dependent
   Scenario: When a contact's permission is level "NO_ACCESS", the Permission Description list shows the correct warning message "We didn't find any data to show at this time".
-    Given I have selected the business with SBI '0000000001'
+    Given I have selected the business with SBI '3333333333'
     And I am on the Business Linked Contacts page
-    And I have selected the contact with the CRN '1103020888' from the Contacts table
+    And I have selected the contact with the CRN '1111111901' from the Contacts table
     And I select the Permission 'LAND_DETAILS' from the Permission table
     Then I see the 'Permission Description' table is empty
     And I see a warning message 'We didn't find any data to show at this time' under the 'Permission Description' table
+
+  @advanced @data-dependent @update-to-mock-needed
+  Scenario: If the user does not have the correct permissions to see data they have requested, the user is shown an error message
+    Given I am logged in as user 'DEF'
+    And I have selected the business with SBI 'ABC'
+    And I am on the Business Linked Contacts page
+    Then I see a warning 'You do not have permissions to view this data. Make sure you have an active Rural Payments Portal account with email address xxx@xxx.xxx. See Consolidated View guidance for for more information.'
+
+  @advanced @data-dependent @update-to-mock-needed
+  Scenario: If CV encounters an error while loading the page, the user is shown an error message
+    Given I have selected the business with SBI 'QRZ'
+    And I am on the Business Linked Contacts page
+    Then I see a warning 'An error has occurred. Error code 500 was returned from the DAL.'
+
+  @advanced @data-dependent @update-to-mock-needed
+  Scenario: If the SBI cannot be found, the user is shown an error message
+    Given I have selected the business with SBI 'ABC'
+    And I am on the Business Linked Contacts page
+    Then I see a warning 'Business with SBI ABC was not found'
 

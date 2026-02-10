@@ -12,7 +12,7 @@ export default class BusinessLinkedContactsPage {
       process.env.ENVIRONMENT +
       '.cdp-int.defra.cloud/' +
       'businessLinkedContacts'
-    this.viewCustomerButton = page.getByTestId('view-customer-button')
+    this.viewContactButton = page.getByTestId('view-contact-button')
     this.authenticateLink = page.getByTestId('authenticate-link')
     this.contactsTable = page.getByTestId('contacts-table')
     this.permissionsTable = page.getByTestId('permissions-table')
@@ -94,7 +94,7 @@ export default class BusinessLinkedContactsPage {
     expect(this.authenticateLink).toBeVisible()
   }
 
-  async viewCustomerButtonIsVisible() {
+  async viewContactButtonIsVisible() {
     expect(this.viewCustomerButton).toBeVisible()
   }
 
@@ -108,5 +108,9 @@ export default class BusinessLinkedContactsPage {
     const tableRowsData = await this.permissionsTable.locator('tr')
     const targetRow = tableRowsData.filter({ hasText: permission })
     await targetRow.click()
+  }
+
+  async checkWarningMessage(expectedWarningMessage) {
+    // TODO - how this warning message is to be displayed is not yet defined
   }
 }

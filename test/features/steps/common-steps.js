@@ -24,6 +24,10 @@ Given(/^I have selected the contact with CRN '(.+)'$/, async function (crn) {
   // TODO
 })
 
+Given(/^I am logged in as user '(.+)'$/, async function (crn) {
+  // TODO
+})
+
 Given(/^I am on the (.+) page$/, async function (pageName) {
   await navigate(pageName)
 })
