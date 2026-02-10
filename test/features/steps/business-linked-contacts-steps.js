@@ -59,16 +59,23 @@ Then(
 )
 
 Then(
-  /^I see a 'View customer' button in the right-hand side pane$/,
+  /^I see a 'View Contact' button in the right-hand side pane$/,
   async function ({ businessLinkedContactsPage }) {
-    businessLinkedContactsPage.viewCustomerButtonIsVisible()
+    businessLinkedContactsPage.viewContactButtonIsVisible()
   }
 )
 
 Then(
   /^I see a 'View Authenticate Questions' link in the right-hand side pane$/,
   async function ({ businessLinkedContactsPage }) {
-    businessLinkedContactsPage.viewAuthenticateQuestionsLinkIsVisible() //
+    businessLinkedContactsPage.viewAuthenticateQuestionsLinkIsVisible()
+  }
+)
+
+Then(
+  /^I see a a warning '(.+)'$/,
+  async function ({ businessLinkedContactsPage }, expectedWarningMessage) {
+    businessLinkedContactsPage.checkWarningMessage(expectedWarningMessage)
   }
 )
 
