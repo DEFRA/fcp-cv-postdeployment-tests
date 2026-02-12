@@ -204,22 +204,30 @@ Feature: Consolidated View Business Linked Contacts page
     Then I see the 'Permission Description' table is empty
     And I see a warning message 'We didn't find any data to show at this time' under the 'Permission Description' table
 
-  @advanced @data-dependent @update-to-mock-needed
-  Scenario: If the user does not have the correct permissions to see data they have requested, the user is shown an error message
+  @advanced @data-dependent
+  Scenario: If the user does not have the correct permissions to see data they have requested, the user is shown an error message (401)
     Given I am logged in as user 'DEF'
-    And I have selected the business with SBI 'ABC'
+    And I have selected the business with SBI '3000000401'
     And I am on the Business Linked Contacts page
     Then I see a warning 'You do not have permissions to view this data. Make sure you have an active Rural Payments Portal account with email address xxx@xxx.xxx. See Consolidated View guidance for for more information.'
 
-  @advanced @data-dependent @update-to-mock-needed
+  @advanced @data-dependent
+  Scenario: If the user does not have the correct permissions to see data they have requested, the user is shown an error message (403)
+    Given I am logged in as user 'DEF'
+    And I have selected the business with SBI '3000000403'
+    And I am on the Business Linked Contacts page
+    Then I see a warning 'You do not have permissions to view this data. Make sure you have an active Rural Payments Portal account with email address xxx@xxx.xxx. See Consolidated View guidance for for more information.'
+
+
+  @advanced @data-dependent
   Scenario: If CV encounters an error while loading the page, the user is shown an error message
-    Given I have selected the business with SBI 'QRZ'
+    Given I have selected the business with SBI '3000000500'
     And I am on the Business Linked Contacts page
     Then I see a warning 'An error has occurred. Error code 500 was returned from the DAL.'
 
-  @advanced @data-dependent @update-to-mock-needed
+  @advanced @data-dependent
   Scenario: If the SBI cannot be found, the user is shown an error message
-    Given I have selected the business with SBI 'ABC'
+    Given I have selected the business with SBI '1010101010'
     And I am on the Business Linked Contacts page
-    Then I see a warning 'Business with SBI ABC was not found'
+    Then I see a warning 'Business with SBI 1010101010 was not found'
 
