@@ -16,13 +16,36 @@ const { Given, When, Then } = createBdd(test)
 // Navigation + Page Context
 // ------------------------------------------------------
 
-Given(/^I have selected the business with SBI '(\d+)'$/, function (sbi) {
-  // TODO
-})
+Given(
+  /^I have selected the business with SBI '(\d+)'$/,
+  async function ({ page }, sbi) {
+    // Example - ?id=5ffbOfdd-61b9-f011-bbd2-002248a0744b&typename=account&sbi=11111111111
+    const currentUrl = await page.url()
+    const mainUrl = currentUrl.split('?')[0]
+    // TODO - What is id and typename here?
+    const newUrl =
+      mainUrl +
+      '?' +
+      'id=5ffbOfdd-61b9-f011-bbd2-002248a0744b&typename=account&sbi=' +
+      sbi
+    await page.goto(newUrl)
+  }
+)
 
-Given(/^I have selected the contact with CRN '(.+)'$/, async function (crn) {
-  // TODO
-})
+Given(
+  /^I have selected the contact with CRN '(.+)'$/,
+  async function ({ page }, crn) {
+    const currentUrl = await page.url()
+    const mainUrl = currentUrl.split('?')[0]
+    // TODO - Need to see a full CRN example. Are id and typename even needed here?
+    const newUrl =
+      mainUrl +
+      '?' +
+      'id=5ffbOfdd-61b9-f011-bbd2-002248a0744b&typename=account&crn=' +
+      crn
+    await page.goto(newUrl)
+  }
+)
 
 Given(/^I am logged in as user '(.+)'$/, async function (crn) {
   // TODO

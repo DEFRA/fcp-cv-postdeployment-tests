@@ -12,21 +12,21 @@ const { When, Then } = createBdd(test)
 When(
   /^I click the View customer button$/,
   async function ({ businessLinkedContactsPage }) {
-    businessLinkedContactsPage.clickViewCustomerButton()
+    await businessLinkedContactsPage.clickViewCustomerButton()
   }
 )
 
 When(
   /^'View Authenticate Questions' link$/,
   async function ({ businessLinkedContactsPage }) {
-    businessLinkedContactsPage.clickAuthenticateLink()
+    await businessLinkedContactsPage.clickAuthenticateLink()
   }
 )
 
 When(
   /^I select the contact with the CRN '(.+)' from the Contacts table$/,
   async function ({ businessLinkedContactsPage }, crn) {
-    businessLinkedContactsPage.selectContactByCrn(crn)
+    await businessLinkedContactsPage.selectContactByCrn(crn)
   }
 )
 
@@ -34,7 +34,7 @@ When(
 When(
   /^I select the Permission '(.+)' from the Permission table$/,
   async function ({ businessLinkedContactsPage }, permission) {
-    businessLinkedContactsPage.selectPermission(permission)
+    await businessLinkedContactsPage.selectPermission(permission)
   }
 )
 
@@ -47,35 +47,35 @@ When(
 Then(
   /^I see a title in bold of the first name and second name of the contact concatenated in the right-hand side pane$/,
   async function ({ businessLinkedContactsPage }) {
-    businessLinkedContactsPage.checkContactNameTitle()
+    await businessLinkedContactsPage.checkContactNameTitle()
   }
 )
 
 Then(
   /^I see fields for '(.+)' in the right-hand side pane$/,
   async function ({ businessLinkedContactsPage }, fields) {
-    businessLinkedContactsPage.checkFields()
+    await businessLinkedContactsPage.checkFields()
   }
 )
 
 Then(
   /^I see a 'View Contact' button in the right-hand side pane$/,
   async function ({ businessLinkedContactsPage }) {
-    businessLinkedContactsPage.viewContactButtonIsVisible()
+    await businessLinkedContactsPage.viewContactButtonIsVisible()
   }
 )
 
 Then(
   /^I see a 'View Authenticate Questions' link in the right-hand side pane$/,
   async function ({ businessLinkedContactsPage }) {
-    businessLinkedContactsPage.viewAuthenticateQuestionsLinkIsVisible()
+    await businessLinkedContactsPage.viewAuthenticateQuestionsLinkIsVisible()
   }
 )
 
 Then(
   /^I see a a warning '(.+)'$/,
   async function ({ businessLinkedContactsPage }, expectedWarningMessage) {
-    businessLinkedContactsPage.checkWarningMessage(expectedWarningMessage)
+    await businessLinkedContactsPage.checkWarningMessage(expectedWarningMessage)
   }
 )
 
@@ -88,21 +88,23 @@ Then(
 Then(
   /^the page updates to show the following information$/,
   async function ({ businessLinkedContactsPage }, table) {
-    businessLinkedContactsPage.checkContactsScreen(table)
+    await businessLinkedContactsPage.checkContactsScreen(table)
   }
 )
 
 Then(
   /^the Permission Description table updates with the following descriptions '(.+)'$/,
   async function ({ businessLinkedContactsPage }, descriptions) {
-    businessLinkedContactsPage.checkPermissionDescriptionsTable(descriptions)
+    await businessLinkedContactsPage.checkPermissionDescriptionsTable(
+      descriptions
+    )
   }
 )
 
 Then(
   /^I see the the correct list of contacts as follows$/,
   async function ({ businessLinkedContactsPage }, table) {
-    businessLinkedContactsPage.checkContactsTable(table)
+    await businessLinkedContactsPage.checkContactsTable(table)
   }
 )
 
