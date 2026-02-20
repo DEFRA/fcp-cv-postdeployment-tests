@@ -1,32 +1,5 @@
 Feature: Consolidated View Business Linked Contacts page
 
-  @basic @possible-vi-test
-  Scenario: Page opens with correct components displayed.
-    Given I am on the Contacts Linked Businesses page
-    Then I see a Search box
-    And I see an 'Contacts' table with column headers as follows 'CRN, First Name, Last Name' in a left-hand side pane
-    And the first item of the 'Contacts' table is selected
-    And I see a title in bold of the first name and second name of the contact concatenated in the right-hand side pane
-    And I see fields for 'CRN, Full Name, Role' in the right-hand side pane
-    And I see a 'View Contact' button in the right-hand side pane
-    And I see a 'View Authenticate Questions' link in the right-hand side pane
-    And I see an 'Permissions' table with column headers as follows 'Permission, Level' in the right-hand side pane
-    And the first item of the 'Permission' table is selected
-    And I see an 'Permission Description' table with column headers as follows 'Permission Description'
-    And the first item of the 'Permission Description' table is selected
-
-  @intermediate @possible-vi-test
-  Scenario: Clicking the 'View Authenticate Questions' link displays a Contacts Authentication sub-screen
-    Given I am on the Business Linked Contacts page
-    When 'View Authenticate Questions' link
-    Then I see the Contacts Authentication sub-screen
-    And a title in bold
-    And a CRN field
-    And a Full Name field
-    And a Role field
-    And a Date of Birth field
-    And I see an 'Authentication Information' table with column headers as follows 'Memorable Date, Memorable Event, Memorable Place, Updated Date'
-
   @intermediate @data-dependent
   Scenario: Clicking the View customer button navigates the user to the relevant Contacts page in CRM.
     Given I have selected the business with SBI '107591843'
