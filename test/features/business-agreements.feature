@@ -2,14 +2,14 @@ Feature: Consolidated View Agreements page
 
   @basic @possible-vi-test
   Scenario: Agreements page opens with correct components displayed.
-    Given I am on the Agreements page
+    Given I have gone to the Agreements page
     Then I see an 'Agreements' table with column headers as follows 'Reference, Year, Agreement Name, Type, Start Date, End Date, Status'
     And each Agreements table has an option to view the record
     And I see a Search box
 
   @basic @possible-vi-test
   Scenario: Agreement Details page opens with correct components displayed.
-    Given I am on the Agreements page
+    Given I have gone to the Agreements page
     When I click the 'View' link next to an agreement
     Then I see a header with 'Agreement Name' as the title
     And I see underneath the header the following fields 'Agreement Ref., Type, Scheme Year, Status, Start Date, End Date'
@@ -18,7 +18,7 @@ Feature: Consolidated View Agreements page
 
   @intermediate
   Scenario: The back arrow on the Agreement Details screen takes the user back to the main Agreements screen
-    Given I am on the Agreement Details page
+    Given I have gone to the Agreement Details page
     When I click the 'Back to Agreements list' link
     Then I am on the Agreements page
 

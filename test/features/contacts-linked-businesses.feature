@@ -2,12 +2,12 @@ Feature: Consolidated View Contacts Linked Businesses page
 
   @basic @possible-vi-test
   Scenario: Page opens with correct components displayed.
-    Given I am on the Contacts Linked Businesses page
+    Given I have gone to the Contacts Linked Businesses page
     Then I see a Search box
     And I see an 'Businesses' table with column headers as follows 'SBI, Name' in a left-hand side pane
     And the first item of the 'Businesses' table is selected
     And I see a title in bold of the name of the business in the right-hand side pane
-    And I see fields for 'SBI, Role' in the right-hand side pane
+    And I see LinkedBusinesses fields for 'SBI, Role' in the right-hand side pane
     And I see a 'View business' button in the right-hand side pane
     And I see an 'Permissions' table with column headers as follows 'Permission, Level' in the right-hand side pane
     And the first item of the 'Permission' table is selected
@@ -19,7 +19,7 @@ Feature: Consolidated View Contacts Linked Businesses page
     Given I have selected the contact with CRN '1103020285'
     And I am on the Contacts Linked Businesses page
     When I select the business 'Bailey, Dickens and Mraz' from the Businesses table
-    Then the page updates to show the following information
+    Then the LinkedBusinesses page updates to show the following information
       | label                   | value                                                                                                                                                                                                                                        |
       | Title                   | Bailey, Dickens and Mraz                                                                                                                                                                                                                     |
       | SBI                     | 1103020285                                                                                                                                                                                                                                   |
@@ -34,7 +34,7 @@ Feature: Consolidated View Contacts Linked Businesses page
     And I am on the Contacts Linked Businesses page
     When I select the business 'Goldner, Schmeler and Kutch' from the Businesses table
     And I select the Permission 'ENTITLEMENTS' from the Permissions table
-    Then the Permission Description table updates with the following descriptions 'View entitlements, Transfer entitlements, Apply for new entitlements'
+    Then the LinkedBusinesses Permission Description table updates with the following descriptions 'View entitlements, Transfer entitlements, Apply for new entitlements'
 
   @advanced @data-dependent
   Scenario: Searching for a partially matching string in the Name column filters correctly
@@ -96,7 +96,7 @@ Feature: Consolidated View Contacts Linked Businesses page
     Given I have selected the contact with CRN '1103020285'
     When I select 'Homenick, McDermott and Luettgen' in the Businesses table
     And I select the Permission 'BASIC_PAYMENT_SCHEME' from the Permissions table
-    Then the Permission Description table updates with the following descriptions 'View business summary, View claims, "View land, features and covers", Create and edit a claim, Amend a previously submitted claim, "Amend land, features and covers", Submit a claim, Withdraw a claim, "Receive warnings and notifications"'
+    Then the LinkedBusinesses Permission Description table updates with the following descriptions 'View business summary, View claims, "View land, features and covers", Create and edit a claim, Amend a previously submitted claim, "Amend land, features and covers", Submit a claim, Withdraw a claim, "Receive warnings and notifications"'
 
   @advanced @data-dependent @require-mock-update
   Scenario: When a business's permission is level "NO_ACCESS", the Permission Description list shows the correct warning message "We didn't find any data to show at this time".

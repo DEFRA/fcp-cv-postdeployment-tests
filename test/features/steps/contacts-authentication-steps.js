@@ -77,3 +77,12 @@ Then(
     contactsAuthenticationPage.checkRetrievedAtValue()
   }
 )
+
+Given(
+  'I have selected a contact {string}',
+  async ({ contactsAuthenticationPage }, arg) => {
+    // TODO
+    // Step: Given I have selected a contact '1111111400'
+    // From: test/features/contacts-authentication.feature:12:5
+  }
+)

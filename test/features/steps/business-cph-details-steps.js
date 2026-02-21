@@ -83,3 +83,21 @@ Then(
     businessCphDetailsPage.checkCphFieldsExist(expectedFields)
   }
 )
+
+Then(
+  'I see a CPH Details pane on the right with a title {string} concatenated with CPH number',
+  async ({ businessCphDetailsPage }, title) => {
+    // TODO
+    // Step: And I see a CPH Details pane on the right with a title 'CPH Number: ' concatenated with CPH number
+    // From: test/features/business-cph-details.feature:9:5
+  }
+)
+
+Then(
+  'I see the the correctly ordered list of CPHs as follows',
+  async ({ businessCphDetailsPage }, dataTable) => {
+    // TODO
+    // Step: Then I see the the correctly ordered list of CPHs as follows
+    // From: test/features/business-cph-details.feature:103:5
+  }
+)

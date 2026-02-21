@@ -1,6 +1,5 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
-import {} from '../page-objects/business-applications-page.js'
 const { Given, Then } = createBdd(test)
 
 Given(
@@ -79,5 +78,19 @@ Then(
       expectedMovementsHistoryData,
       true
     )
+  }
+)
+
+Then(/^I see a search box$/, function ({ businessApplicationsPage }) {
+  businessApplicationsPage.checkSearchBox()
+})
+
+Then(
+  'I see a {string} table with column headers as follows {string}',
+  async ({ businessApplicationsPage }, tableName, columnHeaderList) => {
+    // TODO
+    return tableName + columnHeaderList
+    // Step: And I see a 'Movements History' table with column headers as follows 'Date/Time, Movement, Check'
+    // From: test/features/business-applications.feature:13:5
   }
 )

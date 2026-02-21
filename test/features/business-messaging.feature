@@ -2,7 +2,7 @@ Feature: Consolidated View Business Messages page
 
   @basic @possible-vi-test
   Scenario: Page opens with correct components displayed.
-    Given I am on the Business Messages page
+    Given I have gone to the Business Messages page
     Then I see the Contacts drop-down
     And I see a disabled Date Range drop-down
     And I see a disabled Show Read/Unread drop-down
@@ -10,7 +10,7 @@ Feature: Consolidated View Business Messages page
 
   @basic @possible-vi-test
   Scenario: Page updates correctly once a contact is selected.
-    Given I am on the Business Messages page
+    Given I have gone to the Business Messages page
     When I select a contact
     Then the Date Range field becomes active with options for 'Last 12 months, Last 24 months, Last 36 months, All'
     And the Show Read/Unread field becomes active with options for 'All, Read, Unread'
@@ -19,14 +19,14 @@ Feature: Consolidated View Business Messages page
 
   @basic @possible-vi-test
   Scenario: Message data updates correctly once a contact is selected.
-    Given I am on the Business Messages page
+    Given I have gone to the Business Messages page
     And I select a contact
     When I select the first message
     Then the right-hand pane updates with a bold title, a Date field, a Read field, a Deleted field and a Message field
     And there is a label in the right-hand pane 'Links in the message below do not work'
 
   @advanced @data-dependent
-  Scenario: Message data updates correctly once a contact is selected.
+  Scenario: Message data updates correctly after another contact is selected.
     Given I have selected the business with SBI '1111111111'
     And I am on the Business Messages page
     And I have selected the contact 'Vilma Yundt'

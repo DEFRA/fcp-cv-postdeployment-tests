@@ -39,6 +39,7 @@ export default class BusinessApplicationsPage {
       'application-details-pane-movement-history-pane'
     )
     this.movementHistoryTable = page.getByTestId('movement-history-table')
+    this.searchTextBox = page.getByTestId('search-textbox')
   }
 
   async checkTitle() {
@@ -54,6 +55,10 @@ export default class BusinessApplicationsPage {
 
   async checkApplicationDetailsPaneExists() {
     await expect(this.applicationDetailsPane).toBeVisible()
+  }
+
+  async checkSearchBox() {
+    await expect(this.searchTextBox).toBeVisible()
   }
 
   async checkApplicationDetailsPaneTitle(applicationName) {
