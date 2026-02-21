@@ -2,7 +2,7 @@ Feature: Consolidated View Business Land Details page
 
   @basic @possible-vi-test
   Scenario: Page opens with correct components displayed.
-    Given I am on the Land Details page
+    Given I have gone to the Land Details page
     Then I see a Date filter
     And I see a Land Summary section with a header 'Land Summary'
     And the Land Summary section has fields for 'Total Number of Parcels, Total Area (ha), Total Parcels with Pending Customer Notified Land Changes'
@@ -12,7 +12,7 @@ Feature: Consolidated View Business Land Details page
 
   @basic @possible-vi-test
   Scenario: Parcel summary section is displayed correctly.
-    Given I am on the Land Details page
+    Given I have gone to the Land Details page
     When I select a Parcel in the Parcels table
     Then I see a Parcel Summary with a bold header which is a concatenation of the sheet and parcel codes selected
     And the Parcel Summary has fields for 'Area (ha), Pending Customer Notified Land Change?, Effective Date From, Effective Date To'
@@ -20,48 +20,48 @@ Feature: Consolidated View Business Land Details page
 
   @intermediate
   Scenario: The Date selector updates the screen
-    Given I am on the Land Details page
+    Given I have gone to the Land Details page
     When I select a new date
     Then the page refreshes the data
 
   @intermediate
   Scenario: The Date selector cannot be blank
-    Given I am on the Land Details page
+    Given I have gone to the Land Details page
     When I delete all the text in the Date field
     And Press the Enter key
     Then I see a warning message 'Date must be in dd/mm/yyy format. For example 25/12/2024' under the 'Land Date' table
 
   @intermediate
   Scenario: The Date selector only accepts the correct date format - no non numeric characters
-    Given I am on the Land Details page
+    Given I have gone to the Land Details page
     When I enter 'aaa' into the date picker
     And Press the Enter key
     Then I see a warning message 'Date must be in dd/mm/yyy format. For example 25/12/2024' under the 'Land Date' table
 
   @intermediate
   Scenario: The Date selector only accepts the correct date format - no incomplete dates
-    Given I am on the Land Details page
+    Given I have gone to the Land Details page
     When I enter '01/01' into the date picker
     And Press the Enter key
     Then I see a warning message 'Date must be in dd/mm/yyy format. For example 25/12/2024' under the 'Land Date' table
 
   @intermediate
   Scenario: The Date selector only accepts the correct date format - no incorrect dates
-    Given I am on the Land Details page
+    Given I have gone to the Land Details page
     When I enter '32/32/32' into the date picker
     And Press the Enter key
     Then I see a warning message 'Date must be in dd/mm/yyy format. For example 25/12/2024' under the 'Land Date' table
 
   @intermediate
   Scenario: The Date selector only accepts current or past dates
-    Given I am on the Land Details page
+    Given I have gone to the Land Details page
     When I enter '31/12/2040' into the date picker
     And Press the Enter key
     Then I see a warning message 'Date must be todays date or in the past.' under the 'Land Date' table
 
   @intermediate
   Scenario: The Date selected must be on or after 01/01/2015
-    Given I am on the Land Details page
+    Given I have gone to the Land Details page
     When I enter '31/12/2014' into the date picker
     And Press the Enter key
     Then I see a warning message 'Date must on or after 01/01/2015' under the 'Land Date' table

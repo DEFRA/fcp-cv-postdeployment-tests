@@ -17,7 +17,7 @@ Then(
 )
 
 Then(
-  /^I see fields for '(.+)' in the right-hand side pane$/,
+  /^I see LinkedBusinesses fields for '(.+)' in the right-hand side pane$/,
   async function ({ contactsLinkedBusinessesPage }, fields) {
     contactsLinkedBusinessesPage.checkAllFields(fields)
   }
@@ -77,14 +77,14 @@ Then(
 //
 
 Then(
-  /^the page updates to show the following information$/,
+  /^the LinkedBusinesses page updates to show the following information$/,
   async function ({ contactsLinkedBusinessesPage }, expectedBusinessDetails) {
     contactsLinkedBusinessesPage.checkBusinessData(expectedBusinessDetails)
   }
 )
 
 Then(
-  /^the Permission Description table updates with the following descriptions '(.+)'$/,
+  /^the LinkedBusinesses Permission Description table updates with the following descriptions '(.+)'$/,
   async function ({ contactsLinkedBusinessesPage }, expectedDescriptions) {
     contactsLinkedBusinessesPage.checkPermissionDescriptionTable(
       expectedDescriptions
@@ -117,5 +117,32 @@ Then(
     // Validate navigation
     // TODO
     // Unclear if this can be automated
+  }
+)
+
+Then(
+  'I see an {string} table with column headers as follows {string} in a left-hand side pane',
+  async ({ contactsLinkedBusinessesPage }, arg, arg1) => {
+    // TODO
+    // Step: And I see an 'Businesses' table with column headers as follows 'SBI, Name' in a left-hand side pane
+    // From: test/features/contacts-linked-businesses.feature:7:5
+  }
+)
+
+Then(
+  'I see an {string} table with column headers as follows {string} in the right-hand side pane',
+  async ({ contactsLinkedBusinessesPage }, arg, arg1) => {
+    // TODO
+    // Step: And I see an 'Permissions' table with column headers as follows 'Permission, Level' in the right-hand side pane
+    // From: test/features/contacts-linked-businesses.feature:12:5
+  }
+)
+
+When(
+  'I select {string} in the Businesses table',
+  async ({ contactsLinkedBusinessesPage }, arg) => {
+    // TODO
+    // Step: When I select 'Homenick, McDermott and Luettgen' in the Businesses table
+    // From: test/features/contacts-linked-businesses.feature:97:5
   }
 )

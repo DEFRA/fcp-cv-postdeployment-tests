@@ -11,6 +11,13 @@ When(
 )
 
 Then(
+  /^I see a header with '(.+)' as the title$/,
+  function ({ businessAgreementDetailsPage }, expectedText) {
+    businessAgreementDetailsPage.checkHeader(expectedText)
+  }
+)
+
+Then(
   /^I see underneath the header the following fields '(.+)'$/,
   function ({ businessAgreementDetailsPage }, expectedFieldList) {
     businessAgreementDetailsPage.checkFields(expectedFieldList)

@@ -2,7 +2,7 @@ Feature: Consolidated View CPH Details page
 
   @basic @possible-vi-test
   Scenario: Page opens with correct components displayed.
-    Given I am on the CPH Details page
+    Given I have gone to the CPH Details page
     Then I see an 'CPH' table with column headers as follows 'CPH number, Parish, Start Date, End Date'
     And the first item of the 'CPH' table is selected
     And I see a search box
@@ -12,7 +12,7 @@ Feature: Consolidated View CPH Details page
 
   @intermediate
   Scenario: Selecting a new CPH updates the details in the right-hand pane
-    Given I am on the CPH Details page
+    Given I have gone to the CPH Details page
     When When I select a new CPH from the CPH Table
     Then the details in the right-hand side pane update
 

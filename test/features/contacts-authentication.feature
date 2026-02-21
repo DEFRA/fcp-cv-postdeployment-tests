@@ -2,7 +2,7 @@ Feature: Consolidated View Contacts Authentication page
 
   @basic @possible-vi-test
   Scenario: Page opens with correct components displayed.
-    Given I am on the Contacts Authentication page
+    Given I have gone to the Contacts Authentication page
     Then I see an 'Authentication' table with column headers as follows 'Memorable Date, Memorable Event, Memorable Place, Updated Date'
     And I see a 'Retrieved At' field
     And the table data row is populated
@@ -32,5 +32,5 @@ Feature: Consolidated View Contacts Authentication page
 
   @advanced
   Scenario: The "Retrieved At" field is accurate
-    Given I am on the Contacts Authentication page
+    Given I have gone to the Contacts Authentication page
     Then the Retrieved At field is equal to todays date and current time

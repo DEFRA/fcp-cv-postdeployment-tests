@@ -169,3 +169,12 @@ Then(
     businessMessagingPage.checkDeletedField(stringValue)
   }
 )
+
+Then(
+  'I see the correct list of messages as follows',
+  async ({ businessMessagingPage }, dataTable) => {
+    // TODO
+    // Step: Then I see the correct list of messages as follows
+    // From: test/features/business-messaging.feature:87:5
+  }
+)

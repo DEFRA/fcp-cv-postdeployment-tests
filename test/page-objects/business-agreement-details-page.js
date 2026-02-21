@@ -6,6 +6,15 @@ export default class BusinessAgreementDetailsPage {
     this.headerLabel = page.getByTestId('header-label')
     this.backButton = page.getByTestId('back-button')
     this.agreementDetailsTable = page.getByTestId('agreement-details-table')
+    this.baseUrl =
+      'https://fcp-cv-frontend.' +
+      process.env.ENVIRONMENT +
+      '.cdp-int.defra.cloud/' +
+      'businessLinkedContacts'
+  }
+
+  async gotoPage() {
+    await this.page.goto(this.baseUrl)
   }
 
   async checkHeader(expectedHeaderText) {

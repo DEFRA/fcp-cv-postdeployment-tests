@@ -43,6 +43,13 @@ When(
   }
 )
 
+When(
+  /^I select the first day of every month$/,
+  function ({ businessLandDetailsPage }) {
+    businessLandDetailsPage.selectFirstDayOfEachMonth()
+  }
+)
+
 Then(
   /^I see a Parcel Summary with a bold header which is a concatenation of the sheet and parcel codes selected$/,
   function ({ businessLandDetailsPage }) {

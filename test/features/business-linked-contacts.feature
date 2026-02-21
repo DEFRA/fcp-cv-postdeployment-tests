@@ -4,7 +4,7 @@ Feature: Consolidated View Business Linked Contacts page
   Scenario: Clicking the View customer button navigates the user to the relevant Contacts page in CRM.
     Given I have selected the business with SBI '107591843'
     And I am on the Business Linked Contacts page
-    And I have selected the contact with the CRN '1103969349' from the Contacts table
+    And I select the contact with the CRN '1103969349' from the Contacts table
     When I click the View customer button
     Then I see the CRM Contact Details page for the contact with the CRN '1103969349'
 
@@ -13,7 +13,7 @@ Feature: Consolidated View Business Linked Contacts page
     Given I have selected the business with SBI '107591843'
     And I am on the Business Linked Contacts page
     When I select the contact with the CRN '1103020285' from the Contacts table
-    Then the page updates to show the following information
+    Then the LinkedContacts page updates to show the following information
       | label                   | value                                                                                                                                                                                    |
       | Title                   | Merl Kemmer                                                                                                                                                                              |
       | CRN                     | 1103020285                                                                                                                                                                               |
@@ -28,14 +28,14 @@ Feature: Consolidated View Business Linked Contacts page
     Given I have selected the business with SBI '0000000001'
     And I am on the Business Linked Contacts page
     When I select the Permission 'ENTITLEMENTS' from the Permission table
-    Then the Permission Description table updates with the following descriptions 'View entitlements, Transfer entitlements, Apply for new entitlements'
+    Then the LinkedContacts Permission Description table updates with the following descriptions 'View entitlements, Transfer entitlements, Apply for new entitlements'
 
   @advanced @data-dependent
   Scenario: On clicking on a contact, information is shown correctly
     Given I have selected the business with SBI '107591843'
     And I am on the Business Linked Contacts page
     When I select the contact with the CRN '1103969349' from the Contacts table
-    Then the page updates to show the following information
+    Then the LinkedContacts page updates to show the following information
       | label                   | value                                                                                                                                                                                    |
       | Title                   | Velma Deckow                                                                                                                                                                             |
       | CRN                     | 1103969349                                                                                                                                                                               |
@@ -110,7 +110,7 @@ Feature: Consolidated View Business Linked Contacts page
   Scenario: Clicking the 'View Authenticate Questions' link displays a the correct information in the Contacts Authentication sub-screen
     Given I have selected the business with SBI '107591843'
     And I am on the Business Linked Contacts page
-    And I have selected the contact with the CRN '1103020285' from the Contacts table
+    And I select the contact with the CRN '1103020285' from the Contacts table
     When 'View Authenticate Questions' link
     Then I see the Contacts Authentication sub-screen with the following information
       | label           | value                |
@@ -144,9 +144,9 @@ Feature: Consolidated View Business Linked Contacts page
   Scenario: When a contact's permission is NOT level "NO_ACCESS", the Permission Description list is correct.
     Given I have selected the business with SBI '107591843'
     And I am on the Business Linked Contacts page
-    And I have selected the contact with the CRN '1103969349' from the Contacts table
+    And I select the contact with the CRN '1103969349' from the Contacts table
     And I select the Permission 'BASIC_PAYMENT_SCHEME' from the Permission table
-    Then I see the Permission Description table with 'View business summary, View claims, View land, features and covers, Create and edit a claim, Amend a previously submitted claim, Amend land, features and covers, Submit a claim'
+    Then I see the LinkedContacts Permission Description table with 'View business summary, View claims, View land, features and covers, Create and edit a claim, Amend a previously submitted claim, Amend land, features and covers, Submit a claim'
 
   @advanced @data-dependent
   Scenario: When a contact has no first name, data is displayed correctly on the Linked Contacts screen
@@ -158,7 +158,7 @@ Feature: Consolidated View Business Linked Contacts page
       | CRN        | 1111111901 |
       | First Name |            |
       | Last Name  | Grey       |
-    And the page updates to show the following information
+    And the LinkedContacts page updates to show the following information
       | label                   | value                                                                                                                                                                                    |
       | Title                   | Lady Grey                                                                                                                                                                             |
       | CRN                     | 1111111901                                                                                                                                                                               |
@@ -172,7 +172,7 @@ Feature: Consolidated View Business Linked Contacts page
   Scenario: When a contact's permission is level "NO_ACCESS", the Permission Description list shows the correct warning message "We didn't find any data to show at this time".
     Given I have selected the business with SBI '3333333333'
     And I am on the Business Linked Contacts page
-    And I have selected the contact with the CRN '1111111901' from the Contacts table
+    And I select the contact with the CRN '1111111901' from the Contacts table
     And I select the Permission 'LAND_DETAILS' from the Permission table
     Then I see the 'Permission Description' table is empty
     And I see a warning message 'We didn't find any data to show at this time' under the 'Permission Description' table
