@@ -1,19 +1,5 @@
 Feature: Consolidated View Contacts Linked Businesses page
 
-  @basic @possible-vi-test
-  Scenario: Page opens with correct components displayed.
-    Given I have gone to the Contacts Linked Businesses page
-    Then I see a Search box
-    And I see an 'Businesses' table with column headers as follows 'SBI, Name' in a left-hand side pane
-    And the first item of the 'Businesses' table is selected
-    And I see a title in bold of the name of the business in the right-hand side pane
-    And I see LinkedBusinesses fields for 'SBI, Role' in the right-hand side pane
-    And I see a 'View business' button in the right-hand side pane
-    And I see an 'Permissions' table with column headers as follows 'Permission, Level' in the right-hand side pane
-    And the first item of the 'Permission' table is selected
-    And I see an 'Permission Description' table with column headers as follows 'Permission Description'
-    And the first item of the 'Permission Description' table is selected
-
   @advanced @data-dependent
   Scenario: On clicking on a business, information is shown correctly
     Given I have selected the contact with CRN '1103020285'

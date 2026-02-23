@@ -1,12 +1,5 @@
 Feature: Consolidated View Contacts Authentication page
 
-  @basic @possible-vi-test
-  Scenario: Page opens with correct components displayed.
-    Given I have gone to the Contacts Authentication page
-    Then I see an 'Authentication' table with column headers as follows 'Memorable Date, Memorable Event, Memorable Place, Updated Date'
-    And I see a 'Retrieved At' field
-    And the table data row is populated
-
   @advanced @data-dependent
   Scenario: Contacts with no authentication data set should have all table data shown as NOT SET.
     Given I have selected a contact '1111111400'
