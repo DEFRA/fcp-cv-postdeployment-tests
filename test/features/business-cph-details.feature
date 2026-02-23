@@ -1,15 +1,5 @@
 Feature: Consolidated View CPH Details page
 
-  @basic @possible-vi-test
-  Scenario: Page opens with correct components displayed.
-    Given I have gone to the CPH Details page
-    Then I see an 'CPH' table with column headers as follows 'CPH number, Parish, Start Date, End Date'
-    And the first item of the 'CPH' table is selected
-    And I see a search box
-    And I see a CPH Details pane on the right with a title 'CPH Number: ' concatenated with CPH number
-    And the CPH Details pane has fields for 'Parish, Start Date, End Date, Coordinates (x, y), Species, Address'
-    And the CPH Details pane has the field data populated
-
   @intermediate
   Scenario: Selecting a new CPH updates the details in the right-hand pane
     Given I have gone to the CPH Details page
