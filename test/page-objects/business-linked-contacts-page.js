@@ -7,15 +7,17 @@ import {
 export default class BusinessLinkedContactsPage {
   constructor(page) {
     this.page = page
+
+    this.viewContactButton = page.getByText('View Contact')
+    this.authenticateLink = page.getByText('View Authenticate Questions')
+    this.contactsTable = page.getByRole('table')
+    this.permissionsTable = page.getByTestId('permissions-table') // Refactor
     this.baseUrl =
       'https://fcp-cv-frontend.' +
-      process.env.ENVIRONMENT +
+      'dev' +
+      // process.env.ENVIRONMENT +
       '.cdp-int.defra.cloud/' +
-      'businessLinkedContacts'
-    this.viewContactButton = page.getByTestId('view-contact-button')
-    this.authenticateLink = page.getByTestId('authenticate-link')
-    this.contactsTable = page.getByTestId('contacts-table')
-    this.permissionsTable = page.getByTestId('permissions-table')
+      'linked-contacts'
   }
 
   async gotoPage() {
@@ -23,11 +25,14 @@ export default class BusinessLinkedContactsPage {
   }
 
   async checkTitle() {
-    await expect(this.page).toHaveTitle('Business Linked Contacts')
+    await expect(this.page).toHaveTitle('Linked Contacts')
   }
 
-  async clickViewCustomerButton() {
-    await this.viewCustomerButton.click()
+  async clickViewContactButton(context) {
+    await Promise.all([
+      context.waitForEvent('page'),
+      this.viewContactButton.click()
+    ])
   }
 
   async clickAuthenticateLink() {
@@ -95,7 +100,7 @@ export default class BusinessLinkedContactsPage {
   }
 
   async viewContactButtonIsVisible() {
-    expect(this.viewCustomerButton).toBeVisible()
+    expect(this.viewContactButton).toBeVisible()
   }
 
   async selectContactByCrn(crn) {

@@ -29,6 +29,15 @@ export default class BusinessMessagingPage {
     this.messageDeletedLabel = page.getByTestId('message-deleted-label')
     this.messageDeletedTextBox = page.getByTestId('message-deleted-textbox')
     this.messageTextBox = page.getByTestId('message-textbox')
+    this.baseUrl =
+      'https://fcp-cv-frontend.' +
+      process.env.ENVIRONMENT +
+      '.cdp-int.defra.cloud/' +
+      'business-messages'
+  }
+
+  async gotoPage() {
+    await this.page.goto(this.baseUrl)
   }
 
   async checkTitle() {

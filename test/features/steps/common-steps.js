@@ -1,48 +1,25 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
-import { navigate } from '../../helpers/commonfunctions.js'
-import ContactsLinkedBusinessesPage from '../../page-objects/contacts-linked-businesses-page.js'
-import ContactsAuthenticationPage from '../../page-objects/contacts-authentication-page.js'
-import BusinessMessagingPage from '../../page-objects/business-messaging-page.js'
-import BusinessLinkedContactsPage from '../../page-objects/business-linked-contacts-page.js'
-import BusinessLandDetailsPage from '../../page-objects/business-land-details-page.js'
-import BusinessCphDetailsPage from '../../page-objects/business-cph-details-page.js'
-import BusinessApplicationsPage from '../../page-objects/business-applications-page.js'
-import BusinessAgreementsPage from '../../page-objects/business-agreements-page.js'
+import { navigate, updateURLParameter } from '../../helpers/commonfunctions.js'
 
 const { Given, When, Then } = createBdd(test)
 
-// ------------------------------------------------------
-// Navigation + Page Context
-// ------------------------------------------------------
-
 Given(
   /^I have selected the business with SBI '(\d+)'$/,
-  async function ({ page }, sbi) {
+  async function ({ page }, sbiNumber) {
+    // TODO - What is id and typename here?
     // Example - ?id=5ffbOfdd-61b9-f011-bbd2-002248a0744b&typename=account&sbi=11111111111
     const currentUrl = await page.url()
-    const mainUrl = currentUrl.split('?')[0]
-    // TODO - What is id and typename here?
-    const newUrl =
-      mainUrl +
-      '?' +
-      'id=5ffbOfdd-61b9-f011-bbd2-002248a0744b&typename=account&sbi=' +
-      sbi
+    const newUrl = updateURLParameter(currentUrl, 'sbi', sbiNumber)
     await page.goto(newUrl)
   }
 )
 
 Given(
   /^I have selected the contact with CRN '(.+)'$/,
-  async function ({ page }, crn) {
+  async function ({ page }, crnNumber) {
     const currentUrl = await page.url()
-    const mainUrl = currentUrl.split('?')[0]
-    // TODO - Need to see a full CRN example. Are id and typename even needed here?
-    const newUrl =
-      mainUrl +
-      '?' +
-      'id=5ffbOfdd-61b9-f011-bbd2-002248a0744b&typename=account&crn=' +
-      crn
+    const newUrl = updateURLParameter(currentUrl, 'crn', crnNumber)
     await page.goto(newUrl)
   }
 )
@@ -51,53 +28,68 @@ Given(/^I am logged in as user '(.+)'$/, async function ({ page }, crn) {
   // TODO
 })
 
-Given(/^I have gone to the (.+) page$/, async function ({ page }, pageName) {
-  await navigate(pageName)
+Given(/^I have gone to the '(.+)' page$/, async function ({ page }, pageName) {
+  await navigate(page, pageName)
 })
 
 When(/^I navigate to the (.+) page$/, async function ({ page }, pageName) {
   await navigate(pageName)
 })
 
-Then(/^I am on the (.+) page$/, async function ({ page }, pageName) {
-  switch (pageName) {
-    case 'Contacts Linked Businesses':
-      await ContactsLinkedBusinessesPage.checkTitle()
-      break
+Then(
+  /^I am on the (.+) page$/,
+  async function (
+    {
+      contactsLinkedBusinessesPage,
+      businessAgreementsPage,
+      businessApplicationsPage,
+      businessCphDetailsPage,
+      businessLandDetailsPage,
+      businessMessagingPage,
+      contactsAuthenticationPage,
+      businessLinkedContactsPage
+    },
+    pageName
+  ) {
+    switch (pageName) {
+      case 'Contacts Linked Businesses':
+        await contactsLinkedBusinessesPage.checkTitle()
+        break
 
-    case 'Contacts Authentication':
-      await ContactsAuthenticationPage.checkTitle()
-      break
+      case 'Contacts Authentication':
+        await contactsAuthenticationPage.checkTitle()
+        break
 
-    case 'Business Messages':
-      await BusinessMessagingPage.checkTitle()
-      break
+      case 'Business Messages':
+        await businessMessagingPage.checkTitle()
+        break
 
-    case 'Business Linked Contacts':
-      await BusinessLinkedContactsPage.checkTitle()
-      break
+      case 'Business Linked Contacts':
+        await businessLinkedContactsPage.checkTitle()
+        break
 
-    case 'Land Details':
-      await BusinessLandDetailsPage.checkTitle()
-      break
+      case 'Land Details':
+        await businessLandDetailsPage.checkTitle()
+        break
 
-    case 'CPH Details':
-      await BusinessCphDetailsPage.checkTitle()
-      break
+      case 'CPH Details':
+        await businessCphDetailsPage.checkTitle()
+        break
 
-    case 'Applications':
-      await BusinessApplicationsPage.checkTitle()
-      break
+      case 'Applications':
+        await businessApplicationsPage.checkTitle()
+        break
 
-    case 'Agreements':
-      await BusinessAgreementsPage.checkTitle()
-      break
+      case 'Agreements':
+        await businessAgreementsPage.checkTitle()
+        break
 
-    default:
-      // console.log('Page check failed - page name not recognised')
-      throw new Error('Page check failed - page name not recognised')
+      default:
+        // console.log('Page check failed - page name not recognised')
+        throw new Error('Page check failed - page name not recognised')
+    }
   }
-})
+)
 
 // ------------------------------------------------------
 // KEYBOARD INTERACTION

@@ -5,49 +5,49 @@ const { When, Then } = createBdd(test)
 
 When(
   /^I click the 'Back to Agreements list' link$/,
-  function ({ businessAgreementDetailsPage }) {
-    businessAgreementDetailsPage.clickBackButton()
+  async function ({ businessAgreementDetailsPage }) {
+    await businessAgreementDetailsPage.clickBackButton()
   }
 )
 
 Then(
   /^I see a header with '(.+)' as the title$/,
-  function ({ businessAgreementDetailsPage }, expectedText) {
-    businessAgreementDetailsPage.checkHeader(expectedText)
+  async function ({ businessAgreementDetailsPage }, expectedText) {
+    await businessAgreementDetailsPage.checkHeader(expectedText)
   }
 )
 
 Then(
   /^I see underneath the header the following fields '(.+)'$/,
-  function ({ businessAgreementDetailsPage }, expectedFieldList) {
-    businessAgreementDetailsPage.checkFields(expectedFieldList)
+  async function ({ businessAgreementDetailsPage }, expectedFieldList) {
+    await businessAgreementDetailsPage.checkFields(expectedFieldList)
   }
 )
 
 Then(
   /^I see an option to go back to see the main screen with Agreements table$/,
-  function ({ businessAgreementDetailsPage }) {
-    businessAgreementDetailsPage.checkBackButtonExists()
+  async function ({ businessAgreementDetailsPage }) {
+    await businessAgreementDetailsPage.checkBackButtonExists()
   }
 )
 
 Then(
   /^I see the Agreement Details table ordered by 'Sheet', 'Parcel', 'Description', 'Payment Schedule' alphabetically ascending$/,
-  function ({ businessAgreementDetailsPage }, dataTable) {
-    businessAgreementDetailsPage.checkAgreementDetailsColumnOrdering()
+  async function ({ businessAgreementDetailsPage }, dataTable) {
+    await businessAgreementDetailsPage.checkAgreementDetailsColumnOrdering()
   }
 )
 
 Then(
   /^The screen data for Action Area \(ha\) in the Payment Schedule selected is the amount in the JSON divided by 10,000 as it is provided in m2 but displayed in ha\.$/,
-  function ({ businessAgreementDetailsPage }) {
-    businessAgreementDetailsPage.checkActionAreaHaValues()
+  async function ({ businessAgreementDetailsPage }) {
+    await businessAgreementDetailsPage.checkActionAreaHaValues()
   }
 )
 
 Then(
   /^The screen data for Parcel Area \(ha\) in the Payment Schedule selected is the amount in the JSON divided by 10,000 as it is provided in m2 but displayed in ha\.$/,
-  function ({ businessAgreementDetailsPage }) {
-    businessAgreementDetailsPage.checkParcelAreaHaValues()
+  async function ({ businessAgreementDetailsPage }) {
+    await businessAgreementDetailsPage.checkParcelAreaHaValues()
   }
 )

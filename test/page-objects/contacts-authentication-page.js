@@ -6,6 +6,15 @@ export default class ContactsAuthenticationPage {
     this.retrievedAtLabel = page.getByTestId('retrieved-at-label')
     this.retrievedAtTextBox = page.getByTestId('retrieved-at-textbox')
     this.authenticationTable = page.getByTestId('authentication-table')
+    this.baseUrl =
+      'https://fcp-cv-frontend.' +
+      process.env.ENVIRONMENT +
+      '.cdp-int.defra.cloud/' +
+      'authenticate'
+  }
+
+  async gotoPage() {
+    await this.page.goto(this.baseUrl)
   }
 
   async checkTitle() {

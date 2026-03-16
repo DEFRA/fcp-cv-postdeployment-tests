@@ -1,11 +1,12 @@
 Feature: Consolidated View Business Linked Contacts page
 
-  @intermediate @data-dependent
+  @intermediate @data-dependent @target
   Scenario: Clicking the View customer button navigates the user to the relevant Contacts page in CRM.
-    Given I have selected the business with SBI '107591843'
+    Given I have gone to the 'Business Linked Contacts' page
+    Given I have selected the business with SBI '1111111111'
     And I am on the Business Linked Contacts page
-    And I select the contact with the CRN '1103969349' from the Contacts table
-    When I click the View customer button
+    And I select the contact with the CRN '1111111700' from the Contacts table
+    When I click the View Contact button
     Then I see the CRM Contact Details page for the contact with the CRN '1103969349'
 
   @advanced @data-dependent

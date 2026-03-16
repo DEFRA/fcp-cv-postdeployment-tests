@@ -12,21 +12,21 @@ const { Given, When, Then } = createBdd(test)
 Then(
   /^I see a title in bold of the name of the business in the right-hand side pane$/,
   async function ({ contactsLinkedBusinessesPage }) {
-    contactsLinkedBusinessesPage.checkBusinessNameTitle()
+    await contactsLinkedBusinessesPage.checkBusinessNameTitle()
   }
 )
 
 Then(
   /^I see LinkedBusinesses fields for '(.+)' in the right-hand side pane$/,
   async function ({ contactsLinkedBusinessesPage }, fields) {
-    contactsLinkedBusinessesPage.checkAllFields(fields)
+    await contactsLinkedBusinessesPage.checkAllFields(fields)
   }
 )
 
 Then(
   /^I see a 'View business' button in the right-hand side pane$/,
   async function ({ contactsLinkedBusinessesPage }) {
-    contactsLinkedBusinessesPage.checkViewBusinessButton()
+    await contactsLinkedBusinessesPage.checkViewBusinessButton()
   }
 )
 
@@ -39,21 +39,21 @@ Then(
 When(
   /^I select the business '(.+)' from the Businesses table$/,
   async function ({ contactsLinkedBusinessesPage }, businessName) {
-    contactsLinkedBusinessesPage.selectBusiness(businessName)
+    await contactsLinkedBusinessesPage.selectBusiness(businessName)
   }
 )
 
 Given(
   /^I have selected '(.+)' in the Businesses table$/,
   async function ({ contactsLinkedBusinessesPage }, businessName) {
-    contactsLinkedBusinessesPage.selectBusiness(businessName)
+    await contactsLinkedBusinessesPage.selectBusiness(businessName)
   }
 )
 
 When(
   /^I select the Permission '(.+)' from the Permissions table$/,
   async function ({ contactsLinkedBusinessesPage }, permission) {
-    contactsLinkedBusinessesPage.selectPermission(permission)
+    await contactsLinkedBusinessesPage.selectPermission(permission)
   }
 )
 
@@ -66,7 +66,7 @@ When(
 Then(
   /^I see the the correct list of businesses as follows$/,
   async function ({ contactsLinkedBusinessesPage }, businessList) {
-    contactsLinkedBusinessesPage.checkBusinessList(businessList)
+    await contactsLinkedBusinessesPage.checkBusinessList(businessList)
   }
 )
 
@@ -79,14 +79,16 @@ Then(
 Then(
   /^the LinkedBusinesses page updates to show the following information$/,
   async function ({ contactsLinkedBusinessesPage }, expectedBusinessDetails) {
-    contactsLinkedBusinessesPage.checkBusinessData(expectedBusinessDetails)
+    await contactsLinkedBusinessesPage.checkBusinessData(
+      expectedBusinessDetails
+    )
   }
 )
 
 Then(
   /^the LinkedBusinesses Permission Description table updates with the following descriptions '(.+)'$/,
   async function ({ contactsLinkedBusinessesPage }, expectedDescriptions) {
-    contactsLinkedBusinessesPage.checkPermissionDescriptionTable(
+    await contactsLinkedBusinessesPage.checkPermissionDescriptionTable(
       expectedDescriptions
     )
   }
@@ -101,7 +103,7 @@ Then(
 When(
   /^I click the View Business button$/,
   async function ({ contactsLinkedBusinessesPage }) {
-    contactsLinkedBusinessesPage.clickViewBusinessButton()
+    await contactsLinkedBusinessesPage.clickViewBusinessButton()
   }
 )
 

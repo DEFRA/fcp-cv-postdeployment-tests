@@ -2,7 +2,7 @@ Feature: Consolidated View Agreements page
 
   @intermediate
   Scenario: The back arrow on the Agreement Details screen takes the user back to the main Agreements screen
-    Given I have gone to the Agreement Details page
+    Given I have gone to the 'Agreement Details' page
     When I click the 'Back to Agreements list' link
     Then I am on the Agreements page
 

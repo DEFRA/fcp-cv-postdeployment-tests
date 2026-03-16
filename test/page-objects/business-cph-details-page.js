@@ -25,6 +25,15 @@ export default class BusinessCphDetailsPage {
     this.cphDetailsPaneAddressDataLabel = page.getByTestId(
       'cph-details-pane-address-data-label'
     )
+    this.baseUrl =
+      'https://fcp-cv-frontend.' +
+      process.env.ENVIRONMENT +
+      '.cdp-int.defra.cloud/' +
+      'county-parish-holdings'
+  }
+
+  async gotoPage() {
+    await this.page.goto(this.baseUrl)
   }
 
   async checkTitle() {

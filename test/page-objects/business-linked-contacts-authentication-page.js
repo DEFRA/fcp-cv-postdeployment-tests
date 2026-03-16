@@ -15,6 +15,11 @@ export default class BusinessLinkedContactsAuthenticationPage {
     this.dobLabel = page.getByTestId('dob-label')
     this.title = page.getByTestId('title')
     this.authenticationTable = page.getByTestId('authentication-table')
+    this.baseUrl =
+      'https://fcp-cv-frontend.' +
+      process.env.ENVIRONMENT +
+      '.cdp-int.defra.cloud/' +
+      'linked-contacts'
   }
 
   async gotoPage() {

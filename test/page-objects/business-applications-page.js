@@ -40,6 +40,15 @@ export default class BusinessApplicationsPage {
     )
     this.movementHistoryTable = page.getByTestId('movement-history-table')
     this.searchTextBox = page.getByTestId('search-textbox')
+    this.baseUrl =
+      'https://fcp-cv-frontend.' +
+      process.env.ENVIRONMENT +
+      '.cdp-int.defra.cloud/' +
+      'applications'
+  }
+
+  async gotoPage() {
+    await this.page.goto(this.baseUrl)
   }
 
   async checkTitle() {

@@ -13,13 +13,13 @@ const { Given, When, Then } = createBdd(test)
 Given(
   /^I have selected the contact '(.+)'$/,
   async function ({ businessMessagingPage }, contactName) {
-    businessMessagingPage.selectContact(contactName)
+    await businessMessagingPage.selectContact(contactName)
   }
 )
 
 // Given and When
 When(/^I select a contact$/, async function ({ businessMessagingPage }) {
-  businessMessagingPage.selectContact(null)
+  await businessMessagingPage.selectContact(null)
 })
 
 //
@@ -31,14 +31,14 @@ When(/^I select a contact$/, async function ({ businessMessagingPage }) {
 When(
   /^I select the first message$/,
   async function ({ businessMessagingPage }) {
-    businessMessagingPage.selectMessage(null)
+    await businessMessagingPage.selectMessage(null)
   }
 )
 
 When(
   /^I select the message with the subject '(.+)'$/,
   async function ({ businessMessagingPage }, subject) {
-    businessMessagingPage.selectMessage(subject)
+    await businessMessagingPage.selectMessage(subject)
   }
 )
 
@@ -51,14 +51,14 @@ When(
 When(
   /^I select the Date Range field as '(.+)'$/,
   async function ({ businessMessagingPage }, rangeString) {
-    businessMessagingPage.selectDateRange(rangeString)
+    await businessMessagingPage.selectDateRange(rangeString)
   }
 )
 
 When(
   /^I select '(.+)' from the Read-Unread filter$/,
   async function ({ businessMessagingPage }, option) {
-    businessMessagingPage.selectReadUnread(option)
+    await businessMessagingPage.selectReadUnread(option)
   }
 )
 
@@ -71,35 +71,35 @@ When(
 Then(
   /^I see the Contacts drop-down$/,
   async function ({ businessMessagingPage }) {
-    businessMessagingPage.checkContactsDropDown()
+    await businessMessagingPage.checkContactsDropDown()
   }
 )
 
 Then(
   /^I see a disabled Date Range drop-down$/,
   async function ({ businessMessagingPage }) {
-    businessMessagingPage.checkDateRangeDropDownDisabled()
+    await businessMessagingPage.checkDateRangeDropDownDisabled()
   }
 )
 
 Then(
   /^I see a disabled Show Read\/Unread drop-down$/,
   async function ({ businessMessagingPage }) {
-    businessMessagingPage.checkReadUnreadMessageDropDownDisabled()
+    await businessMessagingPage.checkReadUnreadMessageDropDownDisabled()
   }
 )
 
 Then(
   /^the Date Range field becomes active with options for '(.+)'$/,
   async function ({ businessMessagingPage }, expectedOptions) {
-    businessMessagingPage.checkDateRangeDropDown(expectedOptions)
+    await businessMessagingPage.checkDateRangeDropDown(expectedOptions)
   }
 )
 
 Then(
   /^the Show Read\/Unread field becomes active with options for '(.+)'$/,
   async function ({ businessMessagingPage }, expectedOptions) {
-    businessMessagingPage.checkReadUnreadMessageDropDown(expectedOptions)
+    await businessMessagingPage.checkReadUnreadMessageDropDown(expectedOptions)
   }
 )
 
@@ -112,21 +112,21 @@ Then(
 Then(
   /^the right-hand pane updates with a bold title, a Date field, a Read field, a Deleted field and a Message field$/,
   async function ({ businessMessagingPage }) {
-    businessMessagingPage.validateRightPaneStructure()
+    await businessMessagingPage.validateRightPaneStructure()
   }
 )
 
 Then(
   /^there is a label in the right-hand pane '(.+)'$/,
   async function ({ businessMessagingPage }, labelText) {
-    businessMessagingPage.checkLabelWithTextExists(labelText)
+    await businessMessagingPage.checkLabelWithTextExists(labelText)
   }
 )
 
 Then(
   /^right-hand pane updates with the following information$/,
   async function ({ businessMessagingPage }, expectedData) {
-    businessMessagingPage.checkMessageDetails(expectedData)
+    await businessMessagingPage.checkMessageDetails(expectedData)
   }
 )
 
@@ -139,21 +139,21 @@ Then(
 Then(
   /^the Contacts drop-down is empty$/,
   async function ({ businessMessagingPage }) {
-    businessMessagingPage.checkContactsDropDownIsEmpty()
+    await businessMessagingPage.checkContactsDropDownIsEmpty()
   }
 )
 
 Then(
   /^I see the the correct list of messages as follows$/,
   async function ({ businessMessagingPage }, table) {
-    businessMessagingPage.checkMessagesList()
+    await businessMessagingPage.checkMessagesList()
   }
 )
 
 Then(
   /^the Contacts drop-down contains entries for '(.+)'$/,
   async function ({ businessMessagingPage }, expectedContacts) {
-    businessMessagingPage.checkContactsList(expectedContacts)
+    await businessMessagingPage.checkContactsList(expectedContacts)
   }
 )
 
@@ -166,7 +166,7 @@ Then(
 Then(
   /^the Deleted field is '(.+)'$/,
   async function ({ businessMessagingPage }, stringValue) {
-    businessMessagingPage.checkDeletedField(stringValue)
+    await businessMessagingPage.checkDeletedField(stringValue)
   }
 )
 

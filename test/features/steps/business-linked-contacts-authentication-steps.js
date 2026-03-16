@@ -6,49 +6,49 @@ const { Then } = createBdd(test)
 Then(
   /^I see the Contacts Authentication sub-screen$/,
   async function ({ businessLinkedContactsAuthenticationPage }) {
-    businessLinkedContactsAuthenticationPage.checkTitle()
+    await businessLinkedContactsAuthenticationPage.checkTitle()
   }
 )
 
 Then(
   /^a title in bold$/,
   async function ({ businessLinkedContactsAuthenticationPage }) {
-    businessLinkedContactsAuthenticationPage.contactsAuthenticationSubScreenTitleIsVisible()
+    await businessLinkedContactsAuthenticationPage.contactsAuthenticationSubScreenTitleIsVisible()
   }
 )
 
 Then(
   /^a CRN field$/,
   async function ({ businessLinkedContactsAuthenticationPage }) {
-    businessLinkedContactsAuthenticationPage.contactsAuthenticationSubScreenCrnIsVisible()
+    await businessLinkedContactsAuthenticationPage.contactsAuthenticationSubScreenCrnIsVisible()
   }
 )
 
 Then(
   /^a Full Name field$/,
   async function ({ businessLinkedContactsAuthenticationPage }) {
-    businessLinkedContactsAuthenticationPage.contactsAuthenticationSubScreenFullNameIsVisible()
+    await businessLinkedContactsAuthenticationPage.contactsAuthenticationSubScreenFullNameIsVisible()
   }
 )
 
 Then(
   /^a Role field$/,
   async function ({ businessLinkedContactsAuthenticationPage }) {
-    businessLinkedContactsAuthenticationPage.contactsAuthenticationSubScreenRoleIsVisible()
+    await businessLinkedContactsAuthenticationPage.contactsAuthenticationSubScreenRoleIsVisible()
   }
 )
 
 Then(
   /^a Date of Birth field$/,
   async function ({ businessLinkedContactsAuthenticationPage }) {
-    businessLinkedContactsAuthenticationPage.contactsAuthenticationSubScreenDobIsVisible()
+    await businessLinkedContactsAuthenticationPage.contactsAuthenticationSubScreenDobIsVisible()
   }
 )
 
 Then(
   /^I see the Contacts Authentication sub-screen with the following information$/,
   async function ({ businessLinkedContactsAuthenticationPage }, table) {
-    businessLinkedContactsAuthenticationPage.checkContactsAuthenticationSubScreen(
+    await businessLinkedContactsAuthenticationPage.checkContactsAuthenticationSubScreen(
       table
     )
   }

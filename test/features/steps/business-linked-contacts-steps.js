@@ -1,5 +1,6 @@
 import { createBdd } from 'playwright-bdd'
 import { test } from './fixtures.js'
+import { checkTabCount } from '../../helpers/commonfunctions.js'
 
 const { When, Then } = createBdd(test)
 
@@ -10,9 +11,9 @@ const { When, Then } = createBdd(test)
 //
 
 When(
-  /^I click the View customer button$/,
-  async function ({ businessLinkedContactsPage }) {
-    await businessLinkedContactsPage.clickViewCustomerButton()
+  /^I click the View Contact button$/,
+  async function ({ context, businessLinkedContactsPage }) {
+    await businessLinkedContactsPage.clickViewContactButton(context)
   }
 )
 
@@ -109,10 +110,10 @@ Then(
 
 Then(
   /^I see the CRM Contact Details page for the contact with the CRN '(.+)'$/,
-  async function ({ businessLinkedContactsPage }, crn) {
+  async function ({ context, businessLinkedContactsPage }, crn) {
     // Assert CRM page opened
-    // Unclear if this can be done in an automated way
-    // TODO
+    // Because we do not test in a CRM environment, we check an additional tab has opened, not specifically that we've navigated to a Contact screen
+    await checkTabCount(context, 2)
   }
 )
 

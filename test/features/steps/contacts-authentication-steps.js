@@ -12,14 +12,14 @@ const { Given, Then } = createBdd(test)
 Given(
   /^I have selected a contact with no authentication data set$/,
   async function ({ contactsAuthenticationPage }) {
-    contactsAuthenticationPage.selectContactWithNoAuthDataSet()
+    await contactsAuthenticationPage.selectContactWithNoAuthDataSet()
   }
 )
 
 Given(
   /^I have selected a contact who is not in the authentication database$/,
   async function ({ contactsAuthenticationPage }) {
-    contactsAuthenticationPage.selectContactNotPresentInTheAuthDb()
+    await contactsAuthenticationPage.selectContactNotPresentInTheAuthDb()
   }
 )
 
@@ -32,14 +32,14 @@ Given(
 Then(
   /^I see a 'Retrieved At' field$/,
   async function ({ contactsAuthenticationPage }) {
-    contactsAuthenticationPage.checkRetrievedAtFieldExists()
+    await contactsAuthenticationPage.checkRetrievedAtFieldExists()
   }
 )
 
 Then(
   /^the table data row is populated$/,
   async function ({ contactsAuthenticationPage }) {
-    contactsAuthenticationPage.checkAuthenticationTableIsPopulated()
+    await contactsAuthenticationPage.checkAuthenticationTableIsPopulated()
   }
 )
 
@@ -52,7 +52,7 @@ Then(
 Then(
   /^All table entries should be shown as '(.+)'$/,
   async function ({ contactsAuthenticationPage }, expectedString) {
-    contactsAuthenticationPage.checkAuthenticationTableCellsHaveSameValues(
+    await contactsAuthenticationPage.checkAuthenticationTableCellsHaveSameValues(
       expectedString
     )
   }
@@ -61,7 +61,9 @@ Then(
 Then(
   /^All table entries should be shown as follows$/,
   async function ({ contactsAuthenticationPage }, expectedValues) {
-    contactsAuthenticationPage.checkAuthenticationTableValues(expectedValues)
+    await contactsAuthenticationPage.checkAuthenticationTableValues(
+      expectedValues
+    )
   }
 )
 
@@ -74,7 +76,7 @@ Then(
 Then(
   /^the Retrieved At field is equal to todays date and current time$/,
   async function ({ contactsAuthenticationPage }) {
-    contactsAuthenticationPage.checkRetrievedAtValue()
+    await contactsAuthenticationPage.checkRetrievedAtValue()
   }
 )
 

@@ -8,56 +8,56 @@ const { When, Then } = createBdd(test)
 
 Then(
   /^I see a CPH Details pane on the right with a title '(.+)' concatenated with with CPH number$/,
-  function ({ businessCphDetailsPage }, titlePrefix) {
-    businessCphDetailsPage.checkDetailsPaneTitle(titlePrefix)
+  async function ({ businessCphDetailsPage }, titlePrefix) {
+    await businessCphDetailsPage.checkDetailsPaneTitle(titlePrefix)
   }
 )
 
 Then(
   /^the CPH Details pane has fields for '(.+)'$/,
-  function ({ businessCphDetailsPage }, expectedFields) {
-    businessCphDetailsPage.checkDetailsPaneFields(expectedFields)
+  async function ({ businessCphDetailsPage }, expectedFields) {
+    await businessCphDetailsPage.checkDetailsPaneFields(expectedFields)
   }
 )
 
 Then(
   /^the CPH Details pane has the field data populated$/,
-  function ({ businessCphDetailsPage }) {
-    businessCphDetailsPage.checkDetailsPaneFieldsArePopulated()
+  async function ({ businessCphDetailsPage }) {
+    await businessCphDetailsPage.checkDetailsPaneFieldsArePopulated()
   }
 )
 
 Then(
   /^I see the the correct list of CPHs as follows$/,
-  function ({ businessCphDetailsPage }, expectedCphData) {
-    businessCphDetailsPage.checkCphListData(expectedCphData, false)
+  async function ({ businessCphDetailsPage }, expectedCphData) {
+    await businessCphDetailsPage.checkCphListData(expectedCphData, false)
   }
 )
 
 Then(
   /^I see the correctly ordered list of CPH's as follows$/,
-  function ({ businessCphDetailsPage }, expectedCphData) {
-    businessCphDetailsPage.checkCphListData(expectedCphData, true)
+  async function ({ businessCphDetailsPage }, expectedCphData) {
+    await businessCphDetailsPage.checkCphListData(expectedCphData, true)
   }
 )
 
 When(
   /^When I select a new CPH from the CPH Table$/,
-  function ({ businessCphDetailsPage }) {
-    businessCphDetailsPage.selectCph(null)
+  async function ({ businessCphDetailsPage }) {
+    await businessCphDetailsPage.selectCph(null)
   }
 )
 
 When(
   /^I select the CPH '([^']+)'$/,
-  function ({ businessCphDetailsPage }, cphNumber) {
-    businessCphDetailsPage.selectCph(cphNumber)
+  async function ({ businessCphDetailsPage }, cphNumber) {
+    await businessCphDetailsPage.selectCph(cphNumber)
   }
 )
 
 Then(
   /^the details in the right-hand side pane update$/,
-  function ({ businessCphDetailsPage }) {
+  async function ({ businessCphDetailsPage }) {
     // TODO
     // Unclear how best to do this
   }
@@ -65,22 +65,22 @@ Then(
 
 Then(
   /^I see an empty CPH Details pane$/,
-  function ({ businessCphDetailsPage }) {
-    businessCphDetailsPage.checkDetailsPaneIsEmpty()
+  async function ({ businessCphDetailsPage }) {
+    await businessCphDetailsPage.checkDetailsPaneIsEmpty()
   }
 )
 
 Then(
   /^then I see the following CPH Details$/,
-  function ({ businessCphDetailsPage }, expectedCphDetails) {
-    businessCphDetailsPage.checkCphFieldData(expectedCphDetails)
+  async function ({ businessCphDetailsPage }, expectedCphDetails) {
+    await businessCphDetailsPage.checkCphFieldData(expectedCphDetails)
   }
 )
 
 Then(
   /^I see the CPH Details pane has fields for '([^']+)'$/,
-  function ({ businessCphDetailsPage }, expectedFields) {
-    businessCphDetailsPage.checkCphFieldsExist(expectedFields)
+  async function ({ businessCphDetailsPage }, expectedFields) {
+    await businessCphDetailsPage.checkCphFieldsExist(expectedFields)
   }
 )
 

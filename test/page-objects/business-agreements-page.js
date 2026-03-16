@@ -4,6 +4,15 @@ export default class BusinessAgreementsPage {
   constructor(page) {
     this.page = page
     this.agreementsTable = page.getByTestId('agreements-table')
+    this.baseUrl =
+      'https://fcp-cv-frontend.' +
+      process.env.ENVIRONMENT +
+      '.cdp-int.defra.cloud/' +
+      'agreements'
+  }
+
+  async gotoPage() {
+    await this.page.goto(this.baseUrl)
   }
 
   async checkTitle() {

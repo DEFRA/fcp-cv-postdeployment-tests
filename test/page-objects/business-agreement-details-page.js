@@ -10,7 +10,7 @@ export default class BusinessAgreementDetailsPage {
       'https://fcp-cv-frontend.' +
       process.env.ENVIRONMENT +
       '.cdp-int.defra.cloud/' +
-      'businessLinkedContacts'
+      'agreements'
   }
 
   async gotoPage() {

@@ -1,3 +1,5 @@
+import { expect } from '@playwright/test'
+
 import ContactsLinkedBusinessesPage from '../page-objects/contacts-linked-businesses-page.js'
 import ContactsAuthenticationPage from '../page-objects/contacts-authentication-page.js'
 import BusinessMessagingPage from '../page-objects/business-messaging-page.js'
@@ -7,39 +9,57 @@ import BusinessCphDetailsPage from '../page-objects/business-cph-details-page.js
 import BusinessApplicationsPage from '../page-objects/business-applications-page.js'
 import BusinessAgreementsPage from '../page-objects/business-agreements-page.js'
 
-export async function navigate(pageName) {
+export async function navigate(page, pageName) {
   switch (pageName) {
-    case 'Contacts Linked Businesses':
-      await ContactsLinkedBusinessesPage.gotoPage()
+    case 'Contacts Linked Businesses': {
+      const contactsLinkedBusinessesPage = new ContactsLinkedBusinessesPage(
+        page
+      )
+      await contactsLinkedBusinessesPage.gotoPage()
       break
+    }
 
-    case 'Contacts Authentication':
-      await ContactsAuthenticationPage.gotoPage()
+    case 'Contacts Authentication': {
+      const contactsAuthenticationPage = new ContactsAuthenticationPage(page)
+      await contactsAuthenticationPage.gotoPage()
       break
+    }
 
-    case 'Business Messages':
-      await BusinessMessagingPage.gotoPage()
+    case 'Business Messages': {
+      const businessMessagingPage = new BusinessMessagingPage(page)
+      await businessMessagingPage.gotoPage()
       break
+    }
 
-    case 'Business Linked Contacts':
-      await BusinessLinkedContactsPage.gotoPage()
+    case 'Business Linked Contacts': {
+      const businessLinkedContactsPage = new BusinessLinkedContactsPage(page)
+      await businessLinkedContactsPage.gotoPage()
       break
+    }
 
-    case 'Land Details':
-      await BusinessLandDetailsPage.gotoPage()
+    case 'Land Details': {
+      const businessLandDetailsPage = new BusinessLandDetailsPage(page)
+      await businessLandDetailsPage.gotoPage()
       break
+    }
 
-    case 'CPH Details':
-      await BusinessCphDetailsPage.gotoPage()
+    case 'CPH Details': {
+      const businessCphDetailsPage = new BusinessCphDetailsPage(page)
+      await businessCphDetailsPage.gotoPage()
       break
+    }
 
-    case 'Applications':
-      await BusinessApplicationsPage.gotoPage()
+    case 'Applications': {
+      const businessApplicationsPage = new BusinessApplicationsPage(page)
+      await businessApplicationsPage.gotoPage()
       break
+    }
 
-    case 'Agreements':
-      await BusinessAgreementsPage.gotoPage()
+    case 'Agreements': {
+      const businessAgreementsPage = new BusinessAgreementsPage(page)
+      await businessAgreementsPage.gotoPage()
       break
+    }
 
     default:
       // console.log('Navigation failed - page name not recognised')
@@ -97,4 +117,29 @@ export async function checkFieldAndTableValues(
       )
     }
   }
+}
+
+export function updateURLParameter(url, param, paramVal) {
+  let newAdditionalURL = ''
+  let tempArray = url.split('?')
+  const baseURL = tempArray[0]
+  const additionalURL = tempArray[1]
+  let temp = ''
+  if (additionalURL) {
+    tempArray = additionalURL.split('&')
+    for (let i = 0; i < tempArray.length; i++) {
+      if (tempArray[i].split('=')[0] !== param) {
+        newAdditionalURL += temp + tempArray[i]
+        temp = '&'
+      }
+    }
+  }
+
+  const newParm = temp + '' + param + '=' + paramVal
+  return baseURL + '?' + newAdditionalURL + newParm
+}
+
+export async function checkTabCount(context, expectedTabCount) {
+  const totPages = context.pages().length
+  await expect(totPages).toEqual(expectedTabCount)
 }

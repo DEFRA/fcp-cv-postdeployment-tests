@@ -25,5 +25,5 @@ Feature: Consolidated View Contacts Authentication page
 
   @advanced
   Scenario: The "Retrieved At" field is accurate
-    Given I have gone to the Contacts Authentication page
+    Given I have gone to the 'Contacts Authentication' page
     Then the Retrieved At field is equal to todays date and current time

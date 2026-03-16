@@ -2,7 +2,7 @@ Feature: Consolidated View Business Messages page
 
   @basic @possible-vi-test
   Scenario: Message data updates correctly once a contact is selected.
-    Given I have gone to the Business Messages page
+    Given I have gone to the 'Business Messages' page
     And I select a contact
     When I select the first message
     Then the right-hand pane updates with a bold title, a Date field, a Read field, a Deleted field and a Message field

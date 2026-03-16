@@ -31,6 +31,15 @@ export default class BusinessLandDetailsPage {
       page.getByTestId(
         'total-parcels-with-pending-customer-notified-land-changes-datalabel'
       )
+    this.baseUrl =
+      'https://fcp-cv-frontend.' +
+      process.env.ENVIRONMENT +
+      '.cdp-int.defra.cloud/' +
+      'land-details'
+  }
+
+  async gotoPage() {
+    await this.page.goto(this.baseUrl)
   }
 
   async checkTitle() {

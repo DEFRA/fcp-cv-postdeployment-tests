@@ -12,6 +12,35 @@ The framework has example code for:
 - Switching environment URLs (pageobjects/cdphomepage.js)
 - Executing tests against Chrome and Edge (playwright.config.js and Dockerfile)
 
+## Running the tests
+
+1. Set the required environment variables
+
+```bash
+export MS_EMAIL=<your email address>
+export MS_PW=<Your password>
+```
+
+2. Execute the tests using npm
+
+- All tests (headless)
+
+```bash
+npm run test
+```
+
+- All tests (UI viewable)
+
+```bash
+npm run test:ui
+```
+
+- Specific test(s) you have tagged with the @target tag
+
+```bash
+npm run test:target
+```
+
 - [Local](#local)
   - [Requirements](#requirements)
     - [Node.js](#nodejs)

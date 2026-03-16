@@ -41,17 +41,24 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    { name: 'setup', testDir: './', testMatch: /.*\.setup\.js/ },
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] }
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: 'playwright/.auth/user.json'
+      },
+      dependencies: ['setup']
     },
 
     {
       name: 'Microsoft Edge',
       use: {
         // Supported Microsoft Edge channels are: msedge, msedge-beta, msedge-dev, msedge-canary
-        channel: 'msedge'
-      }
+        channel: 'msedge',
+        storageState: 'playwright/.auth/user.json'
+      },
+      dependencies: ['setup']
     }
 
     // {

@@ -12,6 +12,15 @@ export default class ContactsLinkedBusinessesPage {
     this.permissionsDescriptionsTable = page.getByTestId(
       'permissions-descriptions-table'
     )
+    this.baseUrl =
+      'https://fcp-cv-frontend.' +
+      process.env.ENVIRONMENT +
+      '.cdp-int.defra.cloud/' +
+      'linked-businesses'
+  }
+
+  async gotoPage() {
+    await this.page.goto(this.baseUrl)
   }
 
   async checkTitle() {
