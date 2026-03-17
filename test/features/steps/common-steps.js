@@ -40,8 +40,10 @@ Then(
   /^I am on the (.+) page$/,
   async function (
     {
+      page,
       contactsLinkedBusinessesPage,
       businessAgreementsPage,
+      businessAgreementDetailsPage,
       businessApplicationsPage,
       businessCphDetailsPage,
       businessLandDetailsPage,
@@ -84,8 +86,11 @@ Then(
         await businessAgreementsPage.checkTitle()
         break
 
+      case 'Agreement Details':
+        await businessAgreementDetailsPage.checkTitle()
+        break
+
       default:
-        // console.log('Page check failed - page name not recognised')
         throw new Error('Page check failed - page name not recognised')
     }
   }

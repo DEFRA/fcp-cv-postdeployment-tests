@@ -4,7 +4,7 @@ export default class BusinessAgreementDetailsPage {
   constructor(page) {
     this.page = page
     this.headerLabel = page.getByTestId('header-label')
-    this.backButton = page.getByTestId('back-button')
+    this.backButton = page.getByText('< Back to Agreements list')
     this.agreementDetailsTable = page.getByTestId('agreement-details-table')
     this.baseUrl =
       'https://fcp-cv-frontend.' +
@@ -15,6 +15,10 @@ export default class BusinessAgreementDetailsPage {
 
   async gotoPage() {
     await this.page.goto(this.baseUrl)
+  }
+
+  async checkTitle() {
+    await expect(this.page).toHaveTitle('Agreements')
   }
 
   async checkHeader(expectedHeaderText) {

@@ -16,7 +16,7 @@ export default class BusinessAgreementsPage {
   }
 
   async checkTitle() {
-    await expect(this.page).toHaveTitle('Business Agreements')
+    await expect(this.page).toHaveTitle('Agreements')
   }
 
   async checkViewRecordIsAvailable() {

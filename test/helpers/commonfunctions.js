@@ -8,6 +8,7 @@ import BusinessLandDetailsPage from '../page-objects/business-land-details-page.
 import BusinessCphDetailsPage from '../page-objects/business-cph-details-page.js'
 import BusinessApplicationsPage from '../page-objects/business-applications-page.js'
 import BusinessAgreementsPage from '../page-objects/business-agreements-page.js'
+import BusinessAgreementDetailsPage from '../page-objects/business-agreement-details-page.js'
 
 export async function navigate(page, pageName) {
   switch (pageName) {
@@ -58,6 +59,24 @@ export async function navigate(page, pageName) {
     case 'Agreements': {
       const businessAgreementsPage = new BusinessAgreementsPage(page)
       await businessAgreementsPage.gotoPage()
+      break
+    }
+
+    case 'Agreement Details': {
+      const businessAgreementsPage = new BusinessAgreementsPage(page)
+      await businessAgreementsPage.gotoPage()
+      let currentUrl = await page.url()
+      let newUrl = updateURLParameter(currentUrl, 'sbi', '1111111111')
+      await page.goto(newUrl)
+      await businessAgreementsPage.checkTitle()
+
+      const businessAgreementDetailsPage = new BusinessAgreementDetailsPage(
+        page
+      )
+      currentUrl = await page.url()
+      newUrl = updateURLParameter(currentUrl, 'contractId', '1111111111')
+      await page.goto(newUrl)
+      await businessAgreementDetailsPage.checkTitle()
       break
     }
 

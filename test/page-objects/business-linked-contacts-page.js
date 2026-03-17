@@ -14,8 +14,7 @@ export default class BusinessLinkedContactsPage {
     this.permissionsTable = page.getByTestId('permissions-table') // Refactor
     this.baseUrl =
       'https://fcp-cv-frontend.' +
-      'dev' +
-      // process.env.ENVIRONMENT +
+      process.env.ENVIRONMENT +
       '.cdp-int.defra.cloud/' +
       'linked-contacts'
   }
