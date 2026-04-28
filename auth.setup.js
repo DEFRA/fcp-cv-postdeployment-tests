@@ -7,6 +7,8 @@ import { test as setup } from '@playwright/test'
 
 // const authFile = path.join(__dirname, './playwright/.auth/user.json')
 
+// NOTE: If this is to be re-activated, you'll need to uncomment the lines with 'storageState' in playwright.config.js
+
 setup('authenticate', async ({ page }) => {
   // Authentication steps
   // Disabled
