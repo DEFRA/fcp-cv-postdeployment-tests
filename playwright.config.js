@@ -45,8 +45,8 @@ export default defineConfig({
     {
       name: 'chromium',
       use: {
-        ...devices['Desktop Chrome'],
-        storageState: 'playwright/.auth/user.json'
+        ...devices['Desktop Chrome']
+        // storageState: 'playwright/.auth/user.json'
       },
       dependencies: ['setup']
     },
@@ -55,8 +55,8 @@ export default defineConfig({
       name: 'Microsoft Edge',
       use: {
         // Supported Microsoft Edge channels are: msedge, msedge-beta, msedge-dev, msedge-canary
-        channel: 'msedge',
-        storageState: 'playwright/.auth/user.json'
+        channel: 'msedge'
+        // storageState: 'playwright/.auth/user.json'
       },
       dependencies: ['setup']
     }
