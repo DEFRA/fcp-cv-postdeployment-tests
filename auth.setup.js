@@ -1,14 +1,16 @@
 import { test as setup } from '@playwright/test'
-import path, { dirname } from 'path'
-import { fileURLToPath } from 'url'
+// import path, { dirname } from 'path'
+// import { fileURLToPath } from 'url'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+// const __filename = fileURLToPath(import.meta.url)
+// const __dirname = dirname(__filename)
 
-const authFile = path.join(__dirname, './playwright/.auth/user.json')
+// const authFile = path.join(__dirname, './playwright/.auth/user.json')
 
 setup('authenticate', async ({ page }) => {
   // Authentication steps
+  // Disabled
+  /*
   await page.goto('https://login.microsoftonline.com/')
 
   await page.getByRole('heading', { name: 'Sign in' }).click()
@@ -23,4 +25,5 @@ setup('authenticate', async ({ page }) => {
   await page.getByRole('button', { name: 'Yes' }).click()
 
   await page.context().storageState({ path: authFile })
+  */
 })

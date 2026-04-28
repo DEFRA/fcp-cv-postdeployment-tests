@@ -3,6 +3,9 @@ import { expect } from '@playwright/test'
 export default class BusinessApplicationsPage {
   constructor(page) {
     this.page = page
+    this.applicationDetailsInitialPrompt = page.getByText(
+      'Select an item from the table'
+    )
     this.applicationsTable = page.getByTestId('applications-table')
     this.applicationDetailsPane = page.getByTestId('application-details-pane')
     this.applicationDetailsPaneTitleLabel = page.getByTestId(
@@ -114,7 +117,7 @@ export default class BusinessApplicationsPage {
   }
 
   async ApplicationDetailsPaneIsEmpty() {
-    await expect(this.applicationDetailsPaneTitleLabel).not.toBeVisible()
+    await expect(this.applicationDetailsInitialPrompt).toBeVisible()
   }
 
   async checkApplicationDetailsData(expectedApplicationData) {

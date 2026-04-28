@@ -1,9 +1,11 @@
 Feature: Consolidated View Business Messages page
 
-  @basic @possible-vi-test
+  @basic @possible-vi-test @working
   Scenario: Message data updates correctly once a contact is selected.
     Given I have gone to the 'Business Messages' page
+    And I have selected the business with SBI '1111111111'
     And I select a contact
+    And I select the Date Range field as 'Last 36 months'
     When I select the first message
     Then the right-hand pane updates with a bold title, a Date field, a Read field, a Deleted field and a Message field
     And there is a label in the right-hand pane 'Links in the message below do not work'

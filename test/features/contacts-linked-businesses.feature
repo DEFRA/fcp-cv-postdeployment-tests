@@ -1,5 +1,11 @@
 Feature: Consolidated View Contacts Linked Businesses page
 
+  @advanced @data-dependent @working
+  Scenario: A contact with no businesses is shown without error
+    Given I have gone to the 'Contacts Linked Businesses' page
+    And I have selected the contact with CRN '9000000000'
+    Then I see the 'Businesses' table is empty
+
   @advanced @data-dependent
   Scenario: On clicking on a business, information is shown correctly
     Given I have selected the contact with CRN '1103020285'
@@ -70,12 +76,6 @@ Feature: Consolidated View Contacts Linked Businesses page
       | label | value                                                                                                                          |
       | SBI   | 121428499, 106238988, 106284736, 107591843                                                                                     |
       | Name  | "Bailey, Dickens and Mraz", "Gleichner,Okuneva and Murazik", "Goldner, Schmeler and Kutch", "Homenick, McDermott and Luettgen" |
-
-  @advanced @data-dependent
-  Scenario: A contact with no businesses is shown without error
-    Given I have selected the contact with CRN '9000000000'
-    And I am on the Contacts Linked Businesses page
-    Then I see the 'Businesses' table is empty
 
   @advanced @data-dependent
   Scenario: When a business's permission is NOT level "NO_ACCESS", the Permission Description list is correct.

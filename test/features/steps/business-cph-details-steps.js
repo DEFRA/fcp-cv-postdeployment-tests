@@ -42,7 +42,7 @@ Then(
 )
 
 When(
-  /^When I select a new CPH from the CPH Table$/,
+  /^I select a new CPH from the CPH Table$/,
   async function ({ businessCphDetailsPage }) {
     await businessCphDetailsPage.selectCph(null)
   }
@@ -58,8 +58,7 @@ When(
 Then(
   /^the details in the right-hand side pane update$/,
   async function ({ businessCphDetailsPage }) {
-    // TODO
-    // Unclear how best to do this
+    await businessCphDetailsPage.checkDetailsPaneIsNotEmpty()
   }
 )
 

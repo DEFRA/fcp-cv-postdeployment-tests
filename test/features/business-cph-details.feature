@@ -1,9 +1,9 @@
 Feature: Consolidated View CPH Details page
 
-  @intermediate
+  @intermediate @working
   Scenario: Selecting a new CPH updates the details in the right-hand pane
     Given I have gone to the 'CPH Details' page
-    When When I select a new CPH from the CPH Table
+    When I select a new CPH from the CPH Table
     Then the details in the right-hand side pane update
 
   @advanced @data-dependent

@@ -9,6 +9,7 @@ import BusinessCphDetailsPage from '../page-objects/business-cph-details-page.js
 import BusinessApplicationsPage from '../page-objects/business-applications-page.js'
 import BusinessAgreementsPage from '../page-objects/business-agreements-page.js'
 import BusinessAgreementDetailsPage from '../page-objects/business-agreement-details-page.js'
+import BusinessPaymentsPage from '../page-objects/business-payments-page.js'
 
 export async function navigate(page, pageName) {
   switch (pageName) {
@@ -77,6 +78,12 @@ export async function navigate(page, pageName) {
       newUrl = updateURLParameter(currentUrl, 'contractId', '1111111111')
       await page.goto(newUrl)
       await businessAgreementDetailsPage.checkTitle()
+      break
+    }
+
+    case 'Payments': {
+      const businessPaymentsPage = new BusinessPaymentsPage(page)
+      await businessPaymentsPage.gotoPage()
       break
     }
 

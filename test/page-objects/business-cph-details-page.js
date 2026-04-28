@@ -3,7 +3,8 @@ import { expect } from '@playwright/test'
 export default class BusinessCphDetailsPage {
   constructor(page) {
     this.page = page
-    this.cphTable = page.getByTestId('cph-table')
+    this.cphTable = page.getByRole('table')
+    this.cphDetailsDefaultText = page.getByText('Select an item from the table')
     this.cphDetailsPaneTitleLabel = page.getByTestId(
       'cph-details-pane-title-label'
     )
@@ -110,8 +111,8 @@ export default class BusinessCphDetailsPage {
     const tableRowsData = await this.cphTable.locator('tr')
 
     let targetRow = null
-    if (cphNumber === null) {
-      targetRow = await tableRowsData.first()
+    if (!cphNumber) {
+      targetRow = await tableRowsData.nth(1) // Selects the 2nd row, i.e. ignores the header row
     } else {
       targetRow = await tableRowsData.filter({ hasText: cphNumber })
     }
@@ -119,7 +120,11 @@ export default class BusinessCphDetailsPage {
   }
 
   async checkDetailsPaneIsEmpty() {
-    await expect(this.cphDetailsPaneTitleLabel).not.ToBeVisible()
+    await expect(this.cphDetailsDefaultText).toBeVisible()
+  }
+
+  async checkDetailsPaneIsNotEmpty() {
+    await expect(this.cphDetailsDefaultText).not.toBeVisible()
   }
 
   async checkCphFieldData(expectedCphDetails) {

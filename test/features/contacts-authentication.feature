@@ -1,16 +1,16 @@
 Feature: Consolidated View Contacts Authentication page
 
-  @advanced @data-dependent
+  @advanced @data-dependent @working
   Scenario: Contacts with no authentication data set should have all table data shown as NOT SET.
-    Given I have selected a contact '1111111400'
-    When I navigate to the Contacts Authentication page
-    Then All table entries should be shown as 'NOT SET'
+    Given I have gone to the 'Contacts Authentication' page
+    When I have selected the contact with CRN '1111111400'
+    Then all table entries should be shown as '(Not set)'
 
   @advanced @data-dependent @require-mock-update
   Scenario: Contacts who cannot be found in the authentication database should have all table data shown as NOT FOUND.
     Given I have selected a contact who is not in the authentication database
     When I navigate to the Contacts Authentication page
-    Then All table entries should be shown as 'NOT FOUND'
+    Then all table entries should be shown as 'NOT FOUND'
 
   @advanced @data-dependent
   Scenario: Authentication data should be displayed correctly
