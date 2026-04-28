@@ -96,6 +96,13 @@ Then(
 )
 
 Then(
+  /^the View Contact button is visible$/,
+  async function ({ businessLinkedContactsPage }) {
+    await businessLinkedContactsPage.viewContactButtonIsVisible()
+  }
+)
+
+Then(
   /^I see the the correct list of contacts as follows$/,
   async function ({ businessLinkedContactsPage }, table) {
     await businessLinkedContactsPage.checkContactsTable(table)

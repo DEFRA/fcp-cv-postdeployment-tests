@@ -120,13 +120,13 @@ Feature: Consolidated View Applications page
       | Application Name | Domestic Capital Claim, Domestic Capital Claim, CO Rev Payments |
       | Status           | IN PROGRESS, IN PROGRESS, SUBMITTED                             |
 
-  @advanced @data-dependent
+  @advanced @data-dependent @working
   Scenario: For a business with no Applications, a warning message is shown indicating that there are no Applications
+    Given I have gone to the 'Applications' page
     Given I have selected the business with SBI '1000000000'
-    And I am on the Applications page
     Then I see the 'Applications' table is empty
     And the Applications details pane is empty
-    And I see a warning message 'We didn't find any data to show at this time' under the 'Application Details' table
+    And I see a warning message 'No results found' under the 'Application Details' table
 
   @advanced @data-dependent
   Scenario: The Applications data is correct

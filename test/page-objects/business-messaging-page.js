@@ -10,25 +10,25 @@ export default class BusinessMessagingPage {
       'All'
     ]
     this.validReadUnreadOptions = ['All', 'Read', 'Unread']
-    this.contactsListLabel = page.getByTestId('contacts-list-label')
-    this.contactsListDropDown = page.getByTestId('contacts-list-dropdown')
-    this.messagesTable = page.getByTestId('messages-table')
-    this.dateRangeLabel = page.getByTestId('date-range-list-label')
-    this.dateRangeDropDown = page.getByTestId('date-range-list-dropdown')
+    this.contactsListLabel = page.getByText('Contact')
+    this.contactsListDropDown = page.getByLabel('Contact')
+    this.messagesTable = page.getByRole('table')
+    this.dateRangeLabel = page.getByText('Date Range')
+    this.dateRangeDropDown = page.getByLabel('Date Range')
     this.readUnreadMessageLabel = page.getByTestId(
       'read-unread-message-list-label'
     )
     this.readUnreadMessageDropDown = page.getByTestId(
       'read-unread-message-list-dropdown'
     )
-    this.contactTitleLabel = page.getByTestId('contact-title-label')
-    this.messageDateLabel = page.getByTestId('message-date-label')
-    this.messageDateTextBox = page.getByTestId('message-date-textbox')
-    this.messageReadLabel = page.getByTestId('message-read-label')
-    this.messageReadTextBox = page.getByTestId('message-read-textbox')
-    this.messageDeletedLabel = page.getByTestId('message-deleted-label')
-    this.messageDeletedTextBox = page.getByTestId('message-deleted-textbox')
-    this.messageTextBox = page.getByTestId('message-textbox')
+    this.contactTitleLabel = page.getByRole('heading').nth(3)
+    this.messageDateLabel = page.getByRole('term').filter({ hasText: 'Date' })
+    this.messageDateTextBox = page.getByRole('definition').nth(0)
+    this.messageReadLabel = page.getByRole('term').filter({ hasText: 'Read' })
+    this.messageReadTextBox = page.getByRole('definition').nth(1)
+    this.messageDeletedLabel = page.getByText('Deleted', { exact: 'true' })
+    this.messageDeletedTextBox = page.getByRole('definition').nth(2)
+    this.messageTextBox = page.getByRole('paragraph').nth(1)
     this.baseUrl =
       'https://fcp-cv-frontend.' +
       process.env.ENVIRONMENT +
@@ -45,8 +45,9 @@ export default class BusinessMessagingPage {
   }
 
   async selectContact(contactName) {
-    if (contactName === null) {
-      await this.contactsListDropDown.selectOption({ index: 0 })
+    if (!contactName) {
+      await this.contactsListDropDown.click()
+      await this.contactsListDropDown.selectOption({ index: 1 })
     } else {
       await this.contactsListDropDown.selectOption({ label: contactName })
     }
@@ -54,11 +55,12 @@ export default class BusinessMessagingPage {
 
   async selectMessage(subject) {
     await expect(this.messagesTable).toBeVisible()
+    await this.page.waitForLoadState('networkidle')
     const tableRowsData = await this.messagesTable.locator('tr')
 
     let targetRow = null
-    if (subject === null) {
-      targetRow = await tableRowsData.first()
+    if (!subject) {
+      targetRow = await tableRowsData.nth(1) // Get first data row, ignoring header row
     } else {
       targetRow = await tableRowsData.filter({ hasText: subject })
     }
@@ -132,12 +134,12 @@ export default class BusinessMessagingPage {
   }
 
   async checkLabelWithTextExists(labelText) {
-    await expect(this.page.getByLabel(labelText)).toBeVisible()
+    await expect(this.page.getByText(labelText)).toBeVisible()
   }
 
   async validateRightPaneStructure() {
     await expect(this.contactTitleLabel).toBeVisible()
-    await expect(this.contactTitleLabel).toHaveCSS('.font-bold')
+    await expect(this.contactTitleLabel).toHaveClass(/font-bold/)
     await expect(this.messageDateLabel).toBeVisible()
     await expect(this.messageDateTextBox).toBeVisible()
     await expect(this.messageReadLabel).toBeVisible()

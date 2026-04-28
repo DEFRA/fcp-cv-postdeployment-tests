@@ -89,7 +89,7 @@ Then(
 When(
   /^I delete all the text in the Date field$/,
   async function ({ businessLandDetailsPage }) {
-    await businessLandDetailsPage.enterDate('')
+    await businessLandDetailsPage.deleteDate()
   }
 )
 
@@ -147,6 +147,21 @@ Then(
   /^I see the correct list of parcels in the Parcels table as follows$/,
   async function ({ businessLandDetailsPage }, expectedParcelsTable) {
     await businessLandDetailsPage.checkParcelTableData(expectedParcelsTable)
+  }
+)
+
+Then(
+  /^the date selector shows todays date$/,
+  async function ({ businessLandDetailsPage }) {
+    const date = new Date()
+    let result = date.toLocaleDateString('en-CA', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    })
+    result = result.replaceAll('/', '-')
+
+    await businessLandDetailsPage.checkDateSelector(result)
   }
 )
 

@@ -5,7 +5,7 @@ export default class ContactsAuthenticationPage {
     this.page = page
     this.retrievedAtLabel = page.getByTestId('retrieved-at-label')
     this.retrievedAtTextBox = page.getByTestId('retrieved-at-textbox')
-    this.authenticationTable = page.getByTestId('authentication-table')
+    this.authenticationTable = page.getByRole('table')
     this.baseUrl =
       'https://fcp-cv-frontend.' +
       process.env.ENVIRONMENT +
@@ -36,6 +36,7 @@ export default class ContactsAuthenticationPage {
   }
 
   async checkAuthenticationTableIsPopulated() {
+    await this.page.waitForLoadState('networkidle')
     const tableData = await this.authenticationTable.locator('td')
     await tableData.forEach((text) => {
       expect(text).not.toContainText()('')
@@ -43,10 +44,15 @@ export default class ContactsAuthenticationPage {
   }
 
   async checkAuthenticationTableCellsHaveSameValues(expectedString) {
-    const tableData = await this.authenticationTable.locator('td')
-    await tableData.forEach((text) => {
-      expect(text).toEqual(expectedString)
-    })
+    await this.page.waitForLoadState('networkidle')
+    const dataCells = this.page.getByRole('definition')
+    const elementsCount = await dataCells.count()
+
+    for (let index = 0; index < elementsCount; index++) {
+      const element = await dataCells.nth(index)
+      const innerText = await element.innerText()
+      expect(innerText).toEqual(expectedString)
+    }
   }
 
   async checkAuthenticationTableValues(expectedTableData) {

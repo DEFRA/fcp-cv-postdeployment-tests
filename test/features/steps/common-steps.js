@@ -1,4 +1,5 @@
 import { createBdd } from 'playwright-bdd'
+import { expect } from '@playwright/test'
 import { test } from './fixtures.js'
 import { navigate, updateURLParameter } from '../../helpers/commonfunctions.js'
 
@@ -137,7 +138,7 @@ Then(
   /^I see a warning message '(.+)' under the '(.+)' table$/,
   async function ({ page }, message, tableName) {
     // TODO - there may be multiple warning labels, how will we pick the correct one?
-    const warningTextBox = await page.getByTestId('warning-text')
+    const warningTextBox = await page.getByRole('cell')
     await expect(warningTextBox).toHaveText(message)
   }
 )
@@ -149,8 +150,9 @@ Then(
 //
 
 Then(/^I see the '(.+)' table is empty$/, async function ({ page }, tableName) {
-  const myTable = await page.getByTestId(tableName + '-table')
-  await expect(myTable.locator('tr')).toHaveCount(0)
+  await page.waitForLoadState('networkidle')
+  const myTable = await page.getByRole('table')
+  await expect(myTable.locator('td')).toHaveCount(1) // There will be one row and one cell if no data is returned
 })
 
 Then(

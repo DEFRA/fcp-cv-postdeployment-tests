@@ -1,17 +1,19 @@
 Feature: Consolidated View Business Land Details page
 
-  @intermediate
+  @intermediate @incomplete
   Scenario: The Date selector updates the screen
     Given I have gone to the 'Land Details' page
+    And I have selected the business with SBI '1111111111'
     When I select a new date
     Then the page refreshes the data
 
-  @intermediate
+  @intermediate @working
   Scenario: The Date selector cannot be blank
     Given I have gone to the 'Land Details' page
+    And I have selected the business with SBI '1111111111'
     When I delete all the text in the Date field
     And Press the Enter key
-    Then I see a warning message 'Date must be in dd/mm/yyy format. For example 25/12/2024' under the 'Land Date' table
+    Then the date selector shows todays date
 
   @intermediate
   Scenario: The Date selector only accepts the correct date format - no non numeric characters

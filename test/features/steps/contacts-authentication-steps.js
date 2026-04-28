@@ -50,7 +50,7 @@ Then(
 //
 
 Then(
-  /^All table entries should be shown as '(.+)'$/,
+  /^all table entries should be shown as '(.+)'$/,
   async function ({ contactsAuthenticationPage }, expectedString) {
     await contactsAuthenticationPage.checkAuthenticationTableCellsHaveSameValues(
       expectedString
@@ -77,14 +77,5 @@ Then(
   /^the Retrieved At field is equal to todays date and current time$/,
   async function ({ contactsAuthenticationPage }) {
     await contactsAuthenticationPage.checkRetrievedAtValue()
-  }
-)
-
-Given(
-  'I have selected a contact {string}',
-  async ({ contactsAuthenticationPage }, arg) => {
-    // TODO
-    // Step: Given I have selected a contact '1111111400'
-    // From: test/features/contacts-authentication.feature:12:5
   }
 )

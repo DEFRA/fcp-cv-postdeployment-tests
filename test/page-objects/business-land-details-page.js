@@ -3,7 +3,7 @@ import { expect } from '@playwright/test'
 export default class BusinessLandDetailsPage {
   constructor(page) {
     this.page = page
-    this.dateRangeTextBox = page.getByTestId('date-range-textbox')
+    this.dateRangeTextBox = page.getByLabel('Date')
     this.landSummaryTable = page.getByTestId('land-summary-table')
     this.landSummaryHeaderLabel = page.getByTestId('land-summary-header-label')
     this.parcelsSearchTextbox = page.getByTestId('parcels-search-textbox')
@@ -111,8 +111,17 @@ export default class BusinessLandDetailsPage {
     const currentDateTime = new Date()
     const oneDay = 86400000
     const dateTimeOneDayAgo = new Date(currentDateTime - oneDay)
-    await this.dateRangeTextBox.fill(dateTimeOneDayAgo)
+    const formattedDate = `${dateTimeOneDayAgo.getDate()}${dateTimeOneDayAgo.getMonth() + 1}${dateTimeOneDayAgo.getFullYear()}`
+    await this.dateRangeTextBox.pressSequentially(formattedDate)
     await this.page.keyboard.press('Enter')
+  }
+
+  async deleteDate() {
+    await this.dateRangeTextBox.press('Delete')
+    await this.dateRangeTextBox.press('ArrowRight')
+    await this.dateRangeTextBox.press('Delete')
+    await this.dateRangeTextBox.press('ArrowRight')
+    await this.dateRangeTextBox.press('Delete')
   }
 
   async checkScreenDataUpdate() {
@@ -275,5 +284,9 @@ export default class BusinessLandDetailsPage {
       }
       columnNumber++
     }
+  }
+
+  async checkDateSelector(expectedDate) {
+    await expect(this.dateRangeTextBox).toHaveValue(expectedDate)
   }
 }
